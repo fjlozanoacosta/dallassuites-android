@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:weightSum="5">
+
+
+    <ImageView
+        android:id="@+id/profile_timeline_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/perfil_mas_doble" />
+
+    <TextView
+        android:id="@+id/profile_timeline_text_action"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/profile_timeline_img"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:text="Se sumaron 1050 pts"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:textColor="@color/grey"
+        />
+    <TextView
+        android:id="@+id/profile_timeline_text_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/profile_timeline_img"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:text="30 - Oct - 2014"
+        android:layout_below="@+id/profile_timeline_text_action"
+        android:textStyle="italic"
+        android:textColor="@color/grey"
+        />
+
+    <TextView
+        android:id="@+id/profile_timeline_text_habitacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/profile_timeline_img"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:text="Suite Plus"
+        android:textColor="@color/dallas_typeface_color"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+
+
+        />
+
+</RelativeLayout>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/servicios_background">
+
+    <ImageButton
+        android:id="@+id/services_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:src="@drawable/back_selector"
+        android:background="@android:color/transparent"/>
+
+    <TextView
+        android:id="@+id/services_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="@string/home_services"
+        android:textColor="@color/dallas_typeface_color"
+        android:textSize="30dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/services_title"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:orientation="vertical"
+        android:weightSum="2">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/home_logo" />
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="5"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/services_button_restaurant"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/home_button_selector"
+            android:text="@string/services_restaurant"
+            android:textSize="23dp"
+            android:textColor="@color/dallas_typeface_color"/>
+
+            <Button
+                android:id="@+id/services_button_roomservice"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/home_button_selector"
+                android:text="@string/services_roomservice"
+                android:textSize="23dp"
+                android:textColor="@color/dallas_typeface_color"/>
+
+            <Button
+                android:id="@+id/services_button_privacyandsecurity"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/home_button_selector"
+                android:text="@string/services_privacyandsecurity"
+                android:textSize="23dp"
+                android:textColor="@color/dallas_typeface_color"/>
+
+            <Button
+                android:id="@+id/services_button_doublereception"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/home_button_selector"
+                android:text="@string/services_doublereception"
+                android:textSize="23dp"
+                android:textColor="@color/dallas_typeface_color"/>
+
+            <Button
+                android:id="@+id/services_button_comfortandamenities"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/home_button_selector"
+                android:text="@string/services_comfortandamenities"
+                android:textSize="23dp"
+                android:textColor="@color/dallas_typeface_color"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

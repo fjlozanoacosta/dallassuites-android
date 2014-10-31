@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Dallas Suites</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <!--Home-->
+    <string name="home_rooms">HABITACIONES</string>
+    <string name="home_services">SERVICIOS</string>
+    <string name="home_register">REGISTRO</string>
+    <string name="home_profile">PERFIL</string>
+
+    <!--Register-->
+    <string name="register_name">NOMBRE</string>
+    <string name="register_lastname">APELLIDO</string>
+    <string name="register_email">CORREO ELECTRÓNICO</string>
+    <string name="register_id">C.I.</string>
+    <string name="register_dateofbirth">FECHA DE NACIMIENTO</string>
+    <string name="register_username">NOMBRE DE USUARIO</string>
+    <string name="register_password">CONTRASEÑA</string>
+    <string name="register_repeatpassword">REPETIR CONTRASEÑA</string>
+    <string name="register_popup_ok">OK</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur elit.Vivamus ac posuere ante, mauris a euismod nisl.
+    Proin laoreet arcu a magna fringilla</string>
+
+    <!--Services-->
+    <string name="services_restaurant">RESTAURANT</string>
+    <string name="services_roomservice">ROOM SERVICE</string>
+    <string name="services_privacyandsecurity">PRIVACIDAD Y SEGURIDAD</string>
+    <string name="services_doublereception">DOBLE RECEPCIÓN</string>
+    <string name="services_comfortandamenities">COMFORT Y AMENIDADES</string>
+
+    <!--Restaurant-->
+    <string name="restaurant_desayuno">DESAYUNO</string>
+    <string name="restaurant_ensalada">ENSALADAS</string>
+    <string name="restaurant_depicar">DE PICAR</string>
+    <string name="restaurant_sandwiches">SANDWICHES</string>
+    <string name="restaurant_pizzas">PIZZAS</string>
+    <string name="restaurant_postres">POSTRES</string>
+    <string name="restaurant_restodeldia">RESTO DEL DÍA</string>
+    <string name="restaurant_bebidas">BEBIDAS</string>
+
+    <!--Profile-->
+    <string name="profile_history">HISTORIAL</string>
+
+    <!--Edit-->
+    <string name="edit_title">EDITAR</string>
+    <string name="edit_addpassword">AGREGAR CONTRASEÑA</string>
+    <string name="edit_save">GUARDAR</string>
+
+
+</resources>
