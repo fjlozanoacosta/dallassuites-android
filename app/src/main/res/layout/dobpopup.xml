@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/dob_popup_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/register_popup_background" />
+
+    <Button
+        android:id="@+id/dodpopup_button_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/dob_popup_background"
+        android:background="@drawable/register_popup_ok_selector"
+        android:text="@string/register_popup_ok"
+        android:textColor="@color/white" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/dodpopup_button_ok"
+        android:orientation="horizontal"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:weightSum="3">
+
+
+        <ListView
+            android:id="@+id/dobpopup_dia"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/dodpopup_button_ok"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:layout_weight="1"
+            android:listSelector="@android:color/transparent"
+            android:scrollbars="none"></ListView>
+
+        <ListView
+            android:id="@+id/dobpopup_mes"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/dodpopup_button_ok"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:layout_toRightOf="@+id/dobpopup_dia"
+            android:layout_weight="1"
+            android:listSelector="@android:color/transparent"
+            android:scrollbars="none"></ListView>
+
+        <ListView
+            android:id="@+id/dobpopup_ano"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/dodpopup_button_ok"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:layout_toRightOf="@+id/dobpopup_mes"
+            android:layout_weight="1"
+            android:listSelector="@android:color/transparent"
+            android:scrollbars="none"></ListView>
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/dodpopup_button_ok"
+        android:paddingLeft="35dp"
+        android:paddingRight="35dp"
+        android:layout_marginTop="17dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/login_img_divider"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

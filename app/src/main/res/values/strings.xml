@@ -25,7 +25,7 @@
     Proin laoreet arcu a magna fringilla</string>
 
     <!--Services-->
-    <string name="services_restaurant">RESTAURANT</string>
+    <string name="services_restaurant">RESTAURANTE</string>
     <string name="services_roomservice">ROOM SERVICE</string>
     <string name="services_privacyandsecurity">PRIVACIDAD Y SEGURIDAD</string>
     <string name="services_doublereception">DOBLE RECEPCIÓN</string>
@@ -49,5 +49,23 @@
     <string name="edit_addpassword">AGREGAR CONTRASEÑA</string>
     <string name="edit_save">GUARDAR</string>
 
+    <!--Login-->
+    <string name="login_retrievepassword">Recuperar Contraseña</string>
+    <string name="login_login">INICIAR SESIÓN</string>
+
+    <!--Mockup Restaurant Data-->
+    <string name="tequeños">Tequeños</string>
+    <string name="abrebocasvenezolanos">Abrebocas venezolanos</string>
+    <string name="nachos">Nachos</string>
+    <string name="conchadepapa">Concha de papa</string>
+    <string name="dedosdemozzarella">Dedos de mozarella</string>
+    <string name="calamaresalajillo">Calamares al ajillo</string>
+
+    <string name="tequeños_descrip">Rellenos de queso blanco fresco acompañados de salsa al gusto.</string>
+    <string name="abrebocasvenezolanos_descrip">Pastelitos andinos rellenos de carne, empanaditas surtidas y tequeños rellenos de queso.</string>
+    <string name="nachos_descrip">Tortillas de maíz, servidas con sour de cream, pico de gallo, guacamole y caraotas.</string>
+    <string name="conchadepapa_descrip">Conchas de papas fritas rellenas de crema de jamón serrano y tocineta.</string>
+    <string name="dedosdemozarella_descrip">Dedos de mozzarella con salsa nápoli y albahaca.</string>
+    <string name="calamaresalajillo_descrip">Deliciosos calamares preparados al ajillo acompañados de hongos</string>
 
 </resources>

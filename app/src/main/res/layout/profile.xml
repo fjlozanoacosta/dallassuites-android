@@ -10,8 +10,8 @@
         android:id="@+id/profile_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginLeft="@dimen/back_marginleft"
+        android:layout_marginTop="@dimen/back_margintop"
         android:background="@android:color/transparent"
         android:src="@drawable/back_selector" />
 
@@ -19,8 +19,8 @@
         android:id="@+id/profile_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginRight="@dimen/back_marginleft"
+        android:layout_marginTop="@dimen/back_margintop"
         android:background="@android:color/transparent"
         android:src="@drawable/edit_selector"
         android:layout_alignParentRight="true"/>
@@ -33,7 +33,7 @@
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:text="@string/home_profile"
         android:textColor="@color/dallas_typeface_color"
-        android:textSize="30sp" />
+        android:textSize="@dimen/title_size" />
 
 
     <LinearLayout

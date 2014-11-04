@@ -7,9 +7,11 @@
     <WebView
         android:id="@+id/room360_webview_room360"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></WebView>
+        android:layout_height="match_parent"
+        android:keepScreenOn="true"></WebView>
 
     <ImageView
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/room360_img_topbar"
@@ -20,18 +22,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
+android:layout_marginTop="10dp"
         android:textSize="25dp"
         android:textColor="@color/dallas_typeface_color"
         android:text="Suite Duplex"
-        android:paddingTop="0dp"
         />
 
     <ImageButton
+        android:id="@+id/rooms360_imagebutton_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/back_marginleft"
         android:src="@drawable/back_selector"
         android:background="@android:color/transparent"/>
 

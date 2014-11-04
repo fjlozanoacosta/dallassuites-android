@@ -27,6 +27,9 @@
         <activity android:name=".Restaurant" android:screenOrientation="portrait"/>
         <activity android:name=".Room360" android:screenOrientation="portrait"/>
         <activity android:name=".Edit" android:screenOrientation="portrait"/>
+        <activity android:name=".Login" android:screenOrientation="portrait" android:theme="@android:style/Theme.Holo.Dialog"/>
+        <activity android:name=".RestaurantDetail" android:screenOrientation="portrait"/>
+        <activity android:name=".DOBPopup" android:screenOrientation="portrait" android:theme="@android:style/Theme.Holo.Dialog" />
 
     </application>
 

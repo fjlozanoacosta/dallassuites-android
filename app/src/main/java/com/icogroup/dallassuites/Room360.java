@@ -3,7 +3,9 @@ package com.icogroup.dallassuites;
 import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.View;
 import android.webkit.WebView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 /**
@@ -11,9 +13,10 @@ import android.widget.TextView;
  */
 public class Room360 extends Activity{
 
-    Typeface brandonregular;
+    Typeface brandonregular, brandonlight;
     WebView wvRoom360;
     TextView title;
+    ImageButton back;
 
 
     @Override
@@ -28,16 +31,26 @@ public class Room360 extends Activity{
 
         title.setText(getIntent().getExtras().getString("room_name").toUpperCase());
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
     }
 
     private void init() {
 
         brandonregular = Typeface.createFromAsset(getAssets(), "brandon_reg.otf");
+        brandonlight = Typeface.createFromAsset(getAssets(), "brandon_light.otf");
 
         wvRoom360 = (WebView)findViewById(R.id.room360_webview_room360);
         title = (TextView)findViewById(R.id.room360_title);
 
-        title.setTypeface(brandonregular);
+        back = (ImageButton)findViewById(R.id.rooms360_imagebutton_back);
+
+        title.setTypeface(brandonlight);
 
     }
 }

@@ -28,7 +28,8 @@
             android:layout_centerInParent="true"
             android:text="@string/edit_title"
             android:textColor="@color/dallas_typeface_color"
-            android:textSize="30sp" />
+            android:textSize="@dimen/title_size"
+            android:layout_marginTop="@dimen/activity_vertical_margin"/>
 
     </RelativeLayout>
 

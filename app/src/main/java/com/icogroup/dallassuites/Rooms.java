@@ -3,6 +3,7 @@ package com.icogroup.dallassuites;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -32,11 +34,13 @@ import java.util.HashMap;
  */
 public class Rooms extends Activity {
 
+    Typeface brandonlight;
    ListView listRooms;
    String[] rooms = {"Suite Plus", "Suite Plus C/ Jacuzzi", "Suite Duplex", "Suite Deluxe", "Suite Presidencial"};
    HashMap<String, String> photos360;
     ImageView iRoom;
-    TextView tRoomName;
+    TextView tRoomName, title;
+    ImageButton back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,12 +62,25 @@ public class Rooms extends Activity {
             }
         });
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
     }
 
     private void init() {
 
+        brandonlight = Typeface.createFromAsset(getAssets(), "brandon_light.otf");
         listRooms = (ListView)findViewById(R.id.rooms_listview_rooms);
         photos360 = new HashMap<String, String>();
+        back = (ImageButton)findViewById(R.id.rooms_back_button);
+        title = (TextView)findViewById(R.id.rooms_title);
+
+        title.setTypeface(brandonlight);
+
 
     }
 

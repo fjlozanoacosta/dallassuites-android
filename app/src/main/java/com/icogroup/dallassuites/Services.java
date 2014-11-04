@@ -42,7 +42,7 @@ public class Services extends Activity implements View.OnClickListener{
         doubleReception= (Button)findViewById(R.id.services_button_doublereception);
         comfortAndAmenities = (Button)findViewById(R.id.services_button_comfortandamenities);
 
-        title.setTypeface(brandonregular);
+        title.setTypeface(brandonlight);
 
         restaurant.setTypeface(brandonlight);
         roomService.setTypeface(brandonlight);

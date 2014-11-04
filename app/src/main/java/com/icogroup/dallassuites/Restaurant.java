@@ -1,11 +1,12 @@
 package com.icogroup.dallassuites;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 /**
@@ -13,9 +14,10 @@ import android.widget.TextView;
  */
 public class Restaurant extends Activity implements View.OnClickListener {
 
+    ImageButton back;
     TextView title, desayuno, ensaladas, depicar, sandwiches, pizzas, postres, restodeldia, bebidas;
     Button bDesayuno, bEnsaladas, bDePicar, bSandwiches, bPizzas, bPostres, bRestoDelDia, bBebidas;
-    Typeface brandonregular;
+    Typeface brandonregular, brandonlight;
 
 
     @Override
@@ -29,8 +31,11 @@ public class Restaurant extends Activity implements View.OnClickListener {
     private void init() {
 
         brandonregular = Typeface.createFromAsset(getAssets(), "brandon_reg.otf");
+        brandonlight = Typeface.createFromAsset(getAssets(), "brandon_light.otf");
 
         title = (TextView) findViewById(R.id.restaurant_title);
+
+        back = (ImageButton)findViewById(R.id.restaurant_back);
 
         desayuno = (TextView) findViewById(R.id.restaurant_text_desayuno);
         ensaladas = (TextView) findViewById(R.id.restaurant_text_ensaladas);
@@ -50,6 +55,8 @@ public class Restaurant extends Activity implements View.OnClickListener {
         bRestoDelDia = (Button) findViewById(R.id.restaurant_button_restodeldia);
         bBebidas = (Button) findViewById(R.id.restaurant_button_bebidas);
 
+        back.setOnClickListener(this);
+
         bDesayuno.setOnClickListener(this);
         bEnsaladas.setOnClickListener(this);
         bDePicar.setOnClickListener(this);
@@ -59,6 +66,8 @@ public class Restaurant extends Activity implements View.OnClickListener {
         bRestoDelDia.setOnClickListener(this);
         bBebidas.setOnClickListener(this);
 
+
+        title.setTypeface(brandonlight);
 
         desayuno.setTypeface(brandonregular);
         ensaladas.setTypeface(brandonregular);
@@ -74,7 +83,17 @@ public class Restaurant extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
 
-        Log.d("EJE>cuto", "Ejecuto");
+        switch(view.getId()){
+
+            case R.id.restaurant_back:
+                finish();
+                break;
+
+            default:
+                startActivity(new Intent(Restaurant.this, RestaurantDetail.class));
+                break;
+
+        }
 
     }
 }

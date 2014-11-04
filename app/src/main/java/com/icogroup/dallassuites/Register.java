@@ -48,6 +48,7 @@ public class Register extends Activity implements View.OnClickListener, View.OnF
     SharedPreferences prefs;
     LinearLayout registerLayout;
     ImageButton back;
+    static int REQUEST_CODE = 123456789;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +101,7 @@ public class Register extends Activity implements View.OnClickListener, View.OnF
 
         register.setOnClickListener(this);
 
-        title.setTypeface(brandonregular);
+        title.setTypeface(brandonlight);
 
         etName.setTypeface(brandonregular);
         etLastname.setTypeface(brandonregular);
@@ -112,6 +113,8 @@ public class Register extends Activity implements View.OnClickListener, View.OnF
         etRepeatPassword.setTypeface(brandonregular);
 
         etPassword.setOnFocusChangeListener(this);
+        etDateOfBirth.setOnFocusChangeListener(this);
+
 
         register.setTypeface(brandonlight);
 
@@ -123,6 +126,8 @@ public class Register extends Activity implements View.OnClickListener, View.OnF
 
         if(view.getId() == R.id.register_back)
             finish();
+
+
 
         name = etName.getText().toString();
         lastname = etLastname.getText().toString();
@@ -136,7 +141,7 @@ public class Register extends Activity implements View.OnClickListener, View.OnF
 
         if (!username.equals("") && !email.equals("") && !password.equals("")
                 && !repeatPassword.equals("") &&
-                !dob.equals("")) {
+                !dob.equals("") && view.getId() != R.id.register_back ) {
 
             if (password.equals(repeatPassword)) {
 
@@ -170,9 +175,6 @@ public class Register extends Activity implements View.OnClickListener, View.OnF
 
         }
 
-
-
-
     }
 
     @Override
@@ -180,6 +182,20 @@ public class Register extends Activity implements View.OnClickListener, View.OnF
 
         if (view.getId() == R.id.register_edittext_password && etPassword.hasFocus())
             startActivity(new Intent(Register.this, Dallas_Popup.class).putExtra("Categoria", "Contraseña"));
+        else if(view.getId() == R.id.register_edittext_dateofbirth && etDateOfBirth.hasFocus())
+            startActivityForResult(new Intent(Register.this, DOBPopup.class), REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(REQUEST_CODE == requestCode && resultCode == RESULT_OK){
+
+            etDateOfBirth.setText(data.getExtras().getString("Date"));
+
+
+        }
 
     }
 

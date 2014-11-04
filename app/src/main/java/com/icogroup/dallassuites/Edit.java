@@ -32,6 +32,13 @@ public class Edit extends Activity implements View.OnFocusChangeListener{
 
         init();
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         editLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -69,7 +76,7 @@ public class Edit extends Activity implements View.OnFocusChangeListener{
 
         editLayout = (LinearLayout) findViewById(R.id.editlayout);
 
-        title.setTypeface(brandonregular);
+        title.setTypeface(brandonlight);
 
         etName.setTypeface(brandonregular);
         etLastname.setTypeface(brandonregular);

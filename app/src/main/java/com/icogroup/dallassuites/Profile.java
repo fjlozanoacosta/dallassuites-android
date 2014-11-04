@@ -62,6 +62,13 @@ public class Profile extends Activity {
             }
         });
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
     }
 
     private void init() {
@@ -87,7 +94,7 @@ public class Profile extends Activity {
         iNoInfoImg = (ImageView) findViewById(R.id.profile_timeline_noinfo_img);
 
 
-        tTitle.setTypeface(brandonregular);
+        tTitle.setTypeface(brandonlight);
         tName.setTypeface(brandonregular);
         tHistory.setTypeface(brandonlight);
         tPoints.setTypeface(brandonlight);

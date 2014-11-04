@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.icogroup.util.Keystring;
 
@@ -18,6 +19,7 @@ public class Home extends Activity implements View.OnClickListener {
 
     Typeface brandonLight;
     Button rooms, services, register_profile;
+    ImageButton login;
     SharedPreferences prefs;
 
     @Override
@@ -40,20 +42,24 @@ public class Home extends Activity implements View.OnClickListener {
         services = (Button)findViewById(R.id.home_button_services);
         register_profile = (Button)findViewById(R.id.home_button_register_profile);
 
+        login = (ImageButton)findViewById(R.id.home_imagebutton_login);
+
         rooms.setTypeface(brandonLight);
         services.setTypeface(brandonLight);
         register_profile.setTypeface(brandonLight);
 
 
 
-        if(prefs.getBoolean("registered",false))
-            register_profile.setText(R.string.home_profile);
-        else
+//        if(prefs.getBoolean("registered",false))
+//            register_profile.setText(R.string.home_profile);
+//        else
             register_profile.setText(R.string.home_register);
 
         rooms.setOnClickListener(this);
         services.setOnClickListener(this);
         register_profile.setOnClickListener(this);
+
+        login.setOnClickListener(this);
 
     }
 
@@ -96,8 +102,13 @@ public class Home extends Activity implements View.OnClickListener {
                 if(register_profile.getText().toString().contains("REGISTRO"))
                     startActivity(new Intent(Home.this, Register.class));
                 else
-                    startActivity(new Intent(Home.this, Profile.class));
+                    startActivity(new Intent(Home.this, Login.class));
                     break;
+
+            case R.id.home_imagebutton_login:
+                startActivity(new Intent(Home.this, Login.class));
+                break;
+
 
 
         }
