@@ -34,12 +34,12 @@ import java.util.HashMap;
  */
 public class Rooms extends Activity {
 
-    Typeface brandonlight;
+    Typeface brandonlight, brandonregular;
    ListView listRooms;
    String[] rooms = {"Suite Plus", "Suite Plus C/ Jacuzzi", "Suite Duplex", "Suite Deluxe", "Suite Presidencial"};
    HashMap<String, String> photos360;
     ImageView iRoom;
-    TextView tRoomName, title;
+    TextView tRoomName, title, tRoomDescrip;
     ImageButton back;
 
     @Override
@@ -73,7 +73,9 @@ public class Rooms extends Activity {
 
     private void init() {
 
+        brandonregular = Typeface.createFromAsset(getAssets(), "brandon_reg.otf");
         brandonlight = Typeface.createFromAsset(getAssets(), "brandon_light.otf");
+
         listRooms = (ListView)findViewById(R.id.rooms_listview_rooms);
         photos360 = new HashMap<String, String>();
         back = (ImageButton)findViewById(R.id.rooms_back_button);
@@ -117,6 +119,11 @@ public class Rooms extends Activity {
 
             iRoom = (ImageView)view.findViewById(R.id.rooms_rooms_img);
             tRoomName = (TextView)view.findViewById(R.id.rooms_text_roomname);
+            tRoomDescrip = (TextView)view.findViewById(R.id.rooms_text_roomdescription);
+
+            tRoomName.setTypeface(brandonlight);
+            tRoomDescrip.setTypeface(brandonregular);
+
 
             tRoomName.setText("" + rooms[position]);
 

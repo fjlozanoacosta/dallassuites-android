@@ -8,6 +8,6 @@
     <dimen name="back_marginleft">20dp</dimen>
 
     <!--Title-->
-    <dimen name="title_size">28sp</dimen>
+    <dimen name="title_size">26sp</dimen>
     
 </resources>
