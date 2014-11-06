@@ -294,7 +294,7 @@ public class Edit extends Activity implements View.OnFocusChangeListener, View.O
             }
 
 
-            return result;
+            return jsonResult;
         }
 
 
