@@ -26,10 +26,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:text="@string/edit_title"
             android:textColor="@color/dallas_typeface_color"
-            android:textSize="@dimen/title_size"
-            android:layout_marginTop="@dimen/activity_vertical_margin"/>
+            android:textSize="@dimen/title_size" />
 
     </RelativeLayout>
 
@@ -55,9 +55,9 @@
             android:layout_toRightOf="@+id/img_user_name"
             android:background="@android:color/transparent"
             android:hint="@string/register_name"
-            android:textColorHint="@color/white"
+            android:inputType="textPersonName"
             android:textColor="@color/white"
-            android:inputType="textPersonName"/>
+            android:textColorHint="@color/white" />
 
 
         <ImageView
@@ -90,9 +90,9 @@
             android:layout_toRightOf="@+id/img_user_lastname"
             android:background="@android:color/transparent"
             android:hint="@string/register_lastname"
-            android:textColorHint="@color/white"
+            android:inputType="textPersonName"
             android:textColor="@color/white"
-            android:inputType="textPersonName"/>
+            android:textColorHint="@color/white" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -115,18 +115,16 @@
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:src="@drawable/register_mail" />
 
-        <EditText
+        <TextView
             android:id="@+id/edit_edittext_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_toRightOf="@+id/img_email_email"
-            android:background="@android:color/transparent"
-            android:hint="@string/register_email"
-            android:textColorHint="@color/white"
+            android:text="@string/register_email"
             android:textColor="@color/white"
-            android:inputType="textEmailAddress"/>
+            android:textSize="18sp" />
 
 
         <ImageView
@@ -159,9 +157,9 @@
             android:layout_toRightOf="@+id/img_calendar_dateofbirth"
             android:background="@android:color/transparent"
             android:hint="@string/register_dateofbirth"
-            android:textColorHint="@color/white"
+            android:inputType="date"
             android:textColor="@color/white"
-            android:inputType="date"/>
+            android:textColorHint="@color/white" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -193,9 +191,9 @@
             android:layout_toRightOf="@+id/img_id_id"
             android:background="@android:color/transparent"
             android:hint="@string/register_id"
-            android:textColorHint="@color/white"
+            android:inputType="number"
             android:textColor="@color/white"
-            android:inputType="number"/>
+            android:textColorHint="@color/white" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -218,18 +216,16 @@
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:src="@drawable/register_user" />
 
-        <EditText
+        <TextView
             android:id="@+id/edit_edittext_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_toRightOf="@+id/img_user_username"
-            android:background="@android:color/transparent"
-            android:hint="@string/register_username"
-            android:textColorHint="@color/white"
+            android:text="@string/register_username"
             android:textColor="@color/white"
-            android:inputType="none"/>
+            android:textSize="18dp" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -259,11 +255,11 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_toRightOf="@+id/img_password_password"
-            android:background= "@android:color/transparent"
+            android:background="@android:color/transparent"
             android:hint="@string/register_password"
-            android:textColorHint="@color/white"
+            android:inputType="text"
             android:textColor="@color/white"
-            android:inputType="textPassword"/>
+            android:textColorHint="@color/white" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -296,16 +292,15 @@
             android:layout_toRightOf="@+id/img_password_repeatpassword"
             android:background="@android:color/transparent"
             android:hint="@string/edit_addpassword"
-            android:textColorHint="@color/white"
+            android:inputType="textPassword"
             android:textColor="@color/white"
-            android:inputType="textPassword"/>
+            android:textColorHint="@color/white" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:src="@drawable/divider"
-            />
+            android:src="@drawable/divider" />
 
     </RelativeLayout>
 

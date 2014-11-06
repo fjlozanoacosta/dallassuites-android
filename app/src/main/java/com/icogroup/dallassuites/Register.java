@@ -127,8 +127,6 @@ public class Register extends Activity implements View.OnClickListener, View.OnF
         if(view.getId() == R.id.register_back)
             finish();
 
-
-
         name = etName.getText().toString();
         lastname = etLastname.getText().toString();
         email = etEmail.getText().toString();
@@ -285,7 +283,6 @@ public class Register extends Activity implements View.OnClickListener, View.OnF
 
         }
     }
-
 
     class AddPasswordAsync extends AsyncTask<Void, Void, String> {
 

@@ -31,7 +31,6 @@ public class Home extends Activity implements View.OnClickListener {
 
     }
 
-
     public void init(){
 
         brandonLight = Typeface.createFromAsset(getAssets(), "brandon_light.otf");
@@ -48,11 +47,9 @@ public class Home extends Activity implements View.OnClickListener {
         services.setTypeface(brandonLight);
         register_profile.setTypeface(brandonLight);
 
-
-
-//        if(prefs.getBoolean("registered",false))
-//            register_profile.setText(R.string.home_profile);
-//        else
+        if(prefs.getBoolean("registered",false))
+            register_profile.setText(R.string.home_profile);
+        else
             register_profile.setText(R.string.home_register);
 
         rooms.setOnClickListener(this);
@@ -69,9 +66,6 @@ public class Home extends Activity implements View.OnClickListener {
         getMenuInflater().inflate(R.menu.home, menu);
         return true;
     }
-
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

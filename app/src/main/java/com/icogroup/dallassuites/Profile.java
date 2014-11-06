@@ -70,6 +70,7 @@ public class Profile extends Activity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                clearSharedPreferences();
                 finish();
             }
         });
@@ -111,6 +112,13 @@ public class Profile extends Activity {
         rooms = new ArrayList();
         dates = new ArrayList();
 
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        clearSharedPreferences();
 
     }
 
@@ -185,14 +193,11 @@ public class Profile extends Activity {
 
                         timelineImage.setImageResource(R.drawable.perfil_mas_doble);
 
-
                     }
-
 
                 }
 
             }
-
 
             return view;
         }
@@ -332,6 +337,23 @@ public class Profile extends Activity {
 
         return formattedDate;
     }
+
+    private void clearSharedPreferences(){
+
+
+        SharedPreferences.Editor editor  = prefs.edit();
+        editor.remove(Keystring.USER_NAME);
+        editor.remove(Keystring.USER_LASTNAME);
+        editor.remove(Keystring.USER_PASSWORD);
+        editor.remove(Keystring.USER_ID);
+        editor.remove(Keystring.USER_DOB);
+        editor.remove(Keystring.USER_CI);
+        editor.remove(Keystring.USER_EMAIL);
+
+        editor.apply();
+
+    }
+
 }
 
 

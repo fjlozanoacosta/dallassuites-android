@@ -42,8 +42,9 @@
         android:layout_marginTop="5dp"
         android:layout_toRightOf="@+id/login_img_user"
         android:background="@android:color/transparent"
-        android:text="USERNAME"
-        android:textColor="@color/dallas_typeface_color" />
+        android:hint="USERNAME"
+        android:textColor="@color/dallas_typeface_color"
+        android:textColorHint="@color/dallas_typeface_color"/>
 
 
     <ImageView

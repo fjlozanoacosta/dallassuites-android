@@ -42,6 +42,7 @@ public class Login extends Activity implements View.OnClickListener {
     EditText etUsername, etPassword;
     ImageButton ibRetrievePassword, close;
     Button login;
+    SharedPreferences prefs;
 
 
     @Override
@@ -51,6 +52,8 @@ public class Login extends Activity implements View.OnClickListener {
         setContentView(R.layout.login_popup);
 
         getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        prefs = getSharedPreferences(Keystring.DALLAS_SUITES_PREFERENCES,MODE_PRIVATE);
 
         init();
 
@@ -66,6 +69,8 @@ public class Login extends Activity implements View.OnClickListener {
 
         etUsername = (EditText) findViewById(R.id.login_edittext_username);
         etPassword = (EditText) findViewById(R.id.login_edittext_password);
+
+        etUsername.setText(prefs.getString(Keystring.USER_USERNAME, ""));
 
         ibRetrievePassword = (ImageButton) findViewById(R.id.login_imagebutton_retrievepassword);
 
@@ -142,8 +147,6 @@ public class Login extends Activity implements View.OnClickListener {
                 jsonResult = Utilities.convertStreamToString(
                         response.getEntity().getContent()).toString();
 
-                //object = new JSONObject(jsonResult);
-
                 Log.d("JSON", jsonResult);
 
 
@@ -185,6 +188,7 @@ public class Login extends Activity implements View.OnClickListener {
                     editor.commit();
 
                     startActivity(new Intent(Login.this, Profile.class));
+                    finish();
 
                 } catch (JSONException e) {
                     e.printStackTrace();
