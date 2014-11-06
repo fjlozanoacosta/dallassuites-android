@@ -177,6 +177,7 @@ public class Login extends Activity implements View.OnClickListener {
                     editor.putString(Keystring.USER_NAME, array.getJSONObject(0).getString("user_name"));
                     editor.putString(Keystring.USER_LASTNAME, array.getJSONObject(0).getString("user_lastname"));
                     editor.putString(Keystring.USER_USERNAME, array.getJSONObject(0).getString("user_username"));
+                    editor.putString(Keystring.USER_PASSWORD, etPassword.getText().toString());
                     editor.putString(Keystring.USER_EMAIL, array.getJSONObject(0).getString("user_email"));
                     editor.putString(Keystring.USER_DOB, array.getJSONObject(0).getString("user_dob"));
                     editor.putString(Keystring.USER_CI, array.getJSONObject(0).getString("user_ci"));

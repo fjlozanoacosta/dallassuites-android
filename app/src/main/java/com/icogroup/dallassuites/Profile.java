@@ -3,6 +3,7 @@ package com.icogroup.dallassuites;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.icogroup.util.Keystring;
 import com.icogroup.util.Utilities;
 
 import org.apache.http.HttpResponse;
@@ -40,6 +42,7 @@ public class Profile extends Activity {
     ListView timeline;
     ArrayList earned, used, rooms, dates;
     TimelineAdapter timelineAdapter;
+    SharedPreferences prefs;
 
 
     @Override
@@ -48,6 +51,8 @@ public class Profile extends Activity {
         setContentView(R.layout.profile);
 
         init();
+
+        prefs = getSharedPreferences(Keystring.DALLAS_SUITES_PREFERENCES, MODE_PRIVATE);
 
         new getUserInfoAsync().execute();
 
@@ -138,8 +143,6 @@ public class Profile extends Activity {
         @Override
         public View getView(int position, View view, ViewGroup viewGroup) {
 
-            Log.d("Info", "Room: " + rooms.get(position) + " Earned: " + earned.get(position) + " Used: " + used.get(position));
-
             view = inflater.inflate(R.layout.timeline_element, null, false);
 
             timelineImage = (ImageView) view.findViewById(R.id.profile_timeline_img);
@@ -200,10 +203,12 @@ public class Profile extends Activity {
         @Override
         protected JSONArray doInBackground(Void... params) {
 
-            String url = "http://ec2-54-218-96-225.us-west-2.compute.amazonaws.com/api/?o=getUserHistory&user_id=25&user_password=123456789";
+            String url = "http://ec2-54-218-96-225.us-west-2.compute.amazonaws.com/api/?o=getUserHistory&user_id=" + prefs.getString(Keystring.USER_ID, "0") + "&user_password=" + prefs.getString(Keystring.USER_PASSWORD, "0");
             JSONArray object = null;
             String jsonResult = null;
             String result = null;
+
+            Log.d("URL1", url);
 
             try {
                 DefaultHttpClient httpclient = new DefaultHttpClient();
@@ -267,10 +272,12 @@ public class Profile extends Activity {
         @Override
         protected JSONArray doInBackground(Void... params) {
 
-            String url = "http://ec2-54-218-96-225.us-west-2.compute.amazonaws.com/api/?o=getUserWithPoints&user_id=25&user_password=123456789";
+            String url = "http://ec2-54-218-96-225.us-west-2.compute.amazonaws.com/api/?o=getUserWithPoints&user_id=" + prefs.getString(Keystring.USER_ID, "0") + "&user_password=" + prefs.getString(Keystring.USER_PASSWORD, "0");
             JSONArray object = null;
             String jsonResult = null;
             String result = null;
+
+            Log.d("URL2", url);
 
             try {
                 DefaultHttpClient httpclient = new DefaultHttpClient();
