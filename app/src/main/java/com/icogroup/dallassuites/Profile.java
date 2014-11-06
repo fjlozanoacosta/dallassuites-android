@@ -303,7 +303,7 @@ public class Profile extends Activity {
             super.onPostExecute(result);
 
             try {
-                tPoints.setText(result.getJSONObject(0).getString("points_earned") + " PTS." );
+                tPoints.setText(result.getJSONObject(0).getString("points_available") + " PTS." );
                 tName.setText(result.getJSONObject(0).getString("user_name") + " " + result.getJSONObject(0).getString("user_lastname"));
 
             }catch(Exception e){

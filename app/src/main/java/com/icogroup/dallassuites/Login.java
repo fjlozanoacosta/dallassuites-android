@@ -2,6 +2,7 @@ package com.icogroup.dallassuites;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -14,15 +15,19 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.icogroup.util.Keystring;
 import com.icogroup.util.Utilities;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -92,8 +97,12 @@ public class Login extends Activity implements View.OnClickListener {
                 Toast.makeText(Login.this, "Servicio de recuperacion de contraseña", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.login_button_login:
-                //  new LoginAsync().execute();
-                startActivity(new Intent(Login.this, Profile.class));
+                if(etUsername.getText().toString().equals(""))
+                    Toast.makeText(Login.this, "Debe introducir su nombre de usuario", Toast.LENGTH_SHORT).show();
+                else if(etPassword.getText().toString().equals(""))
+                    Toast.makeText(Login.this, "Debe introducir su contraseña", Toast.LENGTH_SHORT).show();
+                else
+                    new LoginAsync().execute();
                 break;
 
 
@@ -109,7 +118,7 @@ public class Login extends Activity implements View.OnClickListener {
         @Override
         protected String doInBackground(Void... params) {
 
-            String url = "http://ec2-54-218-96-225.us-west-2.compute.amazonaws.com/api/?o=addUser";
+            String url = "http://ec2-54-218-96-225.us-west-2.compute.amazonaws.com/api/?o=userLogin";
             JSONObject object = null;
             String jsonResult = null;
             String result = null;
@@ -122,17 +131,18 @@ public class Login extends Activity implements View.OnClickListener {
 
                 HttpPost httppost = new HttpPost(url);
 
-//                List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(
-//                        2);
-//                nameValuePairs.add(new BasicNameValuePair("user_name", name));
-//                nameValuePairs.add(new BasicNameValuePair("user_lastname", lastname));
+                List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(
+                        2);
+                nameValuePairs.add(new BasicNameValuePair("user_login", etUsername.getText().toString()));
+                nameValuePairs.add(new BasicNameValuePair("user_password", etPassword.getText().toString()));
+                httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
 
                 HttpResponse response = httpclient.execute(httppost);
                 jsonResult = Utilities.convertStreamToString(
                         response.getEntity().getContent()).toString();
 
-                object = new JSONObject(jsonResult);
+                //object = new JSONObject(jsonResult);
 
                 Log.d("JSON", jsonResult);
 
@@ -141,15 +151,53 @@ public class Login extends Activity implements View.OnClickListener {
                 e.printStackTrace();
             }
 
-            return result;
+            return jsonResult;
         }
 
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
 
+            JSONArray array = null;
+
+            try {
+                array = new JSONArray(result);
+                Log.d("ARRAY", array.toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+
+            if (!result.equals("")) {
+                SharedPreferences.Editor editor = getSharedPreferences(Keystring.DALLAS_SUITES_PREFERENCES, MODE_PRIVATE).edit();
+                try {
+
+                    editor.putString(Keystring.USER_ID, array.getJSONObject(0).getString("user_id"));
+                    editor.putString(Keystring.USER_NAME, array.getJSONObject(0).getString("user_name"));
+                    editor.putString(Keystring.USER_LASTNAME, array.getJSONObject(0).getString("user_lastname"));
+                    editor.putString(Keystring.USER_USERNAME, array.getJSONObject(0).getString("user_username"));
+                    editor.putString(Keystring.USER_EMAIL, array.getJSONObject(0).getString("user_email"));
+                    editor.putString(Keystring.USER_DOB, array.getJSONObject(0).getString("user_dob"));
+                    editor.putString(Keystring.USER_CI, array.getJSONObject(0).getString("user_ci"));
+
+                    editor.commit();
+
+                    startActivity(new Intent(Login.this, Profile.class));
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+        }else{
+
+            Toast.makeText(Login.this, "No estas registrado", Toast.LENGTH_SHORT).show();
 
         }
+
+
+       }
     }
 
     class RetrievePasswordAsync extends AsyncTask<Void, Void, String> {
