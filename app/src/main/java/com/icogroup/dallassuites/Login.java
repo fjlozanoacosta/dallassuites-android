@@ -110,9 +110,6 @@ public class Login extends Activity implements View.OnClickListener {
                     new LoginAsync().execute();
                 break;
 
-
-
-
         }
 
     }

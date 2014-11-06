@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.icogroup.custompicker.Fecha;
 import com.icogroup.util.Keystring;
@@ -207,13 +208,6 @@ public class Edit extends Activity implements View.OnFocusChangeListener, View.O
                 nameValuePairs.add(new BasicNameValuePair("user_username", etUsername.getText().toString()));
                 httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
-
-                Log.d("N", etName.getText().toString());
-                Log.d("L", etLastname.getText().toString());
-                Log.d("DOB", sendReformatDate(etDateOfBirth.getText().toString()));
-                Log.d("CI", etID.getText().toString());
-                Log.d("U", etUsername.getText().toString());
-
                 HttpResponse response = httpclient.execute(httppost);
                 jsonResult = Utilities.convertStreamToString(
                         response.getEntity().getContent()).toString();
@@ -294,8 +288,6 @@ public class Edit extends Activity implements View.OnFocusChangeListener, View.O
                 Log.d("JSON", jsonResult);
 
 
-
-
             } catch (Exception e) {
                 e.printStackTrace();
 
@@ -310,6 +302,8 @@ public class Edit extends Activity implements View.OnFocusChangeListener, View.O
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
 
+            if(!result.contains("error")) {
+
                 SharedPreferences.Editor editor = prefs.edit();
 
                 editor.putString(Keystring.USER_PASSWORD, etPassword.getText().toString());
@@ -317,6 +311,11 @@ public class Edit extends Activity implements View.OnFocusChangeListener, View.O
                 editor.commit();
 
                 finish();
+            }else{
+
+                Toast.makeText(Edit.this, "No se pudo actualizar los datos", Toast.LENGTH_SHORT).show();
+
+            }
 
         }
     }
