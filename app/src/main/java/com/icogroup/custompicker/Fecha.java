@@ -56,7 +56,6 @@ public class Fecha {
 		try {
 			date = simpleDateFormat.parse(fecha.replace(" ", "-"));
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -272,7 +271,6 @@ public class Fecha {
 			String[] split = fecha.split(" ");
 			date = simpleDateFormat.parse(split[0] + "-" + Fecha.parseToNumber(split[1]) + "-" + split[2]);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -297,7 +295,6 @@ public class Fecha {
 			date1 = simpleDateFormat.parse(split1[0] + "-" + Fecha.parseToNumber(split1[1]) + "-" + split1[2]);
 			date2 = simpleDateFormat.parse(split2[0] + "-" + Fecha.parseToNumber(split2[1]) + "-" + split2[2]);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

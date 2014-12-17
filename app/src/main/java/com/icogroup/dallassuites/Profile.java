@@ -122,6 +122,12 @@ public class Profile extends Activity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        new getUserInfoAsync().execute();
+    }
+
     class TimelineAdapter extends BaseAdapter {
 
         public LayoutInflater inflater = null;

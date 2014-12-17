@@ -2,7 +2,6 @@ package com.icogroup.dallassuites;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -56,7 +55,7 @@ public class Rooms extends Activity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
-               startActivity(new Intent(Rooms.this, Room360.class).putExtra("room_360_url", photos360.get(rooms[position])).putExtra("room_name", rooms[position]));
+              // startActivity(new Intent(Rooms.this, Room360.class).putExtra("room_360_url", photos360.get(rooms[position])).putExtra("room_name", rooms[position]));
 
 
             }

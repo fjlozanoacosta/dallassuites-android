@@ -27,7 +27,6 @@ public class DayListener implements OnScrollListener{
 	@Override
 	public void onScroll(AbsListView view, int firstVisibleItem,
 			int visibleItemCount, int totalItemCount) {
-		// TODO Auto-generated method stub		
 	}
 
 	@Override
