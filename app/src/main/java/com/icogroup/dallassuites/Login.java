@@ -13,6 +13,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.icogroup.util.Keystring;
@@ -43,13 +44,14 @@ public class Login extends Activity implements View.OnClickListener {
     ImageButton ibRetrievePassword, close;
     Button login;
     SharedPreferences prefs;
+    TextView title;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.login_popup);
+        setContentView(R.layout.login);
 
         getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
@@ -65,7 +67,7 @@ public class Login extends Activity implements View.OnClickListener {
         brandonlight = Typeface.createFromAsset(getAssets(), "brandon_light.otf");
         brandonreg = Typeface.createFromAsset(getAssets(), "brandon_reg.otf");
 
-        close = (ImageButton) findViewById(R.id.login_imagebutton_close);
+        title = (TextView)findViewById(R.id.login_title);
 
         etUsername = (EditText) findViewById(R.id.login_edittext_username);
         etPassword = (EditText) findViewById(R.id.login_edittext_password);
@@ -74,17 +76,17 @@ public class Login extends Activity implements View.OnClickListener {
 
         ibRetrievePassword = (ImageButton) findViewById(R.id.login_imagebutton_retrievepassword);
 
-        login = (Button) findViewById(R.id.login_button_login);
+        login = (Button)findViewById(R.id.login_button_login);
 
+        login.setOnClickListener(this);
+
+        title.setTypeface(brandonreg);
         etUsername.setTypeface(brandonreg);
         etPassword.setTypeface(brandonreg);
 
-        login.setTypeface(brandonlight);
-
         ibRetrievePassword.setOnClickListener(this);
-        login.setOnClickListener(this);
 
-        close.setOnClickListener(this);
+
 
 
     }
@@ -94,11 +96,7 @@ public class Login extends Activity implements View.OnClickListener {
 
         switch (view.getId()) {
 
-            case R.id.login_imagebutton_close:
-                finish();
-                break;
             case R.id.login_imagebutton_retrievepassword:
-        //        new RetrievePasswordAsync().execute();
                 Toast.makeText(Login.this, "Servicio de recuperacion de contraseña", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.login_button_login:
