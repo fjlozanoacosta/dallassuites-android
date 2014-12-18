@@ -1,28 +1,27 @@
 package com.icogroup.dallassuites;
 
+import android.animation.ObjectAnimator;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
-import com.icogroup.util.Keystring;
 import com.crashlytics.android.Crashlytics;
+
 import io.fabric.sdk.android.Fabric;
 
 
-public class Home extends Activity implements View.OnClickListener {
+public class Home extends Activity implements View.OnClickListener{
 
-    Typeface brandonLight;
-    Button rooms, services, register_profile;
-    ImageButton login;
-    SharedPreferences prefs;
+    RelativeLayout splashBackground, home_buttons;
+    ImageView logo;
+    Button servicios, suites, registro, login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,33 +31,39 @@ public class Home extends Activity implements View.OnClickListener {
 
         init();
 
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                    ObjectAnimator alphaAnimationBackground = ObjectAnimator.ofFloat(splashBackground, "alpha", 1, 0);
+                    ObjectAnimator translateAnimationLogo = ObjectAnimator.ofFloat(logo, "translationY", 0, -300);
+                    ObjectAnimator translateAnimationButtons = ObjectAnimator.ofFloat(home_buttons, "translationY", 0, -425);
+                    alphaAnimationBackground.setDuration(1000);
+                    translateAnimationLogo.setDuration(1000);
+                    translateAnimationButtons.setDuration(1000);
+                    alphaAnimationBackground.start();
+                    translateAnimationLogo.start();
+                    translateAnimationButtons.start();
+
+
+            }
+        }, 2000);
+
     }
 
     public void init(){
 
-        brandonLight = Typeface.createFromAsset(getAssets(), "brandon_light.otf");
+        splashBackground = (RelativeLayout)findViewById(R.id.splash_background);
+        logo = (ImageView)findViewById(R.id.home_logo);
+        home_buttons = (RelativeLayout)findViewById(R.id.home_buttons);
+        servicios = (Button)findViewById(R.id.home_button_servicios);
+        suites = (Button)findViewById(R.id.home_button_suites);
+        registro = (Button)findViewById(R.id.home_button_registro);
+        login = (Button)findViewById(R.id.home_login);
 
-        prefs = getSharedPreferences(Keystring.DALLAS_SUITES_PREFERENCES, Context.MODE_PRIVATE);
-
-        rooms = (Button)findViewById(R.id.home_button_rooms);
-        services = (Button)findViewById(R.id.home_button_services);
-        register_profile = (Button)findViewById(R.id.home_button_register_profile);
-
-        login = (ImageButton)findViewById(R.id.home_imagebutton_login);
-
-        rooms.setTypeface(brandonLight);
-        services.setTypeface(brandonLight);
-        register_profile.setTypeface(brandonLight);
-
-        if(prefs.getBoolean("registered",false))
-            register_profile.setText(R.string.home_profile);
-        else
-            register_profile.setText(R.string.home_register);
-
-        rooms.setOnClickListener(this);
-        services.setOnClickListener(this);
-        register_profile.setOnClickListener(this);
-
+        servicios.setOnClickListener(this);
+        suites.setOnClickListener(this);
+        registro.setOnClickListener(this);
         login.setOnClickListener(this);
 
     }
@@ -82,31 +87,27 @@ public class Home extends Activity implements View.OnClickListener {
         return super.onOptionsItemSelected(item);
     }
 
+
     @Override
     public void onClick(View view) {
 
-        switch(view.getId()){
+        switch (view.getId()){
 
-            case R.id.home_button_rooms:
-                startActivity(new Intent(Home.this, Rooms.class));
-                break;
-
-            case R.id.home_button_services:
+            case R.id.home_button_servicios:
                 startActivity(new Intent(Home.this, Services.class));
                 break;
 
-            case R.id.home_button_register_profile:
-                if(register_profile.getText().toString().contains("REGISTRO"))
-                    startActivity(new Intent(Home.this, Register.class));
-                else
-                    startActivity(new Intent(Home.this, Login.class));
-                    break;
-
-            case R.id.home_imagebutton_login:
-                startActivity(new Intent(Home.this, Login.class));
+            case R.id.home_button_suites:
+                startActivity(new Intent(Home.this, Rooms.class));
                 break;
 
+            case R.id.home_button_registro:
+                startActivity(new Intent(Home.this, Register.class));
+                break;
 
+            case R.id.home_login:
+                startActivity(new Intent(Home.this, Login.class));
+                break;
 
         }
 

@@ -1,87 +1,86 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_weight="2"
     android:background="@drawable/home_background"
     android:orientation="vertical"
     tools:context=".Home">
 
 
     <RelativeLayout
+        android:id="@+id/splash_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1">
-
-        <ImageButton
-            android:id="@+id/home_imagebutton_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/home_login_selector"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:background="@android:color/transparent"/>
-
-        <ImageView
-            android:id="@+id/home_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/home_logo"
-
-            />
-
+        android:background="@drawable/splash_background">
 
     </RelativeLayout>
+
+
+    <ImageView
+        android:id="@+id/home_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/home_logo" />
+
 
     <RelativeLayout
+        android:layout_marginTop="570dp"
+        android:id="@+id/home_buttons"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_height="wrap_content">
 
 
         <Button
-            android:id="@+id/home_button_register_profile"
+            android:id="@+id/home_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/home_button_selector"
-            android:layout_alignParentBottom="true"
-            android:text="@string/home_register"
-            android:textSize="23sp"
-            android:textColor="@color/dallas_typeface_color"
-            />
+            android:background="@drawable/home_login_selector"/>
 
-        <Button
-            android:id="@+id/home_button_services"
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/home_button_selector"
-            android:layout_above="@+id/home_button_register_profile"
-            android:text="@string/home_services"
-            android:textSize="23sp"
-            android:textColor="@color/dallas_typeface_color"
-            />
+            android:weightSum="3"
+            android:layout_below="@+id/home_login"
+            android:gravity="center_vertical">
 
-        <Button
-            android:id="@+id/home_button_rooms"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/home_button_selector"
-            android:layout_above="@+id/home_button_services"
-            android:text="@string/home_rooms"
-            android:textSize="23sp"
-            android:textColor="@color/dallas_typeface_color"
-            />
+            <Button
+                android:id="@+id/home_button_servicios"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/servicios_selector" />
+
+            <ImageView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/home_buttons_line"/>
+
+            <Button
+                android:id="@+id/home_button_suites"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/suites_selector" />
 
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/home_buttons_line"/>
 
+            <Button
+                android:id="@+id/home_button_registro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/registro_selector" />
 
-
-
+        </LinearLayout>
 
     </RelativeLayout>
 
 
-</LinearLayout>
+</RelativeLayout>
