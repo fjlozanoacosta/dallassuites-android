@@ -41,7 +41,7 @@ public class Login extends Activity implements View.OnClickListener {
 
     Typeface brandonmedium, brandonreg, brandonlight;
     EditText etUsername, etPassword;
-    ImageButton ibRetrievePassword, close;
+    ImageButton ibRetrievePassword;
     Button login;
     SharedPreferences prefs;
     TextView title;
@@ -86,9 +86,6 @@ public class Login extends Activity implements View.OnClickListener {
 
         ibRetrievePassword.setOnClickListener(this);
 
-
-
-
     }
 
     @Override
@@ -97,7 +94,7 @@ public class Login extends Activity implements View.OnClickListener {
         switch (view.getId()) {
 
             case R.id.login_imagebutton_retrievepassword:
-                Toast.makeText(Login.this, "Servicio de recuperacion de contraseña", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(Login.this, RetrievePassword.class));
                 break;
             case R.id.login_button_login:
                 if(etUsername.getText().toString().equals(""))
@@ -180,7 +177,7 @@ public class Login extends Activity implements View.OnClickListener {
                     editor.putString(Keystring.USER_DOB, array.getJSONObject(0).getString("user_dob"));
                     editor.putString(Keystring.USER_CI, array.getJSONObject(0).getString("user_ci"));
 
-                    editor.commit();
+                    editor.apply();
 
                     startActivity(new Intent(Login.this, Profile.class));
                     finish();
@@ -200,52 +197,5 @@ public class Login extends Activity implements View.OnClickListener {
        }
     }
 
-    class RetrievePasswordAsync extends AsyncTask<Void, Void, String> {
-
-        @Override
-        protected String doInBackground(Void... params) {
-
-            String url = "http://ec2-54-218-96-225.us-west-2.compute.amazonaws.com/api/?o=resetUserPassword";
-            JSONObject object = null;
-            String jsonResult = null;
-            String result = null;
-
-            try {
-                DefaultHttpClient httpclient = new DefaultHttpClient();
-                final HttpParams httpParams = httpclient.getParams();
-                HttpConnectionParams.setConnectionTimeout(httpParams, 30000);
-                HttpConnectionParams.setSoTimeout(httpParams, 30000);
-
-                HttpPost httppost = new HttpPost(url);
-
-                List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(
-                        2);
-                nameValuePairs.add(new BasicNameValuePair("user_id", "16"));
-                nameValuePairs.add(new BasicNameValuePair("user_email", "chopper.jose@gmail.com"));
-
-
-                HttpResponse response = httpclient.execute(httppost);
-                jsonResult = Utilities.convertStreamToString(
-                        response.getEntity().getContent()).toString();
-
-                object = new JSONObject(jsonResult);
-
-                Log.d("JSON", jsonResult);
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            return result;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-
-
-        }
-    }
 
 }

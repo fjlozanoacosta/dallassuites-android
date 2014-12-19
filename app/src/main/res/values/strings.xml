@@ -52,6 +52,7 @@
     <!--Login-->
     <string name="login_retrievepassword">Recuperar Contraseña</string>
     <string name="login_login">INICIAR SESIÓN</string>
+    <string name="login_title">INICIO DE SESIÓN</string>
 
     <!--Mockup Restaurant Data-->
     <string name="tequeños">Tequeños</string>
@@ -67,5 +68,6 @@
     <string name="conchadepapa_descrip">Conchas de papas fritas rellenas de crema de jamón serrano y tocineta.</string>
     <string name="dedosdemozarella_descrip">Dedos de mozzarella con salsa nápoli y albahaca.</string>
     <string name="calamaresalajillo_descrip">Deliciosos calamares preparados al ajillo acompañados de hongos</string>
+    <string name="retrivepassword_title">OLVIDÉ CONTRASEÑA</string>
 
 </resources>

@@ -27,10 +27,12 @@
         <activity android:name=".Restaurant" android:screenOrientation="portrait"/>
         <activity android:name=".Room360" android:screenOrientation="portrait" android:hardwareAccelerated="true"/>
         <activity android:name=".Edit" android:screenOrientation="portrait"/>
-        <activity android:name=".Login" android:screenOrientation="portrait" android:theme="@android:style/Theme.Holo.Dialog"/>
+        <activity android:name=".Login" android:screenOrientation="portrait"/>
         <activity android:name=".RestaurantDetail" android:screenOrientation="portrait"/>
         <activity android:name=".DOBPopup" android:screenOrientation="portrait" android:theme="@android:style/Theme.Holo.Dialog" />
+        <activity android:name=".RetrievePassword" android:screenOrientation="portrait"/>
         <meta-data android:name="com.crashlytics.ApiKey" android:value="066ba67f08cc916150aa7135b5b6768c160228c3"/>
+
 
     </application>
 
