@@ -70,19 +70,19 @@ public class Dallas_Popup extends Activity implements View.OnClickListener{
         }else if(pantalla.contains("Room Service")){
             image.setImageResource(R.drawable.servicios_room);
             title.setText(getResources().getString(R.string.services_roomservice));
-            text.setText(getResources().getString(R.string.lorem_ipsum));
+            text.setText(getResources().getString(R.string.services_roomservice_copy));
         }else if(pantalla.contains("Privacidad y Seguridad")){
             image.setImageResource(R.drawable.home_popup_pass);
             title.setText(getResources().getString(R.string.services_privacyandsecurity));
-            text.setText(getResources().getString(R.string.lorem_ipsum));
+            text.setText(getResources().getString(R.string.services_privacyandsecurity_copy));
         }else if(pantalla.contains("Doble Recepcion")){
             image.setImageResource(R.drawable.servicios_doble);
             title.setText(getResources().getString(R.string.services_doublereception));
-            text.setText(getResources().getString(R.string.lorem_ipsum));
+            text.setText(getResources().getString(R.string.services_doublereception_copy));
         }else if(pantalla.contains("Comfort y Amenidades")){
             image.setImageResource(R.drawable.servicios_confort);
             title.setText(getResources().getString(R.string.services_comfortandamenities));
-            text.setText(getResources().getString(R.string.lorem_ipsum));
+            text.setText(getResources().getString(R.string.services_comfortandamenities_copy));
         }
 
 

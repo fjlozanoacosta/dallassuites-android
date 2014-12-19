@@ -30,6 +30,20 @@
     <string name="services_privacyandsecurity">PRIVACIDAD Y SEGURIDAD</string>
     <string name="services_doublereception">DOBLE RECEPCIÓN</string>
     <string name="services_comfortandamenities">COMFORT Y AMENIDADES</string>
+    <string name="services_roomservice_copy">Para complementar su estadía, le ofrecemos una gran
+variedad de platos y una extensa carta de bebidas para
+que las disfrute tanto en nuestro bar/restaurant,
+como en la comodidad de su Suite.</string>
+    <string name="services_privacyandsecurity_copy">No sólo la calidad de nuestros servicios nos
+distinguen, sino también la privacidad y
+seguridad de nuestras instalaciones.</string>
+    <string name="services_doublereception_copy">Sólo en Dallas Suites Hotel tenemos una
+doble recepción que le garantiza fluidez a su
+llegada y el menor tiempo de espera posible</string>
+    <string name="services_comfortandamenities_copy">Sauna, vapor, jacuzzi, pole dance, son algunas de
+las amenidades que le esperan en nuestras Suites,
+para que su visita sea única en su estilo.</string>
+
 
     <!--Restaurant-->
     <string name="restaurant_desayuno">DESAYUNO</string>

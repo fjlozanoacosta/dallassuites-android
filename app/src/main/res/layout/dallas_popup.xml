@@ -64,10 +64,10 @@
         android:text="@string/lorem_ipsum"
         android:layout_below="@id/register_popup_title"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:lineSpacingExtra="1.2dp"
+        android:lineSpacingExtra="1dp"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        android:textSize="15sp"
+        android:textSize="14sp"
         />
 
 
