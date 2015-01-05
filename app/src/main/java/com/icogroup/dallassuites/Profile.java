@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +17,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.icogroup.util.Keystring;
 import com.icogroup.util.Utilities;
@@ -38,11 +42,14 @@ public class Profile extends Activity {
     TextView tTitle, tName, tHistory, tPoints, tNoInfoTitle, tNoInfoText, timelineDate, timelineAction, timelineRoom;
     Typeface brandonregular, brandonlight, brandonmedium, brandonmediumitalic;
     ImageView iNoInfoImg, timelineImage;
-    ImageButton back, edit;
+    ImageButton back, edit, newpassword, scan, logout;
     ListView timeline;
     ArrayList earned, used, rooms, dates;
     TimelineAdapter timelineAdapter;
     SharedPreferences prefs;
+    DrawerLayout myDrawer;
+    RelativeLayout leftDrawer, home;
+    ActionBarDrawerToggle mDrawerToggle;
 
 
     @Override
@@ -75,6 +82,28 @@ public class Profile extends Activity {
             }
         });
 
+        newpassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(Profile.this, "New Password", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        scan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(Profile.this, "Scan", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(Profile.this, "Logout", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
     }
 
     private void init() {
@@ -86,7 +115,10 @@ public class Profile extends Activity {
 
         back = (ImageButton) findViewById(R.id.profile_back);
 
-        edit = (ImageButton) findViewById(R.id.profile_edit);
+        newpassword = (ImageButton)findViewById(R.id.perfil_imagebutton_contraseñanueva);
+        scan = (ImageButton)findViewById(R.id.perfil_imagebutton_scanqr);
+        logout = (ImageButton)findViewById(R.id.perfil_imagebutton_salir);
+        edit = (ImageButton) findViewById(R.id.perfil_imagebutton_edit);
 
         tTitle = (TextView) findViewById(R.id.profile_title);
         tName = (TextView) findViewById(R.id.profile_textview_name);
@@ -111,6 +143,43 @@ public class Profile extends Activity {
         earned = new ArrayList();
         rooms = new ArrayList();
         dates = new ArrayList();
+
+        myDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        leftDrawer = (RelativeLayout) findViewById(R.id.left_drawer);
+        home = (RelativeLayout) findViewById(R.id.profile);
+
+        mDrawerToggle = new ActionBarDrawerToggle(this, myDrawer,
+                R.drawable.home_logo, R.string.drawer_open, R.string.drawer_close) {
+
+            @Override
+            public void onDrawerClosed(View view) {
+                //getActionBar().show();
+                super.onDrawerClosed(view);
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+            }
+
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+                float moveFactor = (leftDrawer.getWidth() * slideOffset);
+                home.setTranslationX(moveFactor);
+
+                super.onDrawerSlide(drawerView, slideOffset);
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+                super.onDrawerStateChanged(newState);
+            }
+        };
+
+        mDrawerToggle.setDrawerIndicatorEnabled(true);
+
+        myDrawer.setDrawerListener(mDrawerToggle);
+
 
 
     }
@@ -218,8 +287,6 @@ public class Profile extends Activity {
             JSONArray object = null;
             String jsonResult = null;
             String result = null;
-
-            Log.d("URL1", url);
 
             try {
                 DefaultHttpClient httpclient = new DefaultHttpClient();
