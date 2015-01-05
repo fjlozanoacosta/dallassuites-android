@@ -85,7 +85,7 @@ public class Profile extends Activity {
         newpassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(Profile.this, "New Password", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(Profile.this, NewPasswordPopup.class));
             }
         });
 

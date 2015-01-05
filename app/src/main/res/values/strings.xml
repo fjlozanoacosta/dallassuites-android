@@ -84,13 +84,16 @@ para que su visita sea única en su estilo.</string>
     <string name="calamaresalajillo_descrip">Deliciosos calamares preparados al ajillo acompañados de hongos</string>
     <string name="retrivepassword_title">OLVIDÉ CONTRASEÑA</string>
 
-
-
-
-
     <!-- Drawer Resources-->
     <string name="drawer_open">OPEN</string>
     <string name="drawer_close">CLOSE</string>
+
+    <!--New Password-->
+    <string name="newpassword_copy">Podrás crear varias contraseñas para\n
+acumular puntos con diferentes parejas</string>
+    <string name="agregar">AGREGAR</string>
+
+    <string name="palabraclave">PALABRA CLAVE</string>
 
 
 </resources>
