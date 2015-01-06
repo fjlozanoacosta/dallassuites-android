@@ -49,7 +49,7 @@ public class MonthListener implements OnScrollListener{
 		        		snapTo++;
 		        	
 		        	monthAdapter.setMid(snapTo+1);	
-		        	view.smoothScrollToPositionFromTop(snapTo, 0, 300);
+		        	view.smoothScrollToPositionFromTop(snapTo, 0, 50);
 	        		
 	    			Calendar cal = new GregorianCalendar(Integer.parseInt(yearAdapter.getMid()), 
 							Integer.parseInt(Fecha.parseToNumber(monthAdapter.getMid())) - 1,

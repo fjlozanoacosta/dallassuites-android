@@ -12,6 +12,10 @@ apply plugin: 'io.fabric'
 
 repositories {
     maven { url 'https://maven.fabric.io/repo' }
+
+    maven {
+        url "https://raw.github.com/embarkmobile/zxing-android-minimal/mvn-repo/maven-repository/"
+    }
 }
 
 
@@ -37,8 +41,12 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile "com.android.support:support-v4:20.0.+"
+    compile 'com.embarkmobile:zxing-android-minimal:1.2.1@aar'
     compile files('libs/picasso-2.3.4.jar')
     compile('com.crashlytics.sdk.android:crashlytics:2.0.1@aar') {
         transitive = true;
     }
+    compile 'com.google.zxing:core:2.2'
+
+
 }

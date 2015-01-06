@@ -7,23 +7,14 @@
     android:orientation="vertical">
 
     <ImageButton
-        android:id="@+id/profile_back"
+        android:id="@+id/profile_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/back_marginleft"
         android:layout_marginTop="@dimen/back_margintop"
         android:background="@android:color/transparent"
-        android:src="@drawable/back_selector" />
+        android:src="@drawable/menu_selector" />
 
-    <ImageButton
-        android:id="@+id/profile_edit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/back_marginleft"
-        android:layout_marginTop="@dimen/back_margintop"
-        android:background="@android:color/transparent"
-        android:src="@drawable/edit_selector"
-        android:layout_alignParentRight="true"/>
 
     <TextView
         android:id="@+id/profile_title"
@@ -56,16 +47,42 @@
                 android:layout_centerHorizontal="true"
                 android:src="@drawable/perfil_user" />
 
-            <TextView
-                android:id="@+id/profile_textview_name"
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/profile_pic"
+                android:orientation="horizontal"
+                android:layout_below="@id/profile_pic"
+                android:layout_marginTop="7dp"
                 android:layout_centerHorizontal="true"
-                android:text=""
-                android:textColor="@color/dallas_typeface_color"
-                android:textSize="20dp"
-                android:layout_marginTop="@dimen/activity_vertical_margin"/>
+                >
+
+                <TextView
+                    android:id="@+id/profile_textview_nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/profile_pic"
+                    android:layout_centerHorizontal="true"
+                    android:text=""
+                    android:textColor="@color/dallas_typeface_color"
+                    android:textSize="20dp"
+    />
+
+                <TextView
+                    android:id="@+id/profile_textview_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/profile_pic"
+                    android:layout_centerHorizontal="true"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                 />
+
+
+                </LinearLayout>
+
+
 
             <RelativeLayout
                 android:id="@+id/profile_relativelayout_historial"

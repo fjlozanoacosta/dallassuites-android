@@ -67,13 +67,13 @@ public class PickerAdapter extends BaseAdapter {
 			holder.texto.setTextColor(Color.argb(255, 223, 188, 149));
 			if(activity != null)
 			{
-				Typeface typeface = Typeface.createFromAsset(activity.getAssets(), "brandon_light.otf");
+				Typeface typeface = Typeface.createFromAsset(activity.getAssets(), "brandon_reg.otf");
 				holder.texto.setTypeface(typeface);		
 			}				
 		}
 		else 
 		{
-			holder.texto.setTextColor(Color.argb(127, 241, 226, 211));
+			holder.texto.setTextColor(Color.argb(220, 223, 188, 149));
 			if(activity != null)
 			{
 				Typeface typeface = Typeface.createFromAsset(activity.getAssets(), "brandon_light.otf");

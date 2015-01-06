@@ -43,7 +43,7 @@ public class DayListener implements OnScrollListener{
 		        		snapTo++;
 		        	
 		        	dayAdapter.setMid(snapTo+1);	
-		        	view.smoothScrollToPositionFromTop(snapTo, 0, 300);
+		        	view.smoothScrollToPositionFromTop(snapTo, 0, 50);
 		        }
 		        
 		        scrolling = false;

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.zxing.integration.android.IntentIntegrator;
 import com.icogroup.util.Keystring;
 import com.icogroup.util.Utilities;
 
@@ -34,15 +36,17 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import static com.icogroup.dallassuites.R.layout;
+
 /**
  * Created by andres.torres on 10/24/14.
  */
 public class Profile extends Activity {
 
-    TextView tTitle, tName, tHistory, tPoints, tNoInfoTitle, tNoInfoText, timelineDate, timelineAction, timelineRoom;
+    TextView tTitle, tName, tNickname, tHistory, tPoints, tNoInfoTitle, tNoInfoText, timelineDate, timelineAction, timelineRoom;
     Typeface brandonregular, brandonlight, brandonmedium, brandonmediumitalic;
     ImageView iNoInfoImg, timelineImage;
-    ImageButton back, edit, newpassword, scan, logout;
+    ImageButton menu, edit, newpassword, scan, logout;
     ListView timeline;
     ArrayList earned, used, rooms, dates;
     TimelineAdapter timelineAdapter;
@@ -55,7 +59,7 @@ public class Profile extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.navigation_profile);
+        setContentView(layout.navigation_profile);
 
         init();
 
@@ -74,13 +78,7 @@ public class Profile extends Activity {
             }
         });
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                clearSharedPreferences();
-                finish();
-            }
-        });
+
 
         newpassword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,7 +90,9 @@ public class Profile extends Activity {
         scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(Profile.this, "Scan", Toast.LENGTH_SHORT).show();
+
+                IntentIntegrator.initiateScan(Profile.this, null, "");
+
             }
         });
 
@@ -104,6 +104,15 @@ public class Profile extends Activity {
         });
 
 
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                myDrawer.openDrawer(Gravity.START);
+            }
+        });
+
+
+
     }
 
     private void init() {
@@ -113,7 +122,7 @@ public class Profile extends Activity {
         brandonregular = Typeface.createFromAsset(getAssets(), "brandon_reg.otf");
         brandonmediumitalic = Typeface.createFromAsset(getAssets(), "brandon_med_it.otf");
 
-        back = (ImageButton) findViewById(R.id.profile_back);
+        menu = (ImageButton) findViewById(R.id.profile_menu);
 
         newpassword = (ImageButton)findViewById(R.id.perfil_imagebutton_contraseñanueva);
         scan = (ImageButton)findViewById(R.id.perfil_imagebutton_scanqr);
@@ -122,6 +131,7 @@ public class Profile extends Activity {
 
         tTitle = (TextView) findViewById(R.id.profile_title);
         tName = (TextView) findViewById(R.id.profile_textview_name);
+        tNickname = (TextView) findViewById(R.id.profile_textview_nickname);
         tHistory = (TextView) findViewById(R.id.profile_textview_history);
         tPoints = (TextView) findViewById(R.id.profile_textview_points);
         tNoInfoTitle = (TextView) findViewById(R.id.profile_timeline_noinfo_title);
@@ -134,6 +144,7 @@ public class Profile extends Activity {
 
         tTitle.setTypeface(brandonlight);
         tName.setTypeface(brandonregular);
+        tNickname.setTypeface(brandonregular);
         tHistory.setTypeface(brandonlight);
         tPoints.setTypeface(brandonlight);
         tNoInfoTitle.setTypeface(brandonregular);
@@ -149,7 +160,7 @@ public class Profile extends Activity {
         home = (RelativeLayout) findViewById(R.id.profile);
 
         mDrawerToggle = new ActionBarDrawerToggle(this, myDrawer,
-                R.drawable.home_logo, R.string.drawer_open, R.string.drawer_close) {
+                R.drawable.menu_selector, R.string.drawer_open, R.string.drawer_close) {
 
             @Override
             public void onDrawerClosed(View view) {
@@ -179,6 +190,8 @@ public class Profile extends Activity {
         mDrawerToggle.setDrawerIndicatorEnabled(true);
 
         myDrawer.setDrawerListener(mDrawerToggle);
+
+
 
 
 
@@ -226,7 +239,7 @@ public class Profile extends Activity {
         @Override
         public View getView(int position, View view, ViewGroup viewGroup) {
 
-            view = inflater.inflate(R.layout.timeline_element, null, false);
+            view = inflater.inflate(layout.timeline_element, null, false);
 
             timelineImage = (ImageView) view.findViewById(R.id.profile_timeline_img);
             timelineDate = (TextView) view.findViewById(R.id.profile_timeline_text_date);
@@ -355,8 +368,6 @@ public class Profile extends Activity {
             String jsonResult = null;
             String result = null;
 
-            Log.d("URL2", url);
-
             try {
                 DefaultHttpClient httpclient = new DefaultHttpClient();
                 final HttpParams httpParams = httpclient.getParams();
@@ -371,6 +382,7 @@ public class Profile extends Activity {
 
 
                 object = new JSONArray(jsonResult);
+                Log.d("JSON", jsonResult);
 
 
             } catch (Exception e) {
@@ -390,6 +402,7 @@ public class Profile extends Activity {
             try {
                 tPoints.setText(result.getJSONObject(0).getString("points_available") + " PTS." );
                 tName.setText(result.getJSONObject(0).getString("user_name") + " " + result.getJSONObject(0).getString("user_lastname"));
+                tNickname.setText(result.getJSONObject(0).getString("user_username") + " | ");
 
             }catch(Exception e){
 
