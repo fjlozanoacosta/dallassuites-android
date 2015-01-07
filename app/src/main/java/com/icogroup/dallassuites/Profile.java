@@ -20,7 +20,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.icogroup.util.Keystring;
@@ -45,7 +44,7 @@ public class Profile extends Activity {
 
     TextView tTitle, tName, tNickname, tHistory, tPoints, tNoInfoTitle, tNoInfoText, timelineDate, timelineAction, timelineRoom;
     Typeface brandonregular, brandonlight, brandonmedium, brandonmediumitalic;
-    ImageView iNoInfoImg, timelineImage;
+    ImageView iNoInfoImg, timelineImage, profilePic;
     ImageButton menu, edit, newpassword, scan, logout;
     ListView timeline;
     ArrayList earned, used, rooms, dates;
@@ -54,6 +53,7 @@ public class Profile extends Activity {
     DrawerLayout myDrawer;
     RelativeLayout leftDrawer, home;
     ActionBarDrawerToggle mDrawerToggle;
+
 
 
     @Override
@@ -99,7 +99,8 @@ public class Profile extends Activity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(Profile.this, "Logout", Toast.LENGTH_SHORT).show();
+                clearSharedPreferences();
+                finish();
             }
         });
 
@@ -111,6 +112,12 @@ public class Profile extends Activity {
             }
         });
 
+        profilePic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Profile.this, QRCode.class));
+            }
+        });
 
 
     }
@@ -141,6 +148,7 @@ public class Profile extends Activity {
 
         iNoInfoImg = (ImageView) findViewById(R.id.profile_timeline_noinfo_img);
 
+        profilePic = (ImageView)findViewById(R.id.profile_pic);
 
         tTitle.setTypeface(brandonlight);
         tName.setTypeface(brandonregular);
