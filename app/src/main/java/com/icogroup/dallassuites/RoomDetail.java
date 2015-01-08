@@ -52,7 +52,7 @@ public class RoomDetail extends Activity{
         ibRoom360.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(RoomDetail.this, Room360.class).putExtra("Photo360",photo360));
+                startActivity(new Intent(RoomDetail.this, Room360.class).putExtra("Photo360",photo360).putExtra("RoomName",getIntent().getExtras().getString("RoomName")));
             }
         });
 

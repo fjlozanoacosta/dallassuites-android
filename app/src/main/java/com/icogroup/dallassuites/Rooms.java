@@ -55,7 +55,7 @@ public class Rooms extends Activity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
-               startActivity(new Intent(Rooms.this, RoomDetail.class).putExtra("Photo360",photos360.get(rooms[position])).putExtra("Photos", photos.get(rooms[position])));
+               startActivity(new Intent(Rooms.this, RoomDetail.class).putExtra("Photo360",photos360.get(rooms[position])).putExtra("Photos", photos.get(rooms[position])).putExtra("RoomName",rooms[position]));
 
 
             }
