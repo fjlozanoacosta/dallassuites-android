@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/qr_topbar"/>
+
 
 
     <ImageView
@@ -9,5 +16,41 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"/>
+
+    <TextView
+        android:id="@+id/qrcode_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:textSize="@dimen/title_size"
+        android:textColor="@color/dallas_typeface_color"
+        android:text="@string/qrcode_title"/>
+
+    <TextView
+        android:id="@+id/qrcode_copy1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/qrcode_copy1"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/ivQRCode"
+        android:textSize="22sp"
+        android:textColor="#828282"
+        android:paddingLeft="2dp"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/qrcode_copy2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/qrcode_copy2"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/ivQRCode"
+        android:gravity="center"
+        android:textColor="#a5a5a5"
+        android:textSize="15sp"
+        />
+
 
 </RelativeLayout>

@@ -2,8 +2,10 @@ package com.icogroup.dallassuites;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
@@ -20,6 +22,8 @@ public class QRCode extends Activity {
     String qrContent;
     SharedPreferences prefs;
     String userID, userPwd;
+    Typeface brandonreg;
+    TextView copy1, copy2, title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +59,17 @@ public class QRCode extends Activity {
 
         prefs = getSharedPreferences(Keystring.DALLAS_SUITES_PREFERENCES, MODE_PRIVATE);
 
+        brandonreg = Typeface.createFromAsset(getAssets(), "brandon_reg.otf");
+
         ivQRCode = (ImageView)findViewById(R.id.ivQRCode);
+
+        copy1 = (TextView)findViewById(R.id.qrcode_copy1);
+        copy1.setTypeface(brandonreg);
+        copy2 = (TextView)findViewById(R.id.qrcode_copy2);
+        copy2.setTypeface(brandonreg);
+
+        title = (TextView)findViewById(R.id.qrcode_title);
+        title.setTypeface(brandonreg);
 
     }
 }

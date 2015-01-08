@@ -19,6 +19,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:textSize="@dimen/title_size"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        android:text="Suite Plus"/>
 
 </RelativeLayout>
