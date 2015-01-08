@@ -2,10 +2,10 @@ package com.icogroup.dallassuites;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +36,7 @@ public class Rooms extends Activity {
     Typeface brandonlight, brandonregular;
    ListView listRooms;
    String[] rooms = {"Suite Plus", "Suite Plus C/ Jacuzzi", "Suite Duplex", "Suite Deluxe", "Suite Presidencial"};
-   HashMap<String, String> photos360;
+   HashMap<String, String> photos360, photos;
     ImageView iRoom;
     TextView tRoomName, title, tRoomDescrip;
     ImageButton back;
@@ -55,7 +55,7 @@ public class Rooms extends Activity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
-              // startActivity(new Intent(Rooms.this, Room360.class).putExtra("room_360_url", photos360.get(rooms[position])).putExtra("room_name", rooms[position]));
+               startActivity(new Intent(Rooms.this, RoomDetail.class).putExtra("Photo360",photos360.get(rooms[position])).putExtra("Photos", photos.get(rooms[position])));
 
 
             }
@@ -77,6 +77,7 @@ public class Rooms extends Activity {
 
         listRooms = (ListView)findViewById(R.id.rooms_listview_rooms);
         photos360 = new HashMap<String, String>();
+        photos = new HashMap<String, String>();
         back = (ImageButton)findViewById(R.id.rooms_back_button);
         title = (TextView)findViewById(R.id.rooms_title);
 
@@ -198,13 +199,13 @@ public class Rooms extends Activity {
 
               try {
                   photos360.put(result.getJSONObject(i).getString("room_category"), result.getJSONObject(i).getString("room_360"));
+                  photos.put(result.getJSONObject(i).getString("room_category"), result.getJSONObject(i).getString("room_pictures"));
               } catch (JSONException e) {
                   e.printStackTrace();
               }
 
           }
 
-            Log.d("Photos 360", photos360.toString());
 
 
         }

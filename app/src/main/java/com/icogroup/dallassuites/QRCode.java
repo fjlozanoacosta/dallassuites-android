@@ -3,7 +3,6 @@ package com.icogroup.dallassuites;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ImageView;
 
 import com.google.zxing.BarcodeFormat;
@@ -33,9 +32,6 @@ public class QRCode extends Activity {
         userPwd = prefs.getString(Keystring.USER_PASSWORD, "0");
 
         qrContent = "[{\"id\" : \" " + userID + "\",\"pwd\":\"" + userPwd + "\"}]";
-
-        Log.d("QRContent", qrContent);
-
 
         QRCodeEncoder qrCodeEncoder = new QRCodeEncoder(qrContent,
                 null,
