@@ -9,5 +9,10 @@
 
     <!--Title-->
     <dimen name="title_size">26sp</dimen>
-    
+    <dimen name="bebidas_bullet_marginleft">60dp</dimen>
+    <dimen name="imagebebida_margintop">30dp</dimen>
+    <dimen name="imagebebida_marginbottom">10dp</dimen>
+    <dimen name="textbebida_margintop">21dp</dimen>
+    <dimen name="textbebida_textsize">20sp</dimen>
+
 </resources>
