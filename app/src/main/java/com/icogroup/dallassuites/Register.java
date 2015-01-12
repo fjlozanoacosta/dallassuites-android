@@ -41,10 +41,10 @@ import java.util.List;
 public class Register extends Activity implements View.OnClickListener, View.OnFocusChangeListener {
 
     Typeface brandonregular, brandonlight;
-    EditText etName, etLastname, etEmail, etDateOfBirth, etID, etUsername, etPassword, etRepeatPassword;
+    EditText etName, etLastname, etEmail, etDateOfBirth, etID, etUsername, etPassword, etRepeatPassword, etKeyword;
     TextView title;
-    Button register;
-    String name, lastname, email, dob, id, username, password, repeatPassword;
+    Button register, bDob;
+    String name, lastname, email, dob, id, username, password, repeatPassword, keyword;
     SharedPreferences prefs;
     LinearLayout registerLayout;
     ImageButton back;
@@ -56,6 +56,13 @@ public class Register extends Activity implements View.OnClickListener, View.OnF
         setContentView(R.layout.register);
 
         init();
+
+        bDob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(new Intent(Register.this, DOBPopup.class), REQUEST_CODE);
+            }
+        });
 
         registerLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -92,6 +99,9 @@ public class Register extends Activity implements View.OnClickListener, View.OnF
         etUsername = (EditText) findViewById(R.id.register_edittext_username);
         etPassword = (EditText) findViewById(R.id.register_edittext_password);
         etRepeatPassword = (EditText) findViewById(R.id.register_edittext_repeatpassword);
+        etKeyword = (EditText) findViewById(R.id.register_edittext_keyword);
+
+        bDob = (Button)findViewById(R.id.button_register_dob);
 
         register = (Button) findViewById(R.id.register_button_register);
 
@@ -111,9 +121,10 @@ public class Register extends Activity implements View.OnClickListener, View.OnF
         etUsername.setTypeface(brandonregular);
         etPassword.setTypeface(brandonregular);
         etRepeatPassword.setTypeface(brandonregular);
+        etKeyword.setTypeface(brandonregular);
 
         etPassword.setOnFocusChangeListener(this);
-        etDateOfBirth.setOnFocusChangeListener(this);
+
 
 
         register.setTypeface(brandonlight);
@@ -135,6 +146,7 @@ public class Register extends Activity implements View.OnClickListener, View.OnF
         username = etUsername.getText().toString();
         password = etPassword.getText().toString();
         repeatPassword = etRepeatPassword.getText().toString();
+        keyword = etKeyword.getText().toString();
 
 
         if (!username.equals("") && !email.equals("") && !password.equals("")
@@ -170,6 +182,8 @@ public class Register extends Activity implements View.OnClickListener, View.OnF
                 Toast.makeText(Register.this, "Debe ingresar su correo electronico", Toast.LENGTH_SHORT).show();
             else if (dob.equals(""))
                 Toast.makeText(Register.this, "Debe ingresar su fecha de nacimiento", Toast.LENGTH_SHORT).show();
+            else if (keyword.equals(""))
+                Toast.makeText(Register.this, "Debe ingresar su palabra clave", Toast.LENGTH_SHORT).show();
 
         }
 
@@ -178,10 +192,10 @@ public class Register extends Activity implements View.OnClickListener, View.OnF
     @Override
     public void onFocusChange(View view, boolean b) {
 
-        if (view.getId() == R.id.register_edittext_password && etPassword.hasFocus())
+      /*  if (view.getId() == R.id.register_edittext_password && etPassword.hasFocus())*/
             startActivity(new Intent(Register.this, Dallas_Popup.class).putExtra("Categoria", "Contraseña"));
-        else if(view.getId() == R.id.register_edittext_dateofbirth && etDateOfBirth.hasFocus())
-            startActivityForResult(new Intent(Register.this, DOBPopup.class), REQUEST_CODE);
+     /*   else if(view.getId() == R.id.register_edittext_dateofbirth && etDateOfBirth.hasFocus())
+            startActivityForResult(new Intent(Register.this, DOBPopup.class), REQUEST_CODE);*/
     }
 
     @Override
@@ -216,13 +230,14 @@ public class Register extends Activity implements View.OnClickListener, View.OnF
                 HttpPost httppost = new HttpPost(url);
 
                 List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(
-                        6);
+                        7);
                 nameValuePairs.add(new BasicNameValuePair("user_name", name));
                 nameValuePairs.add(new BasicNameValuePair("user_lastname", lastname));
                 nameValuePairs.add(new BasicNameValuePair("user_username", username));
                 nameValuePairs.add(new BasicNameValuePair("user_email", email));
                 nameValuePairs.add(new BasicNameValuePair("user_dob", dob));
                 nameValuePairs.add(new BasicNameValuePair("user_ci", id));
+                nameValuePairs.add(new BasicNameValuePair("user_keyword", keyword));
                 httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
                 HttpResponse response = httpclient.execute(httppost);

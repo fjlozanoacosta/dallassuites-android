@@ -12,14 +12,14 @@
     <string name="home_profile">PERFIL</string>
 
     <!--Register-->
-    <string name="register_name">NOMBRE</string>
-    <string name="register_lastname">APELLIDO</string>
-    <string name="register_email">CORREO ELECTRÓNICO</string>
-    <string name="register_id">C.I.</string>
-    <string name="register_dateofbirth">FECHA DE NACIMIENTO</string>
-    <string name="register_username">NOMBRE DE USUARIO</string>
-    <string name="register_password">CONTRASEÑA</string>
-    <string name="register_repeatpassword">REPETIR CONTRASEÑA</string>
+    <string name="register_name">Nombre</string>
+    <string name="register_lastname">Apellido</string>
+    <string name="register_email">Correo Electrónico</string>
+    <string name="register_id">Cédula de identidad</string>
+    <string name="register_dateofbirth">Fecha de nacimiento</string>
+    <string name="register_username">Sobrenombre</string>
+    <string name="register_password">Contraseña</string>
+    <string name="register_repeatpassword">Repetir contraseña</string>
     <string name="register_popup_ok">OK</string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur elit.Vivamus ac posuere ante, mauris a euismod nisl.
     Proin laoreet arcu a magna fringilla</string>
@@ -98,6 +98,7 @@ acumular puntos con diferentes parejas</string>
     <string name="qrcode_title">CÓDIGO QR</string>
     <string name="qrcode_copy1">¿CÓMO FUNCIONA?</string>
     <string name="qrcode_copy2">Muestra este QR en la recepción\npara acumular o gastar puntos</string>
+    <string name="keyword">Palabra clave</string>
 
 
 </resources>

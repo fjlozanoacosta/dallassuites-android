@@ -22,6 +22,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 import com.icogroup.util.Keystring;
 import com.icogroup.util.Utilities;
 
@@ -53,8 +54,7 @@ public class Profile extends Activity {
     DrawerLayout myDrawer;
     RelativeLayout leftDrawer, home;
     ActionBarDrawerToggle mDrawerToggle;
-
-
+    String result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -217,6 +217,21 @@ public class Profile extends Activity {
         super.onResume();
         new getUserInfoAsync().execute();
     }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+        if (scanResult != null) {
+
+
+               result = intent.getExtras().getString("SCAN_RESULT");
+
+
+
+        }
+
+    }
+
+
 
     class TimelineAdapter extends BaseAdapter {
 

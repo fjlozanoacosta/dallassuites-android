@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/home_background"
     android:orientation="vertical"
-    android:weightSum="11">
+    android:weightSum="12">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -141,6 +141,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1">
 
+
         <ImageView
             android:id="@+id/img_calendar_dateofbirth"
             android:layout_width="wrap_content"
@@ -168,6 +169,12 @@
             android:layout_alignParentBottom="true"
             android:src="@drawable/divider" />
 
+
+        <Button
+            android:id="@+id/button_register_dob"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -305,6 +312,41 @@
             android:layout_alignParentBottom="true"
             android:src="@drawable/divider"
            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/img_keyword_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="25dp"
+            android:src="@drawable/icono_palabra" />
+
+        <EditText
+            android:id="@+id/register_edittext_keyword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/img_keyword_hint"
+            android:background="@android:color/transparent"
+            android:hint="@string/keyword"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:inputType="textPassword"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/divider"
+            />
 
     </RelativeLayout>
 
