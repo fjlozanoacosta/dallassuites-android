@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,9 +22,9 @@ public class Restaurant extends Activity{
     ExpandableListView expandableListView;
     ExpandableListAdapter expandableAdapter;
     String[] categorias = {"Desayuno", "Ensaladas", "De picar", "Sandwiches", "Pizzas", "Parrillas", "Resto del día", "A la plancha", "Snacks 24 horas", "Bebidas", "Postres"};
-    String[] bebidas = {"Champagne y espumantes", "Vinos", "Whiskies", "Rones", "Vodka", "Gyn", "Aperitivos y tragos preparados", "Cocktails"};
+    String[] bebidas = {"Champagne y espumantes", "Vinos", "Whiskies", "Rones", "Vodka", "Gyn", "Aperitivos y tragos preparados", "Cocktails", "Otras", "Batidos", "Café"};
     String[] keywordsCategorias = {"desayuno", "ensalada", "picar", "sandwich", "pizza", "parrilla", "resto", "plancha", "snack", "bebida", "postre"};
-    String[] keywordsBebidas = {"champagne", "vino", "whisky", "ron", "vodka", "gyn", "espumante", "aperitivo", "coctel", "otras", "batido", "café"};
+    String[] keywordsBebidas = {"champagne", "vino", "whisky", "ron", "vodka", "gyn", "aperitivo", "coctel", "otras", "batido", "café"};
     int[] imagesCategorias = {R.drawable.iconos_desayuno, R.drawable.iconos_ensalada, R.drawable.iconos_depicar, R.drawable.iconos_sandwiches, R.drawable.iconos_pizza, R.drawable.iconos_parrilla, R.drawable.iconos_restodeldia, R.drawable.iconos_alaplancha, R.drawable.iconos_snaks, R.drawable.iconos_bebidas, R.drawable.iconos_postres};
 
     Typeface brandonreg;
@@ -104,9 +105,10 @@ public class Restaurant extends Activity{
         @Override
         public int getChildrenCount(int i) {
 
-            if (categorias[i].contains("Bebidas"))
+            if (categorias[i].equals("Bebidas")) {
+                Log.d("Cuenta", "" + bebidas.length);
                 return bebidas.length;
-            else
+            } else
                 return 0;
         }
 
@@ -117,7 +119,7 @@ public class Restaurant extends Activity{
 
         @Override
         public Object getChild(int i, int i2) {
-            return bebidas[i];
+            return bebidas[i2];
         }
 
         @Override
@@ -127,7 +129,7 @@ public class Restaurant extends Activity{
 
         @Override
         public long getChildId(int i, int i2) {
-            return i;
+            return i2;
         }
 
         @Override
@@ -162,12 +164,14 @@ public class Restaurant extends Activity{
                         .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = infalInflater.inflate(R.layout.bebidas, null);
 
-                tvBebidas = (TextView) convertView.findViewById(R.id.text_bebida);
-                tvBebidas.setText(bebidas[childPosition]);
-                tvBebidas.setTypeface(brandonreg);
 
             }
 
+            tvBebidas = (TextView) convertView.findViewById(R.id.text_bebida);
+            Log.d(bebidas[childPosition], childPosition + "");
+
+            tvBebidas.setText(bebidas[childPosition]);
+            tvBebidas.setTypeface(brandonreg);
 
             return convertView;
         }
