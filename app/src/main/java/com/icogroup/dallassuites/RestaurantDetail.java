@@ -5,7 +5,6 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +20,11 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 /**
  * Created by andres.torres on 11/3/14.
@@ -31,11 +34,10 @@ public class RestaurantDetail extends Activity {
 
     Typeface brandonregular, brandonlight;
     ListView listViewFood;
-    int[] foodNames = {R.string.tequeños, R.string.abrebocasvenezolanos, R.string.nachos, R.string.conchadepapa, R.string.dedosdemozzarella, R.string.calamaresalajillo};
-    int[] foodDescrips = {R.string.tequeños_descrip, R.string.abrebocasvenezolanos_descrip, R.string.nachos_descrip, R.string.conchadepapa_descrip, R.string.dedosdemozarella_descrip, R.string.calamaresalajillo_descrip};
     TextView foodName, foodDescrip, title;
     ImageButton back;
-
+    ArrayList<String> foodTitles, foodDescriptions;
+    FoodAdapter foodAdapter;
 
 
     @Override
@@ -45,7 +47,9 @@ public class RestaurantDetail extends Activity {
 
         init();
 
-        listViewFood.setAdapter(new FoodAdapter(getApplicationContext()));
+        foodAdapter = new FoodAdapter(getApplicationContext());
+
+        listViewFood.setAdapter(foodAdapter);
 
         new FetchMenuAsync().execute();
 
@@ -58,11 +62,12 @@ public class RestaurantDetail extends Activity {
 
         listViewFood = (ListView) findViewById(R.id.restaurantdetails_listview_foods);
 
-        title = (TextView)findViewById(R.id.restaurantdetail_title);
+        title = (TextView) findViewById(R.id.restaurantdetail_title);
 
         title.setTypeface(brandonlight);
 
-        back = (ImageButton)findViewById(R.id.restaurantdetail_back_button);
+        foodTitles = new ArrayList<String>();
+        foodDescriptions = new ArrayList<String>();
 
 
     }
@@ -79,12 +84,12 @@ public class RestaurantDetail extends Activity {
 
         @Override
         public int getCount() {
-            return foodNames.length;
+            return foodTitles.size();
         }
 
         @Override
         public Object getItem(int position) {
-            return foodNames[position];
+            return foodTitles.get(position);
         }
 
         @Override
@@ -97,20 +102,19 @@ public class RestaurantDetail extends Activity {
 
             view = inflater.inflate(R.layout.restaurant_detail_element, null, false);
 
-            foodName = (TextView)view.findViewById(R.id.restaurantdetail_foodname);
-            foodDescrip = (TextView)view.findViewById(R.id.restaurantdetail_fooddescription);
+            foodName = (TextView) view.findViewById(R.id.restaurantdetail_foodname);
+            foodDescrip = (TextView) view.findViewById(R.id.restaurantdetail_fooddescription);
 
             foodName.setTypeface(brandonregular);
             foodDescrip.setTypeface(brandonregular);
 
-            foodName.setText(foodNames[i]);
-            foodDescrip.setText(foodDescrips[i]);
+            foodName.setText(foodTitles.get(i));
+            foodDescrip.setText(foodDescriptions.get(i));
 
 
             return view;
         }
     }
-
 
 
     class FetchMenuAsync extends AsyncTask<Void, Void, String> {
@@ -130,27 +134,11 @@ public class RestaurantDetail extends Activity {
                 HttpConnectionParams.setSoTimeout(httpParams, 30000);
 
 
-              /*  if(getIntent().getExtras().getString("Bebida") == null) {
-
-                    List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(
-                            1);
-                    nameValuePairs.add(new BasicNameValuePair("cat", getIntent().getExtras().getString("Categoria")));
-                    httpget.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-
-                }else{
-                    List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(
-                            2);
-                    nameValuePairs.add(new BasicNameValuePair("cat", "bebida" ));
-                    nameValuePairs.add(new BasicNameValuePair("bebida", getIntent().getExtras().getString("Bebida")));
-                    httpget.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-
-                }*/
-
-                if(getIntent().getExtras().getString("Bebida") == null) {
+                if (getIntent().getExtras().getString("Bebida") == null) {
 
                     url = "http://ec2-54-218-96-225.us-west-2.compute.amazonaws.com/api/?o=getRestaurantMenu&cat=" + getIntent().getExtras().getString("Categoria");
 
-                }else{
+                } else {
 
                     url = "http://ec2-54-218-96-225.us-west-2.compute.amazonaws.com/api/?o=getRestaurantMenu&cat=bebida&drink=" + getIntent().getExtras().getString("Bebida");
                 }
@@ -160,8 +148,6 @@ public class RestaurantDetail extends Activity {
                 HttpResponse response = httpclient.execute(httpget);
                 jsonResult = Utilities.convertStreamToString(
                         response.getEntity().getContent()).toString();
-
-                Log.d("JSON", jsonResult);
 
 
             } catch (Exception e) {
@@ -175,11 +161,28 @@ public class RestaurantDetail extends Activity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
 
-            Log.d("Result", result);
+            try {
+                JSONArray array = new JSONArray(result);
+
+                for (int i = 0; i < array.length(); i++) {
+
+                        JSONObject object = array.getJSONObject(i);
+                        foodTitles.add(object.get("food_product").toString());
+                        foodDescriptions.add(object.get("food_description").toString());
+
+                }
+
+
+                foodAdapter.notifyDataSetChanged();
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
 
         }
     }
-
 
 
 }

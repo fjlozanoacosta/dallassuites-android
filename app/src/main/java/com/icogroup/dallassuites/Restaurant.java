@@ -22,9 +22,9 @@ public class Restaurant extends Activity{
     ExpandableListAdapter expandableAdapter;
     String[] categorias = {"Desayuno", "Ensaladas", "De picar", "Sandwiches", "Pizzas", "Parrillas", "Resto del día", "A la plancha", "Snacks 24 horas", "Bebidas", "Postres"};
     String[] bebidas = {"Champagne y espumantes", "Vinos", "Whiskies", "Rones", "Vodka", "Gyn", "Aperitivos y tragos preparados", "Cocktails"};
-    String[] keywordsCategorias = {"desayuno", "plancha", "resto", "parrilla", "ensalada", "picar", "sandwich", "pizza", "postre", "snack"};
-    String[] keywordsBebidas = {"champagne", "espumante", "vino", "whisky", "ron", "vodka", "gyn", "aperitivo", "coctel", "otras", "batido", "café"};
-    int[] imagesCategorias = {R.drawable.iconos_desayuno, R.drawable.iconos_ensalada, R.drawable.iconos_depicar, R.drawable.iconos_sandwiches, R.drawable.iconos_pizza, R.drawable.iconos_alaplancha, R.drawable.iconos_restodeldia, R.drawable.iconos_alaplancha, R.drawable.iconos_snaks, R.drawable.iconos_bebidas, R.drawable.iconos_postres};
+    String[] keywordsCategorias = {"desayuno", "ensalada", "picar", "sandwich", "pizza", "parrilla", "resto", "plancha", "snack", "bebida", "postre"};
+    String[] keywordsBebidas = {"champagne", "vino", "whisky", "ron", "vodka", "gyn", "espumante", "aperitivo", "coctel", "otras", "batido", "café"};
+    int[] imagesCategorias = {R.drawable.iconos_desayuno, R.drawable.iconos_ensalada, R.drawable.iconos_depicar, R.drawable.iconos_sandwiches, R.drawable.iconos_pizza, R.drawable.iconos_parrilla, R.drawable.iconos_restodeldia, R.drawable.iconos_alaplancha, R.drawable.iconos_snaks, R.drawable.iconos_bebidas, R.drawable.iconos_postres};
 
     Typeface brandonreg;
     TextView tvCategoria, title, tvBebidas;
