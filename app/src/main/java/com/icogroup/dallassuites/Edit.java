@@ -37,12 +37,12 @@ import java.util.List;
 /**
  * Created by andres.torres on 10/31/14.
  */
-public class Edit extends Activity implements  View.OnClickListener{
+public class Edit extends Activity implements View.OnClickListener {
 
     Typeface brandonregular, brandonlight;
     EditText etName, etLastname, etDateOfBirth, etID;
     LinearLayout editLayout;
-    TextView title, etUsername, etEmail;
+    TextView title, etUsername, etEmail, tvName, tvUsername;
     SharedPreferences prefs;
     Button save, bDob;
     public static int REQUEST_CODE = 987456321;
@@ -55,6 +55,9 @@ public class Edit extends Activity implements  View.OnClickListener{
         prefs = getSharedPreferences(Keystring.DALLAS_SUITES_PREFERENCES, MODE_PRIVATE);
 
         init();
+
+        tvUsername.setText(getIntent().getExtras().getString("Username"));
+        tvName.setText(getIntent().getExtras().getString("Name"));
 
 
         editLayout.setOnTouchListener(new View.OnTouchListener() {
@@ -88,7 +91,10 @@ public class Edit extends Activity implements  View.OnClickListener{
         etID = (EditText) findViewById(R.id.edit_edittext_id);
         etUsername = (TextView) findViewById(R.id.edit_edittext_username);
 
-        bDob = (Button)findViewById(R.id.button_dob);
+        tvName = (TextView) findViewById(R.id.edit_textview_nombre);
+        tvUsername = (TextView) findViewById(R.id.edit_textview_username);
+
+        bDob = (Button) findViewById(R.id.button_dob);
 
         save = (Button) findViewById(R.id.edit_button_save);
 
@@ -144,7 +150,7 @@ public class Edit extends Activity implements  View.OnClickListener{
         }
     }
 
-    public String reformatDate(String date){
+    public String reformatDate(String date) {
 
         String[] dateArray = date.replace(" ", "").split("-");
 
@@ -152,7 +158,7 @@ public class Edit extends Activity implements  View.OnClickListener{
 
     }
 
-    public String sendReformatDate(String date){
+    public String sendReformatDate(String date) {
 
         String[] dateArray = date.replace(" ", "").split("-");
 
@@ -163,9 +169,9 @@ public class Edit extends Activity implements  View.OnClickListener{
     @Override
     public void onClick(View view) {
 
-        if(view.getId() == R.id.edit_button_save){
+        if (view.getId() == R.id.edit_button_save) {
 
-           new UpdateProfileAsync().execute();
+            new UpdateProfileAsync().execute();
 
 
         }
@@ -208,8 +214,6 @@ public class Edit extends Activity implements  View.OnClickListener{
                 Log.d("JSON", jsonResult);
 
 
-
-
             } catch (Exception e) {
                 e.printStackTrace();
 
@@ -224,7 +228,7 @@ public class Edit extends Activity implements  View.OnClickListener{
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
 
-            if(result.contains("msg")){
+            if (result.contains("msg")) {
 
                 SharedPreferences.Editor editor = prefs.edit();
 
@@ -238,7 +242,6 @@ public class Edit extends Activity implements  View.OnClickListener{
                 new UpdatePasswordAsync().execute();
 
             }
-
 
 
         }
@@ -293,7 +296,7 @@ public class Edit extends Activity implements  View.OnClickListener{
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
 
-            if(!result.contains("error")) {
+            if (!result.contains("error")) {
 
                 SharedPreferences.Editor editor = prefs.edit();
 
@@ -301,7 +304,7 @@ public class Edit extends Activity implements  View.OnClickListener{
                 editor.commit();
 
                 finish();
-            }else{
+            } else {
 
                 Toast.makeText(Edit.this, "No se pudo actualizar los datos", Toast.LENGTH_SHORT).show();
 

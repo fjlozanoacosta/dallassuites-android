@@ -54,7 +54,7 @@ public class Profile extends Activity {
     DrawerLayout myDrawer;
     RelativeLayout leftDrawer, home;
     ActionBarDrawerToggle mDrawerToggle;
-    String result;
+    String result, name = "", username = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,10 +74,9 @@ public class Profile extends Activity {
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Profile.this, Edit.class));
+                startActivity(new Intent(Profile.this, Edit.class).putExtra("Name", name).putExtra("Username", username));
             }
         });
-
 
 
         newpassword.setOnClickListener(new View.OnClickListener() {
@@ -131,9 +130,9 @@ public class Profile extends Activity {
 
         menu = (ImageButton) findViewById(R.id.profile_menu);
 
-        newpassword = (ImageButton)findViewById(R.id.perfil_imagebutton_contraseñanueva);
-        scan = (ImageButton)findViewById(R.id.perfil_imagebutton_scanqr);
-        logout = (ImageButton)findViewById(R.id.perfil_imagebutton_salir);
+        newpassword = (ImageButton) findViewById(R.id.perfil_imagebutton_contraseñanueva);
+        scan = (ImageButton) findViewById(R.id.perfil_imagebutton_scanqr);
+        logout = (ImageButton) findViewById(R.id.perfil_imagebutton_salir);
         edit = (ImageButton) findViewById(R.id.perfil_imagebutton_edit);
 
         tTitle = (TextView) findViewById(R.id.profile_title);
@@ -148,7 +147,7 @@ public class Profile extends Activity {
 
         iNoInfoImg = (ImageView) findViewById(R.id.profile_timeline_noinfo_img);
 
-        profilePic = (ImageView)findViewById(R.id.profile_pic);
+        profilePic = (ImageView) findViewById(R.id.profile_pic);
 
         tTitle.setTypeface(brandonlight);
         tName.setTypeface(brandonregular);
@@ -199,10 +198,6 @@ public class Profile extends Activity {
 
         myDrawer.setDrawerListener(mDrawerToggle);
 
-
-
-
-
     }
 
     @Override
@@ -222,16 +217,11 @@ public class Profile extends Activity {
         IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
         if (scanResult != null) {
 
-
-               result = intent.getExtras().getString("SCAN_RESULT");
-
-
+            result = intent.getExtras().getString("SCAN_RESULT");
 
         }
 
     }
-
-
 
     class TimelineAdapter extends BaseAdapter {
 
@@ -423,11 +413,14 @@ public class Profile extends Activity {
             super.onPostExecute(result);
 
             try {
-                tPoints.setText(result.getJSONObject(0).getString("points_available") + " PTS." );
-                tName.setText(result.getJSONObject(0).getString("user_name") + " " + result.getJSONObject(0).getString("user_lastname"));
-                tNickname.setText(result.getJSONObject(0).getString("user_username") + " | ");
+                tPoints.setText(result.getJSONObject(0).getString("points_available") + " PTS.");
 
-            }catch(Exception e){
+                name = result.getJSONObject(0).getString("user_name") + " " + result.getJSONObject(0).getString("user_lastname");
+                tName.setText(name);
+                username = result.getJSONObject(0).getString("user_username") + " | ";
+                tNickname.setText(username);
+
+            } catch (Exception e) {
 
                 e.printStackTrace();
             }
@@ -435,7 +428,6 @@ public class Profile extends Activity {
 
 
     }
-
 
 
     private String reformatDate(String unformattedDate) {
@@ -447,10 +439,10 @@ public class Profile extends Activity {
         return formattedDate;
     }
 
-    private void clearSharedPreferences(){
+    private void clearSharedPreferences() {
 
 
-        SharedPreferences.Editor editor  = prefs.edit();
+        SharedPreferences.Editor editor = prefs.edit();
         editor.remove(Keystring.USER_NAME);
         editor.remove(Keystring.USER_LASTNAME);
         editor.remove(Keystring.USER_PASSWORD);
