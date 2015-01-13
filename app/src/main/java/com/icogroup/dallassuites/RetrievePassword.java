@@ -88,14 +88,12 @@ public class RetrievePassword extends Activity implements View.OnClickListener {
 
                 List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(
                         1);
-                nameValuePairs.add(new BasicNameValuePair("user_email", "fl1@ig.com"));
+                nameValuePairs.add(new BasicNameValuePair("user_email", etMail.getText().toString()));
                 httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
                 HttpResponse response = httpclient.execute(httppost);
                 jsonResult = Utilities.convertStreamToString(
                         response.getEntity().getContent()).toString();
-
-
 
             } catch (Exception e) {
                 e.printStackTrace();

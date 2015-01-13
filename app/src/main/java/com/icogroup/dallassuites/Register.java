@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,7 +46,6 @@ public class Register extends Activity implements View.OnClickListener, View.OnF
     String name, lastname, email, dob, id, username, password, repeatPassword, keyword;
     SharedPreferences prefs;
     LinearLayout registerLayout;
-    ImageButton back;
     static int REQUEST_CODE = 123456789;
 
     @Override
@@ -89,8 +87,6 @@ public class Register extends Activity implements View.OnClickListener, View.OnF
 
         title = (TextView) findViewById(R.id.register_title);
 
-        back = (ImageButton)findViewById(R.id.register_back);
-
         etName = (EditText) findViewById(R.id.register_edittext_name);
         etLastname = (EditText) findViewById(R.id.register_edittext_lastname);
         etEmail = (EditText) findViewById(R.id.register_edittext_email);
@@ -106,8 +102,6 @@ public class Register extends Activity implements View.OnClickListener, View.OnF
         register = (Button) findViewById(R.id.register_button_register);
 
         registerLayout = (LinearLayout) findViewById(R.id.registerlayout);
-
-        back.setOnClickListener(this);
 
         register.setOnClickListener(this);
 
@@ -135,9 +129,6 @@ public class Register extends Activity implements View.OnClickListener, View.OnF
     @Override
     public void onClick(View view) {
 
-        if(view.getId() == R.id.register_back)
-            finish();
-
         name = etName.getText().toString();
         lastname = etLastname.getText().toString();
         email = etEmail.getText().toString();
@@ -151,7 +142,7 @@ public class Register extends Activity implements View.OnClickListener, View.OnF
 
         if (!username.equals("") && !email.equals("") && !password.equals("")
                 && !repeatPassword.equals("") &&
-                !dob.equals("") && view.getId() != R.id.register_back ) {
+                !dob.equals("") ) {
 
             if (password.equals(repeatPassword)) {
 
