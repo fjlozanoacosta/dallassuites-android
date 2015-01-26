@@ -6,17 +6,6 @@
     android:background="@color/dallas_brown_color"
     >
 
-    <ImageButton
-        android:id="@+id/rooms_back_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/back_selector"
-        android:layout_marginLeft="@dimen/back_marginleft"
-        android:background="@android:color/transparent"
-        android:layout_marginTop="@dimen/back_margintop"
-
-        />
-
     <TextView
         android:id="@+id/rooms_title"
         android:layout_width="wrap_content"

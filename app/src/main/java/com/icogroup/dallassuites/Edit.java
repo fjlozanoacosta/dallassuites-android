@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +46,7 @@ public class Edit extends Activity implements View.OnClickListener {
     TextView title, etUsername, etEmail, tvName, tvUsername;
     SharedPreferences prefs;
     Button save, bDob;
+    ImageButton info;
     public static int REQUEST_CODE = 987456321;
 
     @Override
@@ -107,6 +109,8 @@ public class Edit extends Activity implements View.OnClickListener {
         etID.setText(prefs.getString(Keystring.USER_CI, ""));
         etUsername.setText(prefs.getString(Keystring.USER_USERNAME, ""));
 
+        info = (ImageButton)findViewById(R.id.info_button);
+        info.setOnClickListener(this);
 
         title.setTypeface(brandonlight);
 
@@ -173,6 +177,10 @@ public class Edit extends Activity implements View.OnClickListener {
 
             new UpdateProfileAsync().execute();
 
+
+        }else if(view.getId() == R.id.info_button){
+
+            Toast.makeText(Edit.this, "Info", Toast.LENGTH_SHORT).show();
 
         }
 

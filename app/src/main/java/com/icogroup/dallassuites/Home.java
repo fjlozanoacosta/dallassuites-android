@@ -3,8 +3,10 @@ package com.icogroup.dallassuites;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +24,7 @@ public class Home extends Activity implements View.OnClickListener{
     RelativeLayout splashBackground, home_buttons;
     ImageView logo;
     Button servicios, suites, registro, login;
+    float yFinal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,13 +34,22 @@ public class Home extends Activity implements View.OnClickListener{
 
         init();
 
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        float width = size.x;
+        final float height = size.y;
+
+        home_buttons.setY(height );
+
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
 
                     ObjectAnimator alphaAnimationBackground = ObjectAnimator.ofFloat(splashBackground, "alpha", 1, 0);
-                    ObjectAnimator translateAnimationLogo = ObjectAnimator.ofFloat(logo, "translationY", 0, -300);
-                    ObjectAnimator translateAnimationButtons = ObjectAnimator.ofFloat(home_buttons, "translationY", 0, -425);
+                    ObjectAnimator translateAnimationLogo = ObjectAnimator.ofFloat(logo, "translationY", 0, -height*0.17f);
+                    ObjectAnimator translateAnimationButtons = ObjectAnimator.ofFloat(home_buttons, "translationY", 0, -height*0.23f);
                     alphaAnimationBackground.setDuration(1000);
                     translateAnimationLogo.setDuration(1000);
                     translateAnimationButtons.setDuration(1000);

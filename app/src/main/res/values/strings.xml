@@ -6,7 +6,7 @@
     <string name="action_settings">Settings</string>
 
     <!--Home-->
-    <string name="home_rooms">HABITACIONES</string>
+    <string name="home_rooms">SUITES</string>
     <string name="home_services">SERVICIOS</string>
     <string name="home_register">REGISTRO</string>
     <string name="home_profile">PERFIL</string>
@@ -99,6 +99,7 @@ acumular puntos con diferentes parejas</string>
     <string name="qrcode_copy1">¿CÓMO FUNCIONA?</string>
     <string name="qrcode_copy2">Muestra este QR en la recepción\npara acumular o gastar puntos</string>
     <string name="keyword">Palabra clave</string>
+    <string name="keyword_popup_text">La Palabra Clave te ayudará\na recuperar tu contraseña.\nCada contraseña tendrá\nsu palabra clave.</string>
 
 
 </resources>

@@ -47,7 +47,7 @@
 
             <Button
                 android:id="@+id/home_button_servicios"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/servicios_selector" />
@@ -60,7 +60,7 @@
 
             <Button
                 android:id="@+id/home_button_suites"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/suites_selector" />
@@ -73,10 +73,10 @@
 
             <Button
                 android:id="@+id/home_button_registro"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/registro_selector" />
+                android:background="@drawable/home_registro_selector" />
 
         </LinearLayout>
 

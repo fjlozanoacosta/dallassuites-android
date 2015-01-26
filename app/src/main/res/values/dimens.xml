@@ -14,5 +14,9 @@
     <dimen name="imagebebida_marginbottom">10dp</dimen>
     <dimen name="textbebida_margintop">21dp</dimen>
     <dimen name="textbebida_textsize">20sp</dimen>
+    <dimen name="text_size">15sp</dimen>
+
+    <dimen name="popup_keyword_register_top">300dp</dimen>
+
 
 </resources>

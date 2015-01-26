@@ -27,14 +27,19 @@ import com.icogroup.util.Keystring;
 import com.icogroup.util.Utilities;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.icogroup.dallassuites.R.layout;
 
@@ -215,9 +220,11 @@ public class Profile extends Activity {
 
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
-        if (scanResult != null) {
+        if (intent.getExtras() != null) {
 
-            result = intent.getExtras().getString("SCAN_RESULT");
+           // result = intent.getExtras().getString("SCAN_RESULT");
+            Log.d("Scan Result",intent.getExtras().getString("SCAN_RESULT"));
+            new AddPointsAsync().execute();
 
         }
 
@@ -454,6 +461,57 @@ public class Profile extends Activity {
         editor.apply();
 
     }
+
+    class AddPointsAsync extends AsyncTask<Void, Void, String> {
+
+        @Override
+        protected String doInBackground(Void... params) {
+
+            String url = "http://ec2-54-218-96-225.us-west-2.compute.amazonaws.com/api/?o=addPoints";
+            JSONObject object = null;
+            String jsonResult = null;
+            String result = null;
+
+            try {
+                DefaultHttpClient httpclient = new DefaultHttpClient();
+                final HttpParams httpParams = httpclient.getParams();
+                HttpConnectionParams.setConnectionTimeout(httpParams, 30000);
+                HttpConnectionParams.setSoTimeout(httpParams, 30000);
+
+                HttpPost httppost = new HttpPost(url);
+
+                List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(
+                        3);
+                nameValuePairs.add(new BasicNameValuePair("user_id",prefs.getString(Keystring.USER_ID, "")));
+                nameValuePairs.add(new BasicNameValuePair("user_password",prefs.getString(Keystring.USER_PASSWORD, "") ));
+                nameValuePairs.add(new BasicNameValuePair("ticket_id", "19" ));
+                httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+
+
+                HttpResponse response = httpclient.execute(httppost);
+                jsonResult = Utilities.convertStreamToString(
+                        response.getEntity().getContent()).toString();
+
+                Log.d("JSON", jsonResult);
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return jsonResult;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            Log.d("Canje", "Suma de puntos satisfactoria");
+
+        }
+    }
+
+
 
 }
 

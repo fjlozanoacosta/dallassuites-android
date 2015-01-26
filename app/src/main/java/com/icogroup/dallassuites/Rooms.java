@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -34,12 +33,12 @@ import java.util.HashMap;
 public class Rooms extends Activity {
 
     Typeface brandonlight, brandonregular;
-   ListView listRooms;
-   String[] rooms = {"Suite Plus", "Suite Plus C/ Jacuzzi", "Suite Duplex", "Suite Deluxe", "Suite Presidencial"};
-   HashMap<String, String> photos360, photos;
+    ListView listRooms;
+    String[] rooms = {"Suite Plus", "Suite Plus C/ Jacuzzi", "Suite Duplex", "Suite Deluxe", "Suite Presidencial"};
+    String[] rooms_descrip = {"Su magia y sencillez hace que el placer\nllegue a su máxima expresión.", "Placer y seducción se combinan\nen un estilo único.", "Aduéñese de 2 ambientes para dar\nrienda suelta a sus fantasías.", "Exclusividad, glamour y armonía.", "Placer extremo en 80mts2."};
+    HashMap<String, String> photos360, photos;
     ImageView iRoom;
     TextView tRoomName, title, tRoomDescrip;
-    ImageButton back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,16 +54,9 @@ public class Rooms extends Activity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
-               startActivity(new Intent(Rooms.this, RoomDetail.class).putExtra("Photo360",photos360.get(rooms[position])).putExtra("Photos", photos.get(rooms[position])).putExtra("RoomName",rooms[position]));
+                startActivity(new Intent(Rooms.this, RoomDetail.class).putExtra("Photo360", photos360.get(rooms[position])).putExtra("Photos", photos.get(rooms[position])).putExtra("RoomName", rooms[position]));
 
 
-            }
-        });
-
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
             }
         });
 
@@ -75,11 +67,10 @@ public class Rooms extends Activity {
         brandonregular = Typeface.createFromAsset(getAssets(), "brandon_reg.otf");
         brandonlight = Typeface.createFromAsset(getAssets(), "brandon_light.otf");
 
-        listRooms = (ListView)findViewById(R.id.rooms_listview_rooms);
+        listRooms = (ListView) findViewById(R.id.rooms_listview_rooms);
         photos360 = new HashMap<String, String>();
         photos = new HashMap<String, String>();
-        back = (ImageButton)findViewById(R.id.rooms_back_button);
-        title = (TextView)findViewById(R.id.rooms_title);
+        title = (TextView) findViewById(R.id.rooms_title);
 
         title.setTypeface(brandonlight);
 
@@ -87,7 +78,7 @@ public class Rooms extends Activity {
     }
 
 
-    class RoomsAdapter extends BaseAdapter{
+    class RoomsAdapter extends BaseAdapter {
 
         public LayoutInflater inflater = null;
 
@@ -117,33 +108,34 @@ public class Rooms extends Activity {
 
             view = inflater.inflate(R.layout.rooms_element, null, false);
 
-            iRoom = (ImageView)view.findViewById(R.id.rooms_rooms_img);
-            tRoomName = (TextView)view.findViewById(R.id.rooms_text_roomname);
-            tRoomDescrip = (TextView)view.findViewById(R.id.rooms_text_roomdescription);
+            iRoom = (ImageView) view.findViewById(R.id.rooms_rooms_img);
+            tRoomName = (TextView) view.findViewById(R.id.rooms_text_roomname);
+            tRoomDescrip = (TextView) view.findViewById(R.id.rooms_text_roomdescription);
 
             tRoomName.setTypeface(brandonlight);
             tRoomDescrip.setTypeface(brandonregular);
 
+            tRoomDescrip.setText(rooms_descrip[position]);
 
             tRoomName.setText("" + rooms[position]);
 
-            if(rooms[position].equals("Suite Plus")){
+            if (rooms[position].equals("Suite Plus")) {
 
                 iRoom.setImageResource(R.drawable.rooms_img_suiteplus);
 
-            }else if(rooms[position].equals("Suite Plus C/ Jacuzzi")){
+            } else if (rooms[position].equals("Suite Plus C/ Jacuzzi")) {
 
                 iRoom.setImageResource(R.drawable.rooms_img_suiteplusconjacuzzi);
 
-            }else if(rooms[position].equals("Suite Duplex")){
+            } else if (rooms[position].equals("Suite Duplex")) {
 
                 iRoom.setImageResource(R.drawable.rooms_img_suiteduplex);
 
-            }else if(rooms[position].equals("Suite Deluxe")){
+            } else if (rooms[position].equals("Suite Deluxe")) {
 
                 iRoom.setImageResource(R.drawable.rooms_img_suitedeluxe);
 
-            }else if(rooms[position].equals("Suite Presidencial")){
+            } else if (rooms[position].equals("Suite Presidencial")) {
 
                 iRoom.setImageResource(R.drawable.rooms_img_suitepresidencial);
 
@@ -195,17 +187,17 @@ public class Rooms extends Activity {
         protected void onPostExecute(JSONArray result) {
             super.onPostExecute(result);
 
-          for(int i = 0; i < result.length(); i++){
+            for (int i = 0; i < result.length(); i++) {
 
-              try {
-                  photos360.put(result.getJSONObject(i).getString("room_category"), result.getJSONObject(i).getString("room_360"));
-                  photos.put(result.getJSONObject(i).getString("room_category"), result.getJSONObject(i).getString("room_pictures"));
-              } catch (JSONException e) {
-                  e.printStackTrace();
-              }
+                try {
+                    photos360.put(result.getJSONObject(i).getString("room_category"), result.getJSONObject(i).getString("room_360"));
+                    photos.put(result.getJSONObject(i).getString("room_category"), result.getJSONObject(i).getString("room_pictures"));
 
-          }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
+            }
 
 
         }

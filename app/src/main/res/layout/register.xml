@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/registerlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,10 +7,19 @@
     android:orientation="vertical"
     android:weightSum="12">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="12"
+        android:orientation="vertical">
+
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1">
+
+
 
 
 
@@ -332,7 +341,19 @@
             android:hint="@string/keyword"
             android:textColorHint="@color/white"
             android:textColor="@color/white"
-            android:inputType="textPassword"/>
+            />
+
+        <ImageButton
+            android:id="@+id/info_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/info_selector"
+            android:background="@android:color/transparent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+
+
 
         <ImageView
             android:layout_width="wrap_content"
@@ -364,4 +385,29 @@
 
     </RelativeLayout>
 
+
 </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/keyword_popup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/keyword_popup_back"
+        android:visibility="invisible"
+       >
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/keyword_popup_text"
+            android:gravity="center"
+            android:textColor="@color/dallas_typeface_color"
+            />
+
+       </RelativeLayout>
+
+
+
+</RelativeLayout>

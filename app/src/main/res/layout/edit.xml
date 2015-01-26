@@ -120,6 +120,17 @@
             android:textColor="@color/white"
             android:textSize="18sp" />
 
+        <ImageButton
+            android:id="@+id/info_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/info_selector"
+            android:background="@android:color/transparent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+
+
 
         <ImageView
             android:layout_width="wrap_content"

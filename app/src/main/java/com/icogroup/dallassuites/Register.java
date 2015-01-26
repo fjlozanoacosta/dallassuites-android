@@ -13,7 +13,8 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,8 +46,10 @@ public class Register extends Activity implements View.OnClickListener, View.OnF
     Button register, bDob;
     String name, lastname, email, dob, id, username, password, repeatPassword, keyword;
     SharedPreferences prefs;
-    LinearLayout registerLayout;
+    RelativeLayout registerLayout;
+    ImageButton info;
     static int REQUEST_CODE = 123456789;
+    RelativeLayout keywordPopup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,9 +102,14 @@ public class Register extends Activity implements View.OnClickListener, View.OnF
 
         bDob = (Button)findViewById(R.id.button_register_dob);
 
+        keywordPopup = (RelativeLayout)findViewById(R.id.keyword_popup);
+
         register = (Button) findViewById(R.id.register_button_register);
 
-        registerLayout = (LinearLayout) findViewById(R.id.registerlayout);
+        registerLayout = (RelativeLayout) findViewById(R.id.registerlayout);
+
+        info = (ImageButton)findViewById(R.id.info_button);
+        info.setOnClickListener(this);
 
         register.setOnClickListener(this);
 
@@ -142,7 +150,7 @@ public class Register extends Activity implements View.OnClickListener, View.OnF
 
         if (!username.equals("") && !email.equals("") && !password.equals("")
                 && !repeatPassword.equals("") &&
-                !dob.equals("") ) {
+                !dob.equals("") && view.getId() != R.id.info_button) {
 
             if (password.equals(repeatPassword)) {
 
@@ -177,6 +185,27 @@ public class Register extends Activity implements View.OnClickListener, View.OnF
                 Toast.makeText(Register.this, "Debe ingresar su palabra clave", Toast.LENGTH_SHORT).show();
 
         }
+
+
+        if(view.getId() == R.id.info_button){
+
+           //keywordPopup.setX(info.getX() - keywordPopup.getWidth());
+           //keywordPopup.setY(info.getY());
+
+            if(keywordPopup.getVisibility() == View.INVISIBLE) {
+                keywordPopup.setVisibility(View.VISIBLE);
+                RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) keywordPopup.getLayoutParams();
+                params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+                params.setMargins(0, (int) getResources().getDimension(R.dimen.popup_keyword_register_top), (int) getResources().getDimension(R.dimen.activity_horizontal_margin), 0);
+                keywordPopup.setLayoutParams(params); //causes layout update
+            }else{
+
+                keywordPopup.setVisibility(View.INVISIBLE);
+
+            }
+
+        }
+
 
     }
 

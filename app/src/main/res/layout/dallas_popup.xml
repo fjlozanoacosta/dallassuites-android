@@ -63,11 +63,10 @@
         android:gravity="center_horizontal"
         android:text="@string/lorem_ipsum"
         android:layout_below="@id/register_popup_title"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:lineSpacingExtra="1dp"
+        android:layout_marginTop="6dp"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        android:textSize="14sp"
+        android:textSize="@dimen/text_size"
         />
 
 

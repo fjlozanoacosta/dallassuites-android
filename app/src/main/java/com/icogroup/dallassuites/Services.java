@@ -6,7 +6,6 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 /**
@@ -14,7 +13,6 @@ import android.widget.TextView;
  */
 public class Services extends Activity implements View.OnClickListener{
 
-    ImageButton back;
     Button restaurant, roomService, privacyAndSecurity, doubleReception, comfortAndAmenities;
     Typeface brandonlight,brandonregular;
     TextView title;
@@ -34,8 +32,6 @@ public class Services extends Activity implements View.OnClickListener{
 
         title = (TextView)findViewById(R.id.services_title);
 
-        back = (ImageButton)findViewById(R.id.services_back);
-
         restaurant = (Button)findViewById(R.id.services_button_restaurant);
         roomService = (Button)findViewById(R.id.services_button_roomservice);
         privacyAndSecurity = (Button)findViewById(R.id.services_button_privacyandsecurity);
@@ -50,8 +46,6 @@ public class Services extends Activity implements View.OnClickListener{
         doubleReception.setTypeface(brandonlight);
         comfortAndAmenities.setTypeface(brandonlight);
 
-        back.setOnClickListener(this);
-
         restaurant.setOnClickListener(this);
         roomService.setOnClickListener(this);
         privacyAndSecurity.setOnClickListener(this);
@@ -64,10 +58,6 @@ public class Services extends Activity implements View.OnClickListener{
     public void onClick(View view) {
 
         switch(view.getId()){
-
-            case R.id.services_back:
-                finish();
-                break;
 
             case R.id.services_button_restaurant:
                 startActivity(new Intent(Services.this, Restaurant.class));
