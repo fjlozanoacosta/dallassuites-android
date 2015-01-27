@@ -38,7 +38,7 @@ import java.util.List;
 /**
  * Created by andres.torres on 10/24/14.
  */
-public class Register extends Activity implements View.OnClickListener, View.OnFocusChangeListener {
+public class Register extends Activity implements View.OnClickListener {
 
     Typeface brandonregular, brandonlight;
     EditText etName, etLastname, etEmail, etDateOfBirth, etID, etUsername, etPassword, etRepeatPassword, etKeyword;
@@ -125,7 +125,6 @@ public class Register extends Activity implements View.OnClickListener, View.OnF
         etRepeatPassword.setTypeface(brandonregular);
         etKeyword.setTypeface(brandonregular);
 
-        etPassword.setOnFocusChangeListener(this);
 
 
 
@@ -147,76 +146,77 @@ public class Register extends Activity implements View.OnClickListener, View.OnF
         repeatPassword = etRepeatPassword.getText().toString();
         keyword = etKeyword.getText().toString();
 
+        if(view.getId() != R.id.info_button) {
 
-        if (!username.equals("") && !email.equals("") && !password.equals("")
-                && !repeatPassword.equals("") &&
-                !dob.equals("") && view.getId() != R.id.info_button) {
+            if (!username.equals("") && !email.equals("") && !password.equals("")
+                    && !repeatPassword.equals("") &&
+                    !dob.equals("")) {
 
-            if (password.equals(repeatPassword)) {
+                if (password.equals(repeatPassword)) {
 
-                switch (view.getId()) {
+                    switch (view.getId()) {
 
-                    case R.id.register_button_register:
+                        case R.id.register_button_register:
 
-                        new RegisterAsync().execute();
-                        new AddPasswordAsync().execute();
+                            new RegisterAsync().execute();
+                            new AddPasswordAsync().execute();
 
-                        break;
+                            break;
+                    }
+                } else {
+
+                    Toast.makeText(Register.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
+
                 }
+
             } else {
 
-                Toast.makeText(Register.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
+                if (username.equals(""))
+                    Toast.makeText(Register.this, "Debe ingresar algún nombre de usuario", Toast.LENGTH_SHORT).show();
+                else if (password.equals(""))
+                    Toast.makeText(Register.this, "Debe ingresar alguna contraseña", Toast.LENGTH_SHORT).show();
+                else if (repeatPassword.equals(""))
+                    Toast.makeText(Register.this, "Debe repetir la contraseña", Toast.LENGTH_SHORT).show();
+                else if (email.equals(""))
+                    Toast.makeText(Register.this, "Debe ingresar su correo electronico", Toast.LENGTH_SHORT).show();
+                else if (dob.equals(""))
+                    Toast.makeText(Register.this, "Debe ingresar su fecha de nacimiento", Toast.LENGTH_SHORT).show();
+                else if (keyword.equals(""))
+                    Toast.makeText(Register.this, "Debe ingresar su palabra clave", Toast.LENGTH_SHORT).show();
 
             }
 
-        } else {
 
-            if (username.equals(""))
-                Toast.makeText(Register.this, "Debe ingresar algún nombre de usuario", Toast.LENGTH_SHORT).show();
-            else if (password.equals(""))
-                Toast.makeText(Register.this, "Debe ingresar alguna contraseña", Toast.LENGTH_SHORT).show();
-            else if (repeatPassword.equals(""))
-                Toast.makeText(Register.this, "Debe repetir la contraseña", Toast.LENGTH_SHORT).show();
-            else if (email.equals(""))
-                Toast.makeText(Register.this, "Debe ingresar su correo electronico", Toast.LENGTH_SHORT).show();
-            else if (dob.equals(""))
-                Toast.makeText(Register.this, "Debe ingresar su fecha de nacimiento", Toast.LENGTH_SHORT).show();
-            else if (keyword.equals(""))
-                Toast.makeText(Register.this, "Debe ingresar su palabra clave", Toast.LENGTH_SHORT).show();
+            if (view.getId() == R.id.info_button) {
 
-        }
+                //keywordPopup.setX(info.getX() - keywordPopup.getWidth());
+                //keywordPopup.setY(info.getY());
 
+                if (keywordPopup.getVisibility() == View.INVISIBLE) {
+                    keywordPopup.setVisibility(View.VISIBLE);
+                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) keywordPopup.getLayoutParams();
+                    params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+                    params.setMargins(0, (int) getResources().getDimension(R.dimen.popup_keyword_register_top), (int) getResources().getDimension(R.dimen.activity_horizontal_margin), 0);
+                    keywordPopup.setLayoutParams(params); //causes layout update
+                } else {
 
-        if(view.getId() == R.id.info_button){
+                    keywordPopup.setVisibility(View.INVISIBLE);
 
-           //keywordPopup.setX(info.getX() - keywordPopup.getWidth());
-           //keywordPopup.setY(info.getY());
-
-            if(keywordPopup.getVisibility() == View.INVISIBLE) {
-                keywordPopup.setVisibility(View.VISIBLE);
-                RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) keywordPopup.getLayoutParams();
-                params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-                params.setMargins(0, (int) getResources().getDimension(R.dimen.popup_keyword_register_top), (int) getResources().getDimension(R.dimen.activity_horizontal_margin), 0);
-                keywordPopup.setLayoutParams(params); //causes layout update
-            }else{
-
-                keywordPopup.setVisibility(View.INVISIBLE);
+                }
 
             }
-
         }
-
 
     }
-
-    @Override
+/*
+   @Override
     public void onFocusChange(View view, boolean b) {
 
-      /*  if (view.getId() == R.id.register_edittext_password && etPassword.hasFocus())*/
+        if (view.getId() == R.id.register_edittext_password && etPassword.hasFocus())
             startActivity(new Intent(Register.this, Dallas_Popup.class).putExtra("Categoria", "Contraseña"));
-     /*   else if(view.getId() == R.id.register_edittext_dateofbirth && etDateOfBirth.hasFocus())
-            startActivityForResult(new Intent(Register.this, DOBPopup.class), REQUEST_CODE);*/
-    }
+        else if(view.getId() == R.id.register_edittext_dateofbirth && etDateOfBirth.hasFocus())
+            startActivityForResult(new Intent(Register.this, DOBPopup.class), REQUEST_CODE);
+    }*/
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

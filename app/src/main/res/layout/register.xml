@@ -58,7 +58,8 @@
             android:hint="@string/register_name"
             android:textColorHint="@color/hint_color"
             android:textColor="@color/white"
-            android:inputType="textPersonName"/>
+            android:inputType="textPersonName"
+            android:textSize="@dimen/et_size"/>
 
 
         <ImageView
@@ -93,7 +94,8 @@
             android:hint="@string/register_lastname"
             android:textColorHint="@color/hint_color"
             android:textColor="@color/white"
-            android:inputType="textPersonName"/>
+            android:inputType="textPersonName"
+            android:textSize="@dimen/et_size"/>
 
         <ImageView
             android:layout_width="wrap_content"
@@ -127,7 +129,8 @@
             android:hint="@string/register_email"
             android:textColorHint="@color/hint_color"
             android:textColor="@color/white"
-            android:inputType="textEmailAddress"/>
+            android:inputType="textEmailAddress"
+            android:textSize="@dimen/et_size"/>
 
 
         <ImageView
@@ -163,7 +166,8 @@
             android:hint="@string/register_dateofbirth"
             android:textColorHint="@color/hint_color"
             android:textColor="@color/white"
-            android:inputType="none"/>
+            android:inputType="none"
+            android:textSize="@dimen/et_size"/>
 
         <ImageView
             android:layout_width="wrap_content"
@@ -203,7 +207,8 @@
             android:hint="@string/register_id"
             android:textColorHint="@color/hint_color"
             android:textColor="@color/white"
-            android:inputType="number"/>
+            android:inputType="number"
+            android:textSize="@dimen/et_size"/>
 
         <ImageView
             android:layout_width="wrap_content"
@@ -237,7 +242,8 @@
             android:hint="@string/register_username"
             android:textColorHint="@color/hint_color"
             android:textColor="@color/white"
-            android:inputType="none"/>
+            android:inputType="none"
+            android:textSize="@dimen/et_size"/>
 
         <ImageView
             android:layout_width="wrap_content"
@@ -271,7 +277,8 @@
             android:hint="@string/register_password"
             android:textColorHint="@color/hint_color"
             android:textColor="@color/white"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword"
+            android:textSize="@dimen/et_size"/>
 
         <ImageView
             android:layout_width="wrap_content"
@@ -306,7 +313,8 @@
             android:hint="@string/register_repeatpassword"
             android:textColorHint="@color/hint_color"
             android:textColor="@color/white"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword"
+            android:textSize="@dimen/et_size"/>
 
         <ImageView
             android:layout_width="wrap_content"
@@ -341,6 +349,7 @@
             android:hint="@string/keyword"
             android:textColorHint="@color/hint_color"
             android:textColor="@color/white"
+            android:textSize="@dimen/et_size"
             />
 
         <ImageButton

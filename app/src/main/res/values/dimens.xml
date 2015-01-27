@@ -17,6 +17,7 @@
     <dimen name="text_size">15sp</dimen>
 
     <dimen name="popup_keyword_register_top">300dp</dimen>
+    <dimen name="et_size">22sp</dimen>
 
 
 </resources>
