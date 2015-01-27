@@ -402,7 +402,6 @@ public class Profile extends Activity {
 
 
                 object = new JSONArray(jsonResult);
-                Log.d("JSON", jsonResult);
 
 
             } catch (Exception e) {
@@ -491,8 +490,6 @@ public class Profile extends Activity {
                 HttpResponse response = httpclient.execute(httppost);
                 jsonResult = Utilities.convertStreamToString(
                         response.getEntity().getContent()).toString();
-
-                Log.d("JSON", jsonResult);
 
 
             } catch (Exception e) {

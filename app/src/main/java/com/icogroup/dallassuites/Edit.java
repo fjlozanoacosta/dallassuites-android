@@ -14,7 +14,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,12 +42,14 @@ public class Edit extends Activity implements View.OnClickListener {
 
     Typeface brandonregular, brandonlight;
     EditText etName, etLastname, etDateOfBirth, etID;
-    LinearLayout editLayout;
+    RelativeLayout editLayout;
     TextView title, etUsername, etEmail, tvName, tvUsername;
     SharedPreferences prefs;
     Button save, bDob;
     ImageButton info;
     public static int REQUEST_CODE = 987456321;
+    RelativeLayout keywordPopup;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +86,7 @@ public class Edit extends Activity implements View.OnClickListener {
 
         title = (TextView) findViewById(R.id.edit_title);
 
-
+    keywordPopup = (RelativeLayout)findViewById(R.id.keyword_popup_edit);
 
        /* etName = (EditText) findViewById(R.id.edit_edittext_name);
         etLastname = (EditText) findViewById(R.id.edit_edittext_lastname);*/
@@ -100,7 +102,7 @@ public class Edit extends Activity implements View.OnClickListener {
 
         save = (Button) findViewById(R.id.edit_button_save);
 
-        editLayout = (LinearLayout) findViewById(R.id.editlayout);
+        editLayout = (RelativeLayout) findViewById(R.id.editlayout);
 
        /* etName.setText(prefs.getString(Keystring.USER_NAME, ""));
         etLastname.setText(prefs.getString(Keystring.USER_LASTNAME, ""));*/
@@ -178,9 +180,22 @@ public class Edit extends Activity implements View.OnClickListener {
             new UpdateProfileAsync().execute();
 
 
-        }else if(view.getId() == R.id.info_button){
+        }else if(view.getId() == R.id.info_button) {
 
-            Toast.makeText(Edit.this, "Info", Toast.LENGTH_SHORT).show();
+            if (keywordPopup.getVisibility() == View.INVISIBLE) {
+               keywordPopup.setVisibility(View.VISIBLE);
+                keywordPopup.setX(info.getX()- (keywordPopup.getWidth()*7/8));
+                keywordPopup.setY(info.getY() + keywordPopup.getHeight()*2/5);
+                Log.d("Y", "" + info.getY());
+            /*    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) keywordPopup.getLayoutParams();
+                 params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+                params.setMargins(0, (int) getResources().getDimension(R.dimen.popup_keyword_register_top), (int) getResources().getDimension(R.dimen.activity_horizontal_margin), 0);
+                keywordPopup.setLayoutParams(params); //causes layout update*/
+            } else {
+
+                keywordPopup.setVisibility(View.INVISIBLE);
+
+            }
 
         }
 
@@ -218,8 +233,6 @@ public class Edit extends Activity implements View.OnClickListener {
                         response.getEntity().getContent()).toString();
 
                 object = new JSONObject(jsonResult);
-
-                Log.d("JSON", jsonResult);
 
 
             } catch (Exception e) {
@@ -287,8 +300,6 @@ public class Edit extends Activity implements View.OnClickListener {
 
                 object = new JSONObject(jsonResult);
 
-                Log.d("JSON", jsonResult);
-
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -307,7 +318,6 @@ public class Edit extends Activity implements View.OnClickListener {
             if (!result.contains("error")) {
 
                 SharedPreferences.Editor editor = prefs.edit();
-
 
                 editor.commit();
 

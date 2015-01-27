@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -139,8 +138,6 @@ public class Login extends Activity implements View.OnClickListener {
                 jsonResult = Utilities.convertStreamToString(
                         response.getEntity().getContent()).toString();
 
-                Log.d("JSON", jsonResult);
-
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -157,7 +154,6 @@ public class Login extends Activity implements View.OnClickListener {
 
             try {
                 array = new JSONArray(result);
-                Log.d("ARRAY", array.toString());
             } catch (JSONException e) {
                 e.printStackTrace();
             }
