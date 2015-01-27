@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -41,9 +40,9 @@ import java.util.List;
 public class Edit extends Activity implements View.OnClickListener {
 
     Typeface brandonregular, brandonlight;
-    EditText etName, etLastname, etDateOfBirth, etID;
+    EditText etName, etLastname, etDateOfBirth, etID, etPassword, etKeyword;
     RelativeLayout editLayout;
-    TextView title, etUsername, etEmail, tvName, tvUsername;
+    TextView title, etUsername, etEmail, tvEmail, tvUsername;
     SharedPreferences prefs;
     Button save, bDob;
     ImageButton info;
@@ -60,9 +59,16 @@ public class Edit extends Activity implements View.OnClickListener {
 
         init();
 
-        tvUsername.setText(getIntent().getExtras().getString("Username"));
-        tvName.setText(getIntent().getExtras().getString("Name"));
+        String[] name = getIntent().getExtras().getString("Name").split(" ");
 
+        tvUsername.setText(getIntent().getExtras().getString("Username"));
+        tvEmail.setText(getIntent().getExtras().getString("Email"));
+        if(name.length>0)
+            etName.setText(name[0]);
+        if(name.length>1)
+            etLastname.setText(name[1]);
+
+        etPassword.setText(prefs.getString(Keystring.USER_PASSWORD, ""));
 
         editLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -88,14 +94,16 @@ public class Edit extends Activity implements View.OnClickListener {
 
     keywordPopup = (RelativeLayout)findViewById(R.id.keyword_popup_edit);
 
-       /* etName = (EditText) findViewById(R.id.edit_edittext_name);
-        etLastname = (EditText) findViewById(R.id.edit_edittext_lastname);*/
-        etEmail = (TextView) findViewById(R.id.edit_edittext_email);
+        etName = (EditText) findViewById(R.id.edit_edittext_name);
+        etLastname = (EditText) findViewById(R.id.edit_edittext_lastname);
+       // etEmail = (TextView) findViewById(R.id.edit_edittext_email);
         etDateOfBirth = (EditText) findViewById(R.id.edit_edittext_dateofbirth);
         etID = (EditText) findViewById(R.id.edit_edittext_id);
-        etUsername = (TextView) findViewById(R.id.edit_edittext_username);
+        //etUsername = (TextView) findViewById(R.id.edit_edittext_username);
+        etPassword = (EditText)findViewById(R.id.edit_edittext_password);
+        etKeyword = (EditText)findViewById(R.id.edit_edittext_keyword);
 
-        tvName = (TextView) findViewById(R.id.edit_textview_nombre);
+        tvEmail = (TextView) findViewById(R.id.edit_textview_email);
         tvUsername = (TextView) findViewById(R.id.edit_textview_username);
 
         bDob = (Button) findViewById(R.id.button_dob);
@@ -106,10 +114,10 @@ public class Edit extends Activity implements View.OnClickListener {
 
        /* etName.setText(prefs.getString(Keystring.USER_NAME, ""));
         etLastname.setText(prefs.getString(Keystring.USER_LASTNAME, ""));*/
-        etEmail.setText(prefs.getString(Keystring.USER_EMAIL, ""));
+        //etEmail.setText(prefs.getString(Keystring.USER_EMAIL, ""));
         etDateOfBirth.setText(reformatDate(prefs.getString(Keystring.USER_DOB, "")));
         etID.setText(prefs.getString(Keystring.USER_CI, ""));
-        etUsername.setText(prefs.getString(Keystring.USER_USERNAME, ""));
+        //etUsername.setText(prefs.getString(Keystring.USER_USERNAME, ""));
 
         info = (ImageButton)findViewById(R.id.info_button);
         info.setOnClickListener(this);
@@ -118,10 +126,13 @@ public class Edit extends Activity implements View.OnClickListener {
 
       /*  etName.setTypeface(brandonregular);
         etLastname.setTypeface(brandonregular);*/
-        etEmail.setTypeface(brandonregular);
+       // etEmail.setTypeface(brandonregular);
         etDateOfBirth.setTypeface(brandonregular);
         etID.setTypeface(brandonregular);
-        etUsername.setTypeface(brandonregular);
+        etName.setTypeface(brandonregular);
+        etLastname.setTypeface(brandonregular);
+        etKeyword.setTypeface(brandonregular);
+
 
         save.setTypeface(brandonlight);
 
@@ -185,12 +196,8 @@ public class Edit extends Activity implements View.OnClickListener {
             if (keywordPopup.getVisibility() == View.INVISIBLE) {
                keywordPopup.setVisibility(View.VISIBLE);
                 keywordPopup.setX(info.getX()- (keywordPopup.getWidth()*7/8));
-                keywordPopup.setY(info.getY() + keywordPopup.getHeight()*2/5);
-                Log.d("Y", "" + info.getY());
-            /*    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) keywordPopup.getLayoutParams();
-                 params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-                params.setMargins(0, (int) getResources().getDimension(R.dimen.popup_keyword_register_top), (int) getResources().getDimension(R.dimen.activity_horizontal_margin), 0);
-                keywordPopup.setLayoutParams(params); //causes layout update*/
+                keywordPopup.setY(info.getY() + keywordPopup.getHeight()/2);
+
             } else {
 
                 keywordPopup.setVisibility(View.INVISIBLE);

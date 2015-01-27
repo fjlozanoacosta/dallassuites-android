@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="8"
+        android:weightSum="9"
         android:orientation="vertical"
         >
 
@@ -50,167 +50,240 @@
             android:textColor="@color/dallas_typeface_color" />
 
         <TextView
-            android:id="@+id/edit_textview_nombre"
+            android:id="@+id/edit_textview_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Jorge Bustamante "
             android:textColor="@color/white" />
 
     </LinearLayout>
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/divider" />
-
-        <ImageView
-            android:id="@+id/img_email_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:src="@drawable/register_mail" />
-
-        <TextView
-            android:id="@+id/edit_edittext_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_toRightOf="@+id/img_email_email"
-            android:text="@string/register_email"
-            android:textColor="@color/white"
-            android:textSize="18sp">
-
-            <requestFocus />
-        </TextView>
-
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:src="@drawable/divider" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
-
-
-        <ImageView
-            android:id="@+id/img_email_keyword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="22dp"
-            android:src="@drawable/icono_palabra" />
-
-        <TextView
-            android:id="@+id/edit_edittext_keyword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="22dp"
-            android:layout_toRightOf="@+id/img_email_keyword"
-            android:text="@string/keyword"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
-
-        <ImageButton
-            android:id="@+id/info_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:background="@android:color/transparent"
-            android:src="@drawable/info_selector" />
-
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:src="@drawable/divider" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
-
-
-        <ImageView
-            android:id="@+id/img_calendar_dateofbirth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:src="@drawable/register_calendar" />
-
-        <EditText
-            android:id="@+id/edit_edittext_dateofbirth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_toRightOf="@+id/img_calendar_dateofbirth"
-            android:background="@android:color/transparent"
-            android:hint="@string/register_dateofbirth"
-            android:inputType="date"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:src="@drawable/divider" />
-
-
-        <Button
-            android:id="@+id/button_dob"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/transparent" />
+            android:layout_weight="1">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/divider" />
 
-    </RelativeLayout>
+            <ImageView
+                android:id="@+id/img_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:src="@drawable/register_user" />
 
-    <RelativeLayout
+            <EditText
+                android:id="@+id/edit_edittext_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_toRightOf="@+id/img_user_name"
+                android:text="@string/register_name"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:paddingLeft="0dp"
+                android:background="@android:color/transparent"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:src="@drawable/divider" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+
+            <ImageView
+                android:id="@+id/img_user_lastname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:src="@drawable/register_user" />
+
+            <EditText
+                android:id="@+id/edit_edittext_lastname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_toRightOf="@+id/img_user_lastname"
+                android:text="@string/register_lastname"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:paddingLeft="0dp"
+                android:background="@android:color/transparent"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:src="@drawable/divider" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+
+            <ImageView
+                android:id="@+id/img_email_keyword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="22dp"
+                android:src="@drawable/icono_palabra" />
+
+            <EditText
+                android:id="@+id/edit_edittext_keyword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="22dp"
+                android:layout_toRightOf="@+id/img_email_keyword"
+                android:text="@string/keyword"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:paddingLeft="0dp"
+                android:background="@android:color/transparent"/>
+
+            <ImageButton
+                android:id="@+id/info_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:background="@android:color/transparent"
+                android:src="@drawable/info_selector" />
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:src="@drawable/divider" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+
+            <ImageView
+                android:id="@+id/img_calendar_dateofbirth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:src="@drawable/register_calendar" />
+
+            <EditText
+                android:id="@+id/edit_edittext_dateofbirth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_toRightOf="@+id/img_calendar_dateofbirth"
+                android:background="@android:color/transparent"
+                android:hint="@string/register_dateofbirth"
+                android:inputType="date"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:src="@drawable/divider" />
+
+
+            <Button
+                android:id="@+id/button_dob"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/img_id_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:src="@drawable/register_cedula" />
+
+            <EditText
+                android:id="@+id/edit_edittext_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_toRightOf="@+id/img_id_id"
+                android:background="@android:color/transparent"
+                android:text="@string/register_id"
+                android:inputType="number"
+                android:textColor="@color/white"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:src="@drawable/divider" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1">
 
+
+
         <ImageView
-            android:id="@+id/img_id_id"
+            android:id="@+id/img_password_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:src="@drawable/register_cedula" />
+            android:src="@drawable/register_password" />
 
         <EditText
-            android:id="@+id/edit_edittext_id"
+            android:id="@+id/edit_edittext_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_toRightOf="@+id/img_id_id"
-            android:background="@android:color/transparent"
-            android:hint="@string/register_id"
-            android:inputType="number"
+            android:layout_toRightOf="@+id/img_password_password"
+            android:text="@string/register_password"
             android:textColor="@color/white"
-            android:textColorHint="@color/white" />
+            android:textSize="18sp"
+            android:paddingLeft="0dp"
+            android:background="@android:color/transparent">
+
+            <requestFocus />
+        </EditText>
+
 
         <ImageView
             android:layout_width="wrap_content"
@@ -220,37 +293,11 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
 
-        <ImageView
-            android:id="@+id/img_user_username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:src="@drawable/register_user" />
 
-        <TextView
-            android:id="@+id/edit_edittext_username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_toRightOf="@+id/img_user_username"
-            android:text="@string/register_username"
-            android:textColor="@color/white"
-            android:textSize="18dp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:src="@drawable/divider" />
 
-    </RelativeLayout>
+
 
 
     <RelativeLayout

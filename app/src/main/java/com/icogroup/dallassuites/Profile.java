@@ -59,7 +59,7 @@ public class Profile extends Activity {
     DrawerLayout myDrawer;
     RelativeLayout leftDrawer, home;
     ActionBarDrawerToggle mDrawerToggle;
-    String result, name = "", username = "";
+    String result, name = "", username = "", email = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +79,7 @@ public class Profile extends Activity {
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Profile.this, Edit.class).putExtra("Name", name).putExtra("Username", username));
+                startActivity(new Intent(Profile.this, Edit.class).putExtra("Email", email).putExtra("Username", username).putExtra("Name", name));
             }
         });
 
@@ -421,6 +421,7 @@ public class Profile extends Activity {
             try {
                 tPoints.setText(result.getJSONObject(0).getString("points_available") + " PTS.");
 
+                email = result.getJSONObject(0).getString("user_email");
                 name = result.getJSONObject(0).getString("user_name") + " " + result.getJSONObject(0).getString("user_lastname");
                 tName.setText(name);
                 username = result.getJSONObject(0).getString("user_username") + " | ";

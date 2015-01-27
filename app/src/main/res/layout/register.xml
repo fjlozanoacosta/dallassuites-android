@@ -56,7 +56,7 @@
             android:layout_toRightOf="@+id/img_user_name"
             android:background="@android:color/transparent"
             android:hint="@string/register_name"
-            android:textColorHint="@color/white"
+            android:textColorHint="@color/hint_color"
             android:textColor="@color/white"
             android:inputType="textPersonName"/>
 
@@ -91,7 +91,7 @@
             android:layout_toRightOf="@+id/img_user_lastname"
             android:background="@android:color/transparent"
             android:hint="@string/register_lastname"
-            android:textColorHint="@color/white"
+            android:textColorHint="@color/hint_color"
             android:textColor="@color/white"
             android:inputType="textPersonName"/>
 
@@ -125,7 +125,7 @@
             android:layout_toRightOf="@+id/img_email_email"
             android:background="@android:color/transparent"
             android:hint="@string/register_email"
-            android:textColorHint="@color/white"
+            android:textColorHint="@color/hint_color"
             android:textColor="@color/white"
             android:inputType="textEmailAddress"/>
 
@@ -161,7 +161,7 @@
             android:layout_toRightOf="@+id/img_calendar_dateofbirth"
             android:background="@android:color/transparent"
             android:hint="@string/register_dateofbirth"
-            android:textColorHint="@color/white"
+            android:textColorHint="@color/hint_color"
             android:textColor="@color/white"
             android:inputType="none"/>
 
@@ -201,7 +201,7 @@
             android:layout_toRightOf="@+id/img_id_id"
             android:background="@android:color/transparent"
             android:hint="@string/register_id"
-            android:textColorHint="@color/white"
+            android:textColorHint="@color/hint_color"
             android:textColor="@color/white"
             android:inputType="number"/>
 
@@ -235,7 +235,7 @@
             android:layout_toRightOf="@+id/img_user_username"
             android:background="@android:color/transparent"
             android:hint="@string/register_username"
-            android:textColorHint="@color/white"
+            android:textColorHint="@color/hint_color"
             android:textColor="@color/white"
             android:inputType="none"/>
 
@@ -269,7 +269,7 @@
             android:layout_toRightOf="@+id/img_password_password"
             android:background= "@android:color/transparent"
             android:hint="@string/register_password"
-            android:textColorHint="@color/white"
+            android:textColorHint="@color/hint_color"
             android:textColor="@color/white"
             android:inputType="textPassword"/>
 
@@ -304,7 +304,7 @@
             android:layout_toRightOf="@+id/img_password_repeatpassword"
             android:background="@android:color/transparent"
             android:hint="@string/register_repeatpassword"
-            android:textColorHint="@color/white"
+            android:textColorHint="@color/hint_color"
             android:textColor="@color/white"
             android:inputType="textPassword"/>
 
@@ -339,7 +339,7 @@
             android:layout_toRightOf="@+id/img_keyword_hint"
             android:background="@android:color/transparent"
             android:hint="@string/keyword"
-            android:textColorHint="@color/white"
+            android:textColorHint="@color/hint_color"
             android:textColor="@color/white"
             />
 

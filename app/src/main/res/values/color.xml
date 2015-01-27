@@ -5,5 +5,6 @@
     <color name="white">#ffffff</color>
     <color name="dallas_brown_color">#3e3631</color>
     <color name="grey">#a5a5a5</color>
+    <color name="hint_color">#b9b9b9</color>
 
 </resources>
