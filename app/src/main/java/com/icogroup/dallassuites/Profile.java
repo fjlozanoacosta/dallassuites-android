@@ -95,7 +95,7 @@ public class Profile extends Activity {
             @Override
             public void onClick(View view) {
 
-                IntentIntegrator.initiateScan(Profile.this, null, "");
+                IntentIntegrator.initiateScan(Profile.this, null, "   Escanea el código QR de tu ticket del Dallas Suites Hotel para que puedas acumular puntos.\n   Luego podrás canjear esos puntos por descuentos.");
 
             }
         });
