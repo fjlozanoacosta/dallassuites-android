@@ -25,6 +25,7 @@ import org.apache.http.params.HttpParams;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -34,11 +35,13 @@ public class Rooms extends Activity {
 
     Typeface brandonlight, brandonregular;
     ListView listRooms;
-    String[] rooms = {"Suite Plus", "Suite Plus C/ Jacuzzi", "Suite Duplex", "Suite Deluxe", "Suite Presidencial"};
-    String[] rooms_descrip = {"Su magia y sencillez hace que el placer\nllegue a su máxima expresión.", "Placer y seducción se combinan\nen un estilo único.", "Aduéñese de 2 ambientes para dar\nrienda suelta a sus fantasías.", "Exclusividad, glamour y armonía.", "Placer extremo en 80mts2."};
+    String[] rooms = {"Suite Le Grande", "Suite Container", "Suite Spa", "Suite Boutique Art", "Suite Hotel", "Suite Establo Vapor", "Suite Establo", "Suite Sexy", "Suite New Concept", "Suite Presidencial", "Suite Deluxe", "Suite Duplex", "Suite Plus C/ Jacuzzi", "Suite Plus"};
+    ArrayList<String> rooms_descrip;
+    int[] cover = {R.drawable.rooms_img_legrande, R.drawable.rooms_img_container, R.drawable.rooms_img_spa, R.drawable.rooms_img_boutiqueart, R.drawable.rooms_img_hotel, R.drawable.rooms_img_establovapor, R.drawable.rooms_img_establo, R.drawable.rooms_img_sexy, R.drawable.rooms_img_newconcept, R.drawable.rooms_img_suitepresidencial, R.drawable.rooms_img_suitedeluxe, R.drawable.rooms_img_suiteduplex, R.drawable.rooms_img_suiteplusconjacuzzi, R.drawable.rooms_img_suiteplus };
     HashMap<String, String> photos360, photos;
     ImageView iRoom;
     TextView tRoomName, title, tRoomDescrip;
+    RoomsAdapter roomsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,12 +52,12 @@ public class Rooms extends Activity {
 
         init();
 
-        listRooms.setAdapter(new RoomsAdapter(getApplicationContext()));
+        listRooms.setAdapter(roomsAdapter);
         listRooms.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
-                startActivity(new Intent(Rooms.this, RoomDetail.class).putExtra("Photo360", photos360.get(rooms[position])).putExtra("Photos", photos.get(rooms[position])).putExtra("RoomName", rooms[position]));
+               startActivity(new Intent(Rooms.this, RoomDetail.class).putExtra("Photo360", photos360.get(rooms[position])).putExtra("Photos", photos.get(rooms[position])).putExtra("RoomName", rooms[position]));
 
 
             }
@@ -72,8 +75,11 @@ public class Rooms extends Activity {
         photos = new HashMap<String, String>();
         title = (TextView) findViewById(R.id.rooms_title);
 
+        rooms_descrip = new ArrayList<String>();
+
         title.setTypeface(brandonlight);
 
+        roomsAdapter = new RoomsAdapter(getApplicationContext());
 
     }
 
@@ -115,32 +121,12 @@ public class Rooms extends Activity {
             tRoomName.setTypeface(brandonlight);
             tRoomDescrip.setTypeface(brandonregular);
 
-            tRoomDescrip.setText(rooms_descrip[position]);
+            if(!rooms_descrip.isEmpty())
+                tRoomDescrip.setText(rooms_descrip.get(position));
 
             tRoomName.setText("" + rooms[position]);
 
-            if (rooms[position].equals("Suite Plus")) {
-
-                iRoom.setImageResource(R.drawable.rooms_img_suiteplus);
-
-            } else if (rooms[position].equals("Suite Plus C/ Jacuzzi")) {
-
-                iRoom.setImageResource(R.drawable.rooms_img_suiteplusconjacuzzi);
-
-            } else if (rooms[position].equals("Suite Duplex")) {
-
-                iRoom.setImageResource(R.drawable.rooms_img_suiteduplex);
-
-            } else if (rooms[position].equals("Suite Deluxe")) {
-
-                iRoom.setImageResource(R.drawable.rooms_img_suitedeluxe);
-
-            } else if (rooms[position].equals("Suite Presidencial")) {
-
-                iRoom.setImageResource(R.drawable.rooms_img_suitepresidencial);
-
-            }
-
+            iRoom.setImageResource(cover[position]);
 
             return view;
         }
@@ -192,6 +178,7 @@ public class Rooms extends Activity {
                 try {
                     photos360.put(result.getJSONObject(i).getString("room_category"), result.getJSONObject(i).getString("room_360"));
                     photos.put(result.getJSONObject(i).getString("room_category"), result.getJSONObject(i).getString("room_pictures"));
+                    rooms_descrip.add(result.getJSONObject(i).getString("room_description"));
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -199,6 +186,7 @@ public class Rooms extends Activity {
 
             }
 
+            roomsAdapter.notifyDataSetChanged();
 
         }
 

@@ -9,7 +9,7 @@
         android:id="@+id/rooms_rooms_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/rooms_img_suiteplus" />
+         />
 
     <TextView
         android:id="@+id/rooms_text_roomdescription"
@@ -19,7 +19,7 @@
         android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:maxLines="2"
-        android:text="Lorem ipsum dolor sit ament,\nconsecteur adipiscing elit."
+        android:text=""
         android:textColor="@color/white"
         android:textSize="@dimen/text_size"/>
 
