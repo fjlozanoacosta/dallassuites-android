@@ -220,7 +220,8 @@ public class Profile extends Activity {
 
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
-        if (intent.getExtras() != null) {
+
+        if (intent!= null) {
 
            // result = intent.getExtras().getString("SCAN_RESULT");
             Log.d("Scan Result",intent.getExtras().getString("SCAN_RESULT"));
