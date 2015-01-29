@@ -36,6 +36,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -59,7 +60,7 @@ public class Profile extends Activity {
     DrawerLayout myDrawer;
     RelativeLayout leftDrawer, home;
     ActionBarDrawerToggle mDrawerToggle;
-    String result, name = "", username = "", email = "";
+    String result, name = "", username = "", email = "", ticket = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -215,17 +216,37 @@ public class Profile extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        new getUserInfoAsync().execute();
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
 
-        if (intent!= null) {
+        earned.clear();
+        used.clear();
+        rooms.clear();
+        dates.clear();
+
+       if (intent != null) {
 
            // result = intent.getExtras().getString("SCAN_RESULT");
             Log.d("Scan Result",intent.getExtras().getString("SCAN_RESULT"));
-            new AddPointsAsync().execute();
+
+           try {
+               JSONArray array = new JSONArray(intent.getExtras().getString("SCAN_RESULT"));
+               JSONObject object = array.getJSONObject(0);
+               ticket = object.getString("tid");
+
+
+
+           } catch (JSONException e) {
+               e.printStackTrace();
+           }
+
+           new AddPointsAsync().execute();
+           new getHistoryAsync().execute();
+           new getUserInfoAsync().execute();
+
+           timelineAdapter.notifyDataSetChanged();
 
         }
 
@@ -351,6 +372,8 @@ public class Profile extends Activity {
         @Override
         protected void onPostExecute(JSONArray result) {
             super.onPostExecute(result);
+
+            Log.d("History", result.toString());
 
             for (int i = 0; i < result.length(); i++) {
 
@@ -485,7 +508,7 @@ public class Profile extends Activity {
                         3);
                 nameValuePairs.add(new BasicNameValuePair("user_id",prefs.getString(Keystring.USER_ID, "")));
                 nameValuePairs.add(new BasicNameValuePair("user_password",prefs.getString(Keystring.USER_PASSWORD, "") ));
-                nameValuePairs.add(new BasicNameValuePair("ticket_id", "19" ));
+                nameValuePairs.add(new BasicNameValuePair("ticket_id", ticket ));
                 httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
 
@@ -507,8 +530,10 @@ public class Profile extends Activity {
 
             Log.d("Canje", "Suma de puntos satisfactoria");
 
+
         }
     }
+
 
 
 

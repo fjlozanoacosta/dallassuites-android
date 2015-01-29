@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<animation-list
+    android:id="@+id/selected"
+    android:oneshot="false"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/ph6" android:duration="250" />
+    <item android:drawable="@drawable/ph7" android:duration="250" />
+    <item android:drawable="@drawable/ph8" android:duration="250" />
+    <item android:drawable="@drawable/ph9" android:duration="250" />
+</animation-list>
