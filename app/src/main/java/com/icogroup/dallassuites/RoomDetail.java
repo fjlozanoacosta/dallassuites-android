@@ -3,6 +3,7 @@ package com.icogroup.dallassuites;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -14,7 +15,7 @@ import com.squareup.picasso.Picasso;
 /**
  * Created by andres.torres on 10/31/14.
  */
-public class RoomDetail extends Activity{
+public class RoomDetail extends Activity {
 
     Typeface brandonregular, brandonlight;
     TextView title;
@@ -33,6 +34,7 @@ public class RoomDetail extends Activity{
         photos = getIntent().getExtras().getString("Photos");
         photo360 = getIntent().getExtras().getString("Photo360");
 
+        if (photos != null) ;
         separatedPhotos = photos.replace(" ", "").split(";");
 
         Picasso.with(this)
@@ -56,7 +58,7 @@ public class RoomDetail extends Activity{
         ibRoom360.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(RoomDetail.this, Room360.class).putExtra("Photo360",photo360).putExtra("RoomName",getIntent().getExtras().getString("RoomName")));
+                startActivity(new Intent(RoomDetail.this, Room360.class).putExtra("Photo360", photo360).putExtra("RoomName", getIntent().getExtras().getString("RoomName")));
             }
         });
 
@@ -67,15 +69,24 @@ public class RoomDetail extends Activity{
         brandonregular = Typeface.createFromAsset(getAssets(), "brandon_reg.otf");
         brandonlight = Typeface.createFromAsset(getAssets(), "brandon_light.otf");
 
-        pic1 = (ImageView)findViewById(R.id.pic1);
-        pic2 = (ImageView)findViewById(R.id.pic2);
-        pic3 = (ImageView)findViewById(R.id.pic3);
-        pic4 = (ImageView)findViewById(R.id.pic4);
+        pic1 = (ImageView) findViewById(R.id.pic1);
+        pic2 = (ImageView) findViewById(R.id.pic2);
+        pic3 = (ImageView) findViewById(R.id.pic3);
+        pic4 = (ImageView) findViewById(R.id.pic4);
 
-        title = (TextView)findViewById(R.id.roomdetail_title);
+        title = (TextView) findViewById(R.id.roomdetail_title);
         title.setTypeface(brandonlight);
 
-        ibRoom360 = (ImageButton)findViewById(R.id.roomdetail_imagebutton_room360);
+        ibRoom360 = (ImageButton) findViewById(R.id.roomdetail_imagebutton_room360);
+
+
+        ImageView img = (ImageView) findViewById(R.id.hand);
+            img.setBackgroundResource(R.drawable.hand);
+            AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+            frameAnimation.start();
+
+
+
 
     }
 }
