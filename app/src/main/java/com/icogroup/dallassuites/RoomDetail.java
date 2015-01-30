@@ -39,19 +39,15 @@ public class RoomDetail extends Activity {
 
         Picasso.with(this)
                 .load("https://s3.amazonaws.com/dallassuites_app/rooms/" + separatedPhotos[0])
-                .placeholder(R.drawable.placeholder)
                 .into(pic1);
         Picasso.with(this)
                 .load("https://s3.amazonaws.com/dallassuites_app/rooms/" + separatedPhotos[1])
-                .placeholder(R.drawable.placeholder)
                 .into(pic2);
         Picasso.with(this)
                 .load("https://s3.amazonaws.com/dallassuites_app/rooms/" + separatedPhotos[2])
-                .placeholder(R.drawable.placeholder)
                 .into(pic3);
         Picasso.with(this)
                 .load("https://s3.amazonaws.com/dallassuites_app/rooms/" + separatedPhotos[3])
-                .placeholder(R.drawable.placeholder)
                 .into(pic4);
 
 

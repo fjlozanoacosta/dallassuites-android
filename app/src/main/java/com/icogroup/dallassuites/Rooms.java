@@ -14,6 +14,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.icogroup.util.Utilities;
 
@@ -53,15 +54,7 @@ public class Rooms extends Activity {
         init();
 
         listRooms.setAdapter(roomsAdapter);
-        listRooms.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
-               startActivity(new Intent(Rooms.this, RoomDetail.class).putExtra("Photo360", photos360.get(rooms[position])).putExtra("Photos", photos.get(rooms[position])).putExtra("RoomName", rooms[position]));
-
-
-            }
-        });
 
     }
 
@@ -124,7 +117,8 @@ public class Rooms extends Activity {
             if(!rooms_descrip.isEmpty())
                 tRoomDescrip.setText(rooms_descrip.get(position));
 
-            tRoomName.setText("" + rooms[position]);
+            if(rooms.length > 0)
+                tRoomName.setText("" + rooms[position]);
 
             iRoom.setImageResource(cover[position]);
 
@@ -173,24 +167,40 @@ public class Rooms extends Activity {
         protected void onPostExecute(JSONArray result) {
             super.onPostExecute(result);
 
-            for (int i = 0; i < result.length(); i++) {
+            if (result != null) {
 
-                try {
-                    photos360.put(result.getJSONObject(i).getString("room_category"), result.getJSONObject(i).getString("room_360"));
-                    photos.put(result.getJSONObject(i).getString("room_category"), result.getJSONObject(i).getString("room_pictures"));
-                    rooms_descrip.add(result.getJSONObject(i).getString("room_description"));
+                for (int i = 0; i < result.length(); i++) {
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                    try {
+                        photos360.put(result.getJSONObject(i).getString("room_category"), result.getJSONObject(i).getString("room_360"));
+                        photos.put(result.getJSONObject(i).getString("room_category"), result.getJSONObject(i).getString("room_pictures"));
+                        rooms_descrip.add(result.getJSONObject(i).getString("room_description"));
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
                 }
+
+                roomsAdapter.notifyDataSetChanged();
+                listRooms.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+
+                        startActivity(new Intent(Rooms.this, RoomDetail.class).putExtra("Photo360", photos360.get(rooms[position])).putExtra("Photos", photos.get(rooms[position])).putExtra("RoomName", rooms[position]));
+
+
+                    }
+                });
+
+            }else{
+
+                Toast.makeText(Rooms.this, "No hay conexión a Internet", Toast.LENGTH_SHORT).show();
 
             }
 
-            roomsAdapter.notifyDataSetChanged();
 
         }
-
-
     }
 
 }
