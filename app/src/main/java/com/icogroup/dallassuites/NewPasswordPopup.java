@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +41,7 @@ public class NewPasswordPopup extends Activity {
     EditText etPassword, etRepeatPassword, etKeyword;
     Button bAdd;
     SharedPreferences prefs;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +57,10 @@ public class NewPasswordPopup extends Activity {
             @Override
             public void onClick(View view) {
 
-                if(etPassword.getText().toString().equals(etRepeatPassword.getText().toString()))
+                if(etPassword.getText().toString().equals(etRepeatPassword.getText().toString())) {
                     new AddPasswordAsync().execute();
-                else
+                    progressBar.setVisibility(View.VISIBLE);
+                }else
                     Toast.makeText(NewPasswordPopup.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
             }
         });
@@ -82,6 +85,8 @@ public class NewPasswordPopup extends Activity {
         etKeyword.setTypeface(brandonreg);
         bAdd = (Button) findViewById(R.id.perfil_popup_button_agregar);
         bAdd.setTypeface(brandonlight);
+
+        progressBar = (ProgressBar)findViewById(R.id.progressBar);
 
     }
 
@@ -156,6 +161,8 @@ public class NewPasswordPopup extends Activity {
 
                 Toast.makeText(NewPasswordPopup.this, "No se pudo registrar la contraseña", Toast.LENGTH_SHORT).show();
             }
+
+            progressBar.setVisibility(View.GONE);
 
         }
 
