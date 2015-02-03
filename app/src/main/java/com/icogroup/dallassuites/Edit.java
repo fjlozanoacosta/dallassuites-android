@@ -74,6 +74,8 @@ public class Edit extends Activity implements View.OnClickListener {
 
         etPassword.setText(prefs.getString(Keystring.USER_PASSWORD, ""));
 
+        etKeyword.setText(prefs.getString(Keystring.USER_KEYWORD, ""));
+
         editLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {

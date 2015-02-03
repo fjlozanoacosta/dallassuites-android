@@ -519,6 +519,11 @@ public class Profile extends Activity {
                 username = result.getJSONObject(0).getString("user_username") + " | ";
                 tNickname.setText(username);
 
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putString(Keystring.USER_KEYWORD, result.getJSONObject(0).getString("user_keyword"));
+                editor.apply();
+
+
             } catch (Exception e) {
 
                 e.printStackTrace();

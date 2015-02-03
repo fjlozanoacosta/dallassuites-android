@@ -14,5 +14,6 @@ public class Keystring {
     public static String USER_DOB = "user_userdob";
     public static String USER_CI = "user_userci";
     public static String USER_PASSWORD = "user_password";
+    public static String USER_KEYWORD = "user_keyword";
 
 }
