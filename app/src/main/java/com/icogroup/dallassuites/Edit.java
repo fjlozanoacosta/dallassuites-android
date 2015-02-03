@@ -1,5 +1,6 @@
 package com.icogroup.dallassuites;
 
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +8,7 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -15,7 +17,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.icogroup.custompicker.Fecha;
 import com.icogroup.util.Keystring;
@@ -42,12 +43,13 @@ public class Edit extends Activity implements View.OnClickListener {
     Typeface brandonregular, brandonlight;
     EditText etName, etLastname, etDateOfBirth, etID, etPassword, etKeyword;
     RelativeLayout editLayout;
-    TextView title, etUsername, etEmail, tvEmail, tvUsername;
+    TextView title, etUsername, etEmail, tvEmail, tvUsername, textPopup;
     SharedPreferences prefs;
     Button save, bDob;
     ImageButton info;
     public static int REQUEST_CODE = 987456321;
-    RelativeLayout keywordPopup;
+    RelativeLayout keywordPopup, infoPopup;
+
 
 
     @Override
@@ -106,6 +108,8 @@ public class Edit extends Activity implements View.OnClickListener {
         tvEmail = (TextView) findViewById(R.id.edit_textview_email);
         tvUsername = (TextView) findViewById(R.id.edit_textview_username);
 
+        textPopup = (TextView)findViewById(R.id.popup_tv);
+
         bDob = (Button) findViewById(R.id.button_dob);
 
         save = (Button) findViewById(R.id.edit_button_save);
@@ -121,6 +125,8 @@ public class Edit extends Activity implements View.OnClickListener {
 
         info = (ImageButton)findViewById(R.id.info_button);
         info.setOnClickListener(this);
+
+        infoPopup = (RelativeLayout)findViewById(R.id.info_popup);
 
         title.setTypeface(brandonlight);
 
@@ -227,12 +233,15 @@ public class Edit extends Activity implements View.OnClickListener {
                 HttpPost httppost = new HttpPost(url);
 
                 List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(
-                        3);
+                        6);
               /*  nameValuePairs.add(new BasicNameValuePair("user_name", etName.getText().toString()));
                 nameValuePairs.add(new BasicNameValuePair("user_lastname", etLastname.getText().toString()));*/
                 nameValuePairs.add(new BasicNameValuePair("user_dob", sendReformatDate(etDateOfBirth.getText().toString())));
                 nameValuePairs.add(new BasicNameValuePair("user_ci", etID.getText().toString()));
-                nameValuePairs.add(new BasicNameValuePair("user_username", etUsername.getText().toString()));
+                nameValuePairs.add(new BasicNameValuePair("user_username", tvUsername.getText().toString()));
+                nameValuePairs.add(new BasicNameValuePair("user_keyword", etKeyword.getText().toString()));
+                nameValuePairs.add(new BasicNameValuePair("user_id", prefs.getString(Keystring.USER_ID, "")));
+                nameValuePairs.add(new BasicNameValuePair("user_password", prefs.getString(Keystring.USER_PASSWORD, "")));
                 httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
                 HttpResponse response = httpclient.execute(httppost);
@@ -324,14 +333,59 @@ public class Edit extends Activity implements View.OnClickListener {
 
             if (!result.contains("error")) {
 
+        /*        infoPopup.setBackgroundDrawable(getResources().getDrawable(R.drawable.confirm_popup_back));
+               textPopup.setText("Los datos fueron actualizados correctamente");
+
                 SharedPreferences.Editor editor = prefs.edit();
 
                 editor.commit();
 
+                infoPopup.setVisibility(View.VISIBLE);
+
+                save.setOnClickListener(null);
+
+                ObjectAnimator animation1 = ObjectAnimator.ofFloat(infoPopup,
+                        "translationY", 0 - infoPopup.getHeight(), 0);
+                animation1.setDuration(1000);
+                animation1.start();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        ObjectAnimator animation1 = ObjectAnimator.ofFloat(infoPopup,
+                                "translationY", 0 , 0 - infoPopup.getHeight());
+                        animation1.setDuration(1000);
+                        animation1.start();
+                        save.setOnClickListener(Edit.this);
+                    }
+                }, 2000);
+*/
+
+
                 finish();
             } else {
 
-                Toast.makeText(Edit.this, "No se pudo actualizar los datos", Toast.LENGTH_SHORT).show();
+                infoPopup.setVisibility(View.VISIBLE);
+
+               textPopup.setText("Los datos no pudieron ser actualizados");
+                save.setOnClickListener(null);
+
+                ObjectAnimator animation1 = ObjectAnimator.ofFloat(infoPopup,
+                        "translationY", 0 - infoPopup.getHeight(), 0);
+                animation1.setDuration(1000);
+                animation1.start();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        ObjectAnimator animation1 = ObjectAnimator.ofFloat(infoPopup,
+                                "translationY", 0 , 0 - infoPopup.getHeight());
+                        animation1.setDuration(1000);
+                        animation1.start();
+                        save.setOnClickListener(Edit.this);
+                    }
+                }, 2000);
+
 
             }
 

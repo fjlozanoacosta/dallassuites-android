@@ -183,5 +183,25 @@
 
     </LinearLayout>
 
+    <RelativeLayout
+        android:id="@+id/info_popup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/error_popup_back"
+        android:visibility="invisible"
+        >
+
+        <TextView
+            android:id="@+id/popup_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="La contraseña o la dirección de correo electrónico
+no son correctas. ¡Inténtelo de nuevo!"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"
+            android:padding="20dp"/>
+    </RelativeLayout>
+
 
 </RelativeLayout>

@@ -1,17 +1,20 @@
 package com.icogroup.dallassuites;
 
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +47,7 @@ public class Login extends Activity implements View.OnClickListener {
     Button login;
     SharedPreferences prefs;
     TextView title;
+    RelativeLayout infoPopup;
 
 
     @Override
@@ -77,6 +81,8 @@ public class Login extends Activity implements View.OnClickListener {
 
         login = (Button)findViewById(R.id.login_button_login);
 
+        infoPopup = (RelativeLayout)findViewById(R.id.info_popup);
+
         login.setOnClickListener(this);
 
         title.setTypeface(brandonreg);
@@ -107,7 +113,6 @@ public class Login extends Activity implements View.OnClickListener {
         }
 
     }
-
 
     class LoginAsync extends AsyncTask<Void, Void, String> {
 
@@ -143,7 +148,10 @@ public class Login extends Activity implements View.OnClickListener {
                 e.printStackTrace();
             }
 
+
             return jsonResult;
+
+
         }
 
         @Override
@@ -158,9 +166,7 @@ public class Login extends Activity implements View.OnClickListener {
                 e.printStackTrace();
             }
 
-
-
-            if (!result.equals("")) {
+            if (!result.contains("[]")) {
                 SharedPreferences.Editor editor = getSharedPreferences(Keystring.DALLAS_SUITES_PREFERENCES, MODE_PRIVATE).edit();
                 try {
 
@@ -184,8 +190,27 @@ public class Login extends Activity implements View.OnClickListener {
 
 
         }else{
+          infoPopup.setVisibility(View.VISIBLE);
 
-            Toast.makeText(Login.this, "No estas registrado", Toast.LENGTH_SHORT).show();
+                login.setOnClickListener(null);
+
+                ObjectAnimator animation1 = ObjectAnimator.ofFloat(infoPopup,
+                        "translationY", 0 - infoPopup.getHeight(), 0);
+                animation1.setDuration(1000);
+                animation1.start();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        ObjectAnimator animation1 = ObjectAnimator.ofFloat(infoPopup,
+                                "translationY", 0 , 0 - infoPopup.getHeight());
+                        animation1.setDuration(1000);
+                        animation1.start();
+                        login.setOnClickListener(Login.this);
+                    }
+                }, 2000);
+
+
 
         }
 

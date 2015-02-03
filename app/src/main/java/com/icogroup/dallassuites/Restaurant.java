@@ -164,7 +164,7 @@ public class Restaurant extends Activity{
                         .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = infalInflater.inflate(R.layout.bebidas, null);
 
-
+ 
             }
 
             tvBebidas = (TextView) convertView.findViewById(R.id.text_bebida);

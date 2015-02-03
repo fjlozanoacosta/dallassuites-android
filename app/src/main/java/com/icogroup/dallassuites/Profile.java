@@ -1,5 +1,6 @@
 package com.icogroup.dallassuites;
 
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +8,7 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
@@ -61,6 +63,8 @@ public class Profile extends Activity {
     RelativeLayout leftDrawer, home;
     ActionBarDrawerToggle mDrawerToggle;
     String result, name = "", username = "", email = "", ticket = "";
+    RelativeLayout infoPopup;
+    TextView textPopup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,6 +159,9 @@ public class Profile extends Activity {
 
         profilePic = (ImageView) findViewById(R.id.profile_pic);
 
+        infoPopup = (RelativeLayout)findViewById(R.id.info_popup);
+        textPopup = (TextView)findViewById(R.id.popup_text);
+
         tTitle.setTypeface(brandonlight);
         tName.setTypeface(brandonregular);
         tNickname.setTypeface(brandonregular);
@@ -229,17 +236,55 @@ public class Profile extends Activity {
        if (intent != null) {
 
            // result = intent.getExtras().getString("SCAN_RESULT");
-            Log.d("Scan Result",intent.getExtras().getString("SCAN_RESULT"));
-
            try {
                JSONArray array = new JSONArray(intent.getExtras().getString("SCAN_RESULT"));
                JSONObject object = array.getJSONObject(0);
                ticket = object.getString("tid");
 
+               infoPopup.setVisibility(View.VISIBLE);
+
+               textPopup.setText("Código QR escaneado correctamente.");
+               infoPopup.setBackground(getResources().getDrawable(R.drawable.confirm_popup_back));
+
+               ObjectAnimator animation1 = ObjectAnimator.ofFloat(infoPopup,
+                       "translationY", 0 - infoPopup.getHeight(), 0);
+               animation1.setDuration(1000);
+               animation1.start();
+
+               new Handler().postDelayed(new Runnable() {
+                   @Override
+                   public void run() {
+                       ObjectAnimator animation1 = ObjectAnimator.ofFloat(infoPopup,
+                               "translationY", 0 , 0 - infoPopup.getHeight());
+                       animation1.setDuration(1000);
+                       animation1.start();
+                   }
+               }, 2000);
 
 
            } catch (JSONException e) {
                e.printStackTrace();
+               infoPopup.setVisibility(View.VISIBLE);
+
+               textPopup.setText("Código QR inválido");
+               infoPopup.setBackground(getResources().getDrawable(R.drawable.error_popup_back));
+
+
+               ObjectAnimator animation1 = ObjectAnimator.ofFloat(infoPopup,
+                       "translationY", 0 - infoPopup.getHeight(), 0);
+               animation1.setDuration(1000);
+               animation1.start();
+
+               new Handler().postDelayed(new Runnable() {
+                   @Override
+                   public void run() {
+                       ObjectAnimator animation1 = ObjectAnimator.ofFloat(infoPopup,
+                               "translationY", 0 , 0 - infoPopup.getHeight());
+                       animation1.setDuration(1000);
+                       animation1.start();
+                   }
+               }, 2000);
+
            }
 
            new AddPointsAsync().execute();
@@ -248,7 +293,30 @@ public class Profile extends Activity {
 
            timelineAdapter.notifyDataSetChanged();
 
-        }
+        }else{
+
+           infoPopup.setVisibility(View.VISIBLE);
+           infoPopup.setBackground(getResources().getDrawable(R.drawable.error_popup_back));
+           textPopup.setText("No se pudo leer el código QR.\nIntente de nuevo.");
+
+           ObjectAnimator animation1 = ObjectAnimator.ofFloat(infoPopup,
+                   "translationY", 0 - infoPopup.getHeight(), 0);
+           animation1.setDuration(1000);
+           animation1.start();
+
+           new Handler().postDelayed(new Runnable() {
+               @Override
+               public void run() {
+                   ObjectAnimator animation1 = ObjectAnimator.ofFloat(infoPopup,
+                           "translationY", 0 , 0 - infoPopup.getHeight());
+                   animation1.setDuration(1000);
+                   animation1.start();
+               }
+           }, 2000);
+
+
+
+       }
 
     }
 
