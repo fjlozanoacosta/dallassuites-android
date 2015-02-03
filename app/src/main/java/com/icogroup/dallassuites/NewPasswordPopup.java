@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -117,8 +116,6 @@ public class NewPasswordPopup extends Activity {
                         response.getEntity().getContent()).toString();
 
                 object = new JSONObject(jsonResult);
-
-                Log.d("JSON", jsonResult);
 
                 if (object.names().toString().contains("msg")) {
                     try {

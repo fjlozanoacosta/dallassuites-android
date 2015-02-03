@@ -15,6 +15,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -49,6 +50,7 @@ public class Edit extends Activity implements View.OnClickListener {
     ImageButton info;
     public static int REQUEST_CODE = 987456321;
     RelativeLayout keywordPopup, infoPopup;
+    ProgressBar progressBar;
 
 
 
@@ -139,6 +141,7 @@ public class Edit extends Activity implements View.OnClickListener {
         etLastname.setTypeface(brandonregular);
         etKeyword.setTypeface(brandonregular);
 
+        progressBar = (ProgressBar)findViewById(R.id.progressBar);
 
         save.setTypeface(brandonlight);
 
@@ -195,6 +198,7 @@ public class Edit extends Activity implements View.OnClickListener {
         if (view.getId() == R.id.edit_button_save) {
 
             new UpdateProfileAsync().execute();
+            progressBar.setVisibility(View.VISIBLE);
 
 
         }else if(view.getId() == R.id.info_button) {
@@ -255,7 +259,6 @@ public class Edit extends Activity implements View.OnClickListener {
                 e.printStackTrace();
 
             }
-
 
             return jsonResult;
         }
@@ -388,6 +391,8 @@ public class Edit extends Activity implements View.OnClickListener {
 
 
             }
+
+            progressBar.setVisibility(View.GONE);
 
         }
     }

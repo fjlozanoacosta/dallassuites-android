@@ -14,6 +14,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,6 +49,7 @@ public class Login extends Activity implements View.OnClickListener {
     SharedPreferences prefs;
     TextView title;
     RelativeLayout infoPopup;
+    ProgressBar progressBar;
 
 
     @Override
@@ -91,6 +93,8 @@ public class Login extends Activity implements View.OnClickListener {
 
         ibRetrievePassword.setOnClickListener(this);
 
+        progressBar = (ProgressBar)findViewById(R.id.progressBar);
+
     }
 
     @Override
@@ -106,8 +110,11 @@ public class Login extends Activity implements View.OnClickListener {
                     Toast.makeText(Login.this, "Debe introducir su nombre de usuario", Toast.LENGTH_SHORT).show();
                 else if(etPassword.getText().toString().equals(""))
                     Toast.makeText(Login.this, "Debe introducir su contraseña", Toast.LENGTH_SHORT).show();
-                else
+                else {
                     new LoginAsync().execute();
+                    progressBar.setVisibility(View.VISIBLE);
+                }
+
                 break;
 
         }
@@ -213,6 +220,7 @@ public class Login extends Activity implements View.OnClickListener {
 
 
         }
+            progressBar.setVisibility(View.GONE);
 
 
        }
