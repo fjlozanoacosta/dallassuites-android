@@ -119,6 +119,7 @@ public class Home extends Activity implements View.OnClickListener{
 
             case R.id.home_login:
                 startActivity(new Intent(Home.this, Login.class));
+                overridePendingTransition(R.anim.slide_right_in, R.anim.slide_in_left);
                 break;
 
         }

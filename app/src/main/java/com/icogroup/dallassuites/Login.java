@@ -104,6 +104,7 @@ public class Login extends Activity implements View.OnClickListener {
 
             case R.id.login_imagebutton_retrievepassword:
                 startActivity(new Intent(Login.this, RetrievePassword.class));
+                overridePendingTransition(R.anim.slide_right_in, R.anim.slide_in_left);
                 break;
             case R.id.login_button_login:
                 if(etUsername.getText().toString().equals(""))
@@ -189,6 +190,8 @@ public class Login extends Activity implements View.OnClickListener {
                     editor.apply();
 
                     startActivity(new Intent(Login.this, Profile.class));
+                    overridePendingTransition(R.anim.slide_right_in, R.anim.slide_in_left);
+
                     finish();
 
                 } catch (JSONException e) {

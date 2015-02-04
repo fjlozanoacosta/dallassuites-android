@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.icogroup.util.Utilities;
@@ -36,6 +37,7 @@ public class RestaurantDetail extends Activity {
     TextView foodName, foodDescrip, title;
     ArrayList<String> foodTitles, foodDescriptions;
     FoodAdapter foodAdapter;
+    ProgressBar progressBar;
 
 
     @Override
@@ -67,6 +69,7 @@ public class RestaurantDetail extends Activity {
         foodTitles = new ArrayList<String>();
         foodDescriptions = new ArrayList<String>();
 
+        progressBar = (ProgressBar)findViewById(R.id.progressBar);
 
     }
 
@@ -171,6 +174,7 @@ public class RestaurantDetail extends Activity {
                 }
 
 
+                progressBar.setVisibility(View.GONE);
                 foodAdapter.notifyDataSetChanged();
 
 

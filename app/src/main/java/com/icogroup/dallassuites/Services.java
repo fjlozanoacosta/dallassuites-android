@@ -61,6 +61,7 @@ public class Services extends Activity implements View.OnClickListener{
 
             case R.id.services_button_restaurant:
                 startActivity(new Intent(Services.this, Restaurant.class));
+                overridePendingTransition(R.anim.slide_right_in, R.anim.slide_in_left);
                 break;
 
             case R.id.services_button_roomservice:

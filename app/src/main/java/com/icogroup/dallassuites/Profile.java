@@ -85,6 +85,8 @@ public class Profile extends Activity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Profile.this, Edit.class).putExtra("Email", email).putExtra("Username", username).putExtra("Name", name));
+                overridePendingTransition(R.anim.slide_right_in, R.anim.slide_in_left);
+
             }
         });
 
@@ -125,6 +127,8 @@ public class Profile extends Activity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Profile.this, QRCode.class));
+                overridePendingTransition(R.anim.slide_right_in, R.anim.slide_in_left);
+
             }
         });
 

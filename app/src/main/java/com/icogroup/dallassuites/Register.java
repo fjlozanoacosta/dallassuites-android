@@ -14,10 +14,12 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.icogroup.custompicker.Fecha;
 import com.icogroup.util.Keystring;
 import com.icogroup.util.Utilities;
 
@@ -50,6 +52,7 @@ public class Register extends Activity implements View.OnClickListener {
     ImageButton info;
     static int REQUEST_CODE = 123456789;
     RelativeLayout keywordPopup;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,15 +103,15 @@ public class Register extends Activity implements View.OnClickListener {
         etRepeatPassword = (EditText) findViewById(R.id.register_edittext_repeatpassword);
         etKeyword = (EditText) findViewById(R.id.register_edittext_keyword);
 
-        bDob = (Button)findViewById(R.id.button_register_dob);
+        bDob = (Button) findViewById(R.id.button_register_dob);
 
-        keywordPopup = (RelativeLayout)findViewById(R.id.keyword_popup);
+        keywordPopup = (RelativeLayout) findViewById(R.id.keyword_popup);
 
         register = (Button) findViewById(R.id.register_button_register);
 
         registerLayout = (RelativeLayout) findViewById(R.id.registerlayout);
 
-        info = (ImageButton)findViewById(R.id.info_button);
+        info = (ImageButton) findViewById(R.id.info_button);
         info.setOnClickListener(this);
 
         register.setOnClickListener(this);
@@ -125,10 +128,9 @@ public class Register extends Activity implements View.OnClickListener {
         etRepeatPassword.setTypeface(brandonregular);
         etKeyword.setTypeface(brandonregular);
 
-
-
-
         register.setTypeface(brandonlight);
+
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
 
     }
@@ -146,7 +148,7 @@ public class Register extends Activity implements View.OnClickListener {
         repeatPassword = etRepeatPassword.getText().toString();
         keyword = etKeyword.getText().toString();
 
-        if(view.getId() != R.id.info_button) {
+        if (view.getId() != R.id.info_button) {
 
             if (!username.equals("") && !email.equals("") && !password.equals("")
                     && !repeatPassword.equals("") &&
@@ -158,6 +160,7 @@ public class Register extends Activity implements View.OnClickListener {
 
                         case R.id.register_button_register:
 
+                            progressBar.setVisibility(View.VISIBLE);
                             new RegisterAsync().execute();
                             new AddPasswordAsync().execute();
 
@@ -187,24 +190,28 @@ public class Register extends Activity implements View.OnClickListener {
             }
 
 
-            if (view.getId() == R.id.info_button) {
 
-                //keywordPopup.setX(info.getX() - keywordPopup.getWidth());
-                //keywordPopup.setY(info.getY());
+        }
 
-                if (keywordPopup.getVisibility() == View.INVISIBLE) {
-                    keywordPopup.setVisibility(View.VISIBLE);
-                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) keywordPopup.getLayoutParams();
-                    params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-                    params.setMargins(0, (int) getResources().getDimension(R.dimen.popup_keyword_register_top), (int) getResources().getDimension(R.dimen.activity_horizontal_margin), 0);
-                    keywordPopup.setLayoutParams(params); //causes layout update
-                } else {
+        if (view.getId() == R.id.info_button) {
 
-                    keywordPopup.setVisibility(View.INVISIBLE);
+            //keywordPopup.setX(info.getX() - keywordPopup.getWidth());
+            //keywordPopup.setY(info.getY());
 
-                }
+            Log.d("Info", "Info");
+
+            if (keywordPopup.getVisibility() == View.INVISIBLE) {
+                keywordPopup.setVisibility(View.VISIBLE);
+                RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) keywordPopup.getLayoutParams();
+                params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+                params.setMargins(0, (int) getResources().getDimension(R.dimen.popup_keyword_register_top), (int) getResources().getDimension(R.dimen.activity_horizontal_margin), 0);
+                keywordPopup.setLayoutParams(params); //causes layout update
+            } else {
+
+                keywordPopup.setVisibility(View.INVISIBLE);
 
             }
+
         }
 
     }
@@ -222,7 +229,7 @@ public class Register extends Activity implements View.OnClickListener {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(REQUEST_CODE == requestCode && resultCode == RESULT_OK){
+        if (REQUEST_CODE == requestCode && resultCode == RESULT_OK) {
 
             etDateOfBirth.setText(data.getExtras().getString("Date"));
 
@@ -250,14 +257,16 @@ public class Register extends Activity implements View.OnClickListener {
                 HttpPost httppost = new HttpPost(url);
 
                 List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(
-                        7);
+                        6);
                 nameValuePairs.add(new BasicNameValuePair("user_name", name));
                 nameValuePairs.add(new BasicNameValuePair("user_lastname", lastname));
                 nameValuePairs.add(new BasicNameValuePair("user_username", username));
                 nameValuePairs.add(new BasicNameValuePair("user_email", email));
-                nameValuePairs.add(new BasicNameValuePair("user_dob", dob));
+                nameValuePairs.add(new BasicNameValuePair("user_dob", sendReformatDate(dob)));
                 nameValuePairs.add(new BasicNameValuePair("user_ci", id));
-                nameValuePairs.add(new BasicNameValuePair("user_keyword", keyword));
+
+                Log.d("DOB", dob);
+
                 httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
                 HttpResponse response = httpclient.execute(httppost);
@@ -338,10 +347,11 @@ public class Register extends Activity implements View.OnClickListener {
                 HttpPost httppost = new HttpPost(url);
 
                 List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(
-                        2);
+                        3);
 
                 nameValuePairs.add(new BasicNameValuePair("user_id", prefs.getString(Keystring.USER_ID, "")));
                 nameValuePairs.add(new BasicNameValuePair("user_password", password));
+                nameValuePairs.add(new BasicNameValuePair("user_keyword", keyword));
                 httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
                 HttpResponse response = httpclient.execute(httppost);
@@ -382,21 +392,30 @@ public class Register extends Activity implements View.OnClickListener {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
 
-            if (result.contains("Registrada")) {
+            if (result != null) {
+                if (result.contains("Registrada")) {
 
-                Intent intent = new Intent(Register.this, Profile.class);
-                startActivity(intent);
-                finish();
+                    Intent intent = new Intent(Register.this, Profile.class);
+                    startActivity(intent);
+                    finish();
 
-            } else {
+                } else {
 
-                Toast.makeText(Register.this, result, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Register.this, result, Toast.LENGTH_SHORT).show();
 
+                }
             }
-
+            progressBar.setVisibility(View.VISIBLE);
 
         }
     }
 
+    public String sendReformatDate(String date) {
+
+        String[] dateArray = date.replace(" ", "").split("-");
+
+        return dateArray[2] + "-" + Fecha.parseToNumber(dateArray[1]) + "-" + dateArray[0];
+
+    }
 
 }
