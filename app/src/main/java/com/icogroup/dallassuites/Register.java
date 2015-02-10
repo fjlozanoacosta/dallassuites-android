@@ -395,7 +395,7 @@ public class Register extends Activity implements View.OnClickListener {
             if (result != null) {
                 if (result.contains("Registrada")) {
 
-                    Intent intent = new Intent(Register.this, Profile.class);
+                    Intent intent = new Intent(Register.this, Tutorial.class);
                     startActivity(intent);
                     finish();
 

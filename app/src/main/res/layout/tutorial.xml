@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/tutorial_back">
+
+    <Button
+        android:id="@+id/bcontinue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/register_button_selector"
+        android:layout_alignParentBottom="true"
+        android:text="CONTINUE"
+        android:textSize="23sp"
+        android:textColor="@color/dallas_typeface_color"/>
+
+    <TextView
+        android:id="@+id/tvCopyTutorial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/copy_tut"
+        android:layout_above="@+id/bcontinue"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:textSize="@dimen/text_size"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        />
+
+    <TextView
+        android:id="@+id/tvTitleTutorial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tut_title"
+        android:layout_above="@+id/tvCopyTutorial"
+        android:textColor="@color/dallas_typeface_color"
+        android:gravity="center"
+        android:textSize="25sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5dp"
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/registropopup_addpass"
+        android:layout_above="@id/tvTitleTutorial"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+
+
+
+</RelativeLayout>

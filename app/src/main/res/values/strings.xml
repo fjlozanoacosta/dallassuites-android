@@ -100,6 +100,8 @@ acumular puntos con diferentes parejas</string>
     <string name="qrcode_copy2">Muestra este QR en la recepción\npara acumular o gastar puntos</string>
     <string name="keyword">Palabra clave</string>
     <string name="keyword_popup_text">La Palabra Clave te ayudará\na recuperar tu contraseña.\nCada contraseña tendrá\nsu palabra clave.</string>
+    <string name="copy_tut">Podrás crear varias contraseñas para acumular\npuntos con diferentes parejas. Cada contraseña\ntendrá asociada una palabra clave que te ayudará\na diferenciarlas facilmente.</string>
+    <string name="tut_title">VARIAS CONTRASEÑAS</string>
 
 
 </resources>
