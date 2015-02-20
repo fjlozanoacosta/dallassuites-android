@@ -6,12 +6,10 @@ import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewConfiguration;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -19,7 +17,6 @@ import android.widget.RelativeLayout;
 import com.crashlytics.android.Crashlytics;
 
 import io.fabric.sdk.android.Fabric;
-
 
 public class Home extends Activity implements View.OnClickListener{
 
@@ -39,27 +36,18 @@ public class Home extends Activity implements View.OnClickListener{
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        float width = size.x;
         final float height = size.y;
 
-        home_buttons.setY(height );
-
-        Log.d("TAMANO", "" + height);
-
+        home_buttons.setY(height);
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
 
-                    ObjectAnimator alphaAnimationBackground = ObjectAnimator.ofFloat(splashBackground, "alpha", 1, 0);
-                    ObjectAnimator translateAnimationLogo = ObjectAnimator.ofFloat(logo, "translationY", 0, -height*0.17f);
+                ObjectAnimator alphaAnimationBackground = ObjectAnimator.ofFloat(splashBackground, "alpha", 1, 0);
+                ObjectAnimator translateAnimationLogo = ObjectAnimator.ofFloat(logo, "translationY", 0, -height * 0.17f);
 
-                ObjectAnimator translateAnimationButtons;
-
-                if(ViewConfiguration.get(Home.this).hasPermanentMenuKey())
-                     translateAnimationButtons = ObjectAnimator.ofFloat(home_buttons, "translationY", 0, -height*0.35f);
-                else
-                     translateAnimationButtons = ObjectAnimator.ofFloat(home_buttons, "translationY", 0, -height*0.23f);
+                ObjectAnimator translateAnimationButtons = ObjectAnimator.ofFloat(home_buttons, "translationY", home_buttons.getHeight(), 0);
 
                     alphaAnimationBackground.setDuration(1000);
                     translateAnimationLogo.setDuration(1000);
@@ -67,7 +55,6 @@ public class Home extends Activity implements View.OnClickListener{
                     alphaAnimationBackground.start();
                     translateAnimationLogo.start();
                     translateAnimationButtons.start();
-
 
             }
         }, 2000);
