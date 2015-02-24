@@ -138,7 +138,6 @@ public class Register extends Activity implements View.OnClickListener {
         infoPopup = (RelativeLayout)findViewById(R.id.info_popup);
         info_popup_text = (TextView)findViewById(R.id.info_popup_text);
 
-
     }
 
     @Override
@@ -472,7 +471,7 @@ public class Register extends Activity implements View.OnClickListener {
                 } else {
 
 
-                    
+
 
                 }
             }

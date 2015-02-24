@@ -1,13 +1,16 @@
 package com.dallassuites.dallassuites;
 
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,9 +35,11 @@ import java.util.List;
 public class RetrievePassword extends Activity implements View.OnClickListener {
 
     EditText etMail;
-    TextView title;
+    TextView title, info_popup_text;
     Typeface brandonreg;
     Button retrievePassword;
+    RelativeLayout infoPopup;
+    String info_text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +62,9 @@ public class RetrievePassword extends Activity implements View.OnClickListener {
 
         retrievePassword = (Button) findViewById(R.id.retrievepassword_button_retrievepassword);
         retrievePassword.setOnClickListener(this);
+
+        infoPopup = (RelativeLayout)findViewById(R.id.info_popup);
+        info_popup_text = (TextView)findViewById(R.id.info_popup_text);
 
     }
 
@@ -111,7 +119,29 @@ public class RetrievePassword extends Activity implements View.OnClickListener {
                 startActivity(new Intent(RetrievePassword.this, Login.class));
                 finish();
             }else{
-                Toast.makeText(RetrievePassword.this, "No se ha podido recuperar la contraseña", Toast.LENGTH_SHORT).show();
+
+                infoPopup.setVisibility(View.VISIBLE);
+                info_popup_text.setText("No se ha podido recuperar la contraseña");
+
+                retrievePassword.setOnClickListener(null);
+
+                ObjectAnimator animation1 = ObjectAnimator.ofFloat(infoPopup,
+                        "translationY", 0 - infoPopup.getHeight(), 0);
+                animation1.setDuration(1000);
+                animation1.start();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        ObjectAnimator animation1 = ObjectAnimator.ofFloat(infoPopup,
+                                "translationY", 0 , 0 - infoPopup.getHeight());
+                        animation1.setDuration(1000);
+                        animation1.start();
+                        retrievePassword.setOnClickListener(RetrievePassword.this);
+                    }
+                }, 2000);
+
+
             }
 
 
