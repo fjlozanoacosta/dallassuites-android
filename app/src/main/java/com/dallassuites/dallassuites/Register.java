@@ -1,5 +1,6 @@
 package com.dallassuites.dallassuites;
 
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +8,7 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -17,7 +19,6 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.dallassuites.custompicker.Fecha;
 import com.dallassuites.util.Keystring;
@@ -44,7 +45,7 @@ public class Register extends Activity implements View.OnClickListener {
 
     Typeface brandonregular, brandonlight;
     EditText etName, etLastname, etEmail, etDateOfBirth, etID, etUsername, etPassword, etRepeatPassword, etKeyword;
-    TextView title;
+    TextView title, info_popup_text;
     Button register, bDob;
     String name, lastname, email, dob, id, username, password, repeatPassword, keyword;
     SharedPreferences prefs;
@@ -53,6 +54,8 @@ public class Register extends Activity implements View.OnClickListener {
     static int REQUEST_CODE = 123456789;
     RelativeLayout keywordPopup;
     ProgressBar progressBar;
+    RelativeLayout infoPopup;
+    String info_text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,6 +135,9 @@ public class Register extends Activity implements View.OnClickListener {
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
+        infoPopup = (RelativeLayout)findViewById(R.id.info_popup);
+        info_popup_text = (TextView)findViewById(R.id.info_popup_text);
+
 
     }
 
@@ -168,24 +174,67 @@ public class Register extends Activity implements View.OnClickListener {
                     }
                 } else {
 
-                    Toast.makeText(Register.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
+
+                    infoPopup.setVisibility(View.VISIBLE);
+                    info_popup_text.setText("Las contraseñas no coinciden");
+
+                    register.setOnClickListener(null);
+
+                    ObjectAnimator animation1 = ObjectAnimator.ofFloat(infoPopup,
+                            "translationY", 0 - infoPopup.getHeight(), 0);
+                    animation1.setDuration(1000);
+                    animation1.start();
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            ObjectAnimator animation1 = ObjectAnimator.ofFloat(infoPopup,
+                                    "translationY", 0 , 0 - infoPopup.getHeight());
+                            animation1.setDuration(1000);
+                            animation1.start();
+                            register.setOnClickListener(Register.this);
+                        }
+                    }, 2000);
+
 
                 }
 
             } else {
 
                 if (username.equals(""))
-                    Toast.makeText(Register.this, "Debe ingresar algún nombre de usuario", Toast.LENGTH_SHORT).show();
+                    info_text = "Debe ingresar algún sobrenombre";
                 else if (password.equals(""))
-                    Toast.makeText(Register.this, "Debe ingresar alguna contraseña", Toast.LENGTH_SHORT).show();
+                    info_text = "Debe ingresar alguna contraseña";
                 else if (repeatPassword.equals(""))
-                    Toast.makeText(Register.this, "Debe repetir la contraseña", Toast.LENGTH_SHORT).show();
+                    info_text = "Debe repetir la contraseña";
                 else if (email.equals(""))
-                    Toast.makeText(Register.this, "Debe ingresar su correo electronico", Toast.LENGTH_SHORT).show();
+                    info_text = "Debe ingresar su correo electronico";
                 else if (dob.equals(""))
-                    Toast.makeText(Register.this, "Debe ingresar su fecha de nacimiento", Toast.LENGTH_SHORT).show();
+                    info_text = "Debe ingresar su fecha de nacimiento";
                 else if (keyword.equals(""))
-                    Toast.makeText(Register.this, "Debe ingresar su palabra clave", Toast.LENGTH_SHORT).show();
+                    info_text = "Debe ingresar su palabra clave";
+
+                infoPopup.setVisibility(View.VISIBLE);
+                info_popup_text.setText(info_text);
+
+                register.setOnClickListener(null);
+
+                ObjectAnimator animation1 = ObjectAnimator.ofFloat(infoPopup,
+                        "translationY", 0 - infoPopup.getHeight(), 0);
+                animation1.setDuration(1000);
+                animation1.start();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        ObjectAnimator animation1 = ObjectAnimator.ofFloat(infoPopup,
+                                "translationY", 0 , 0 - infoPopup.getHeight());
+                        animation1.setDuration(1000);
+                        animation1.start();
+                        register.setOnClickListener(Register.this);
+                    }
+                }, 2000);
+
 
             }
 
@@ -321,7 +370,28 @@ public class Register extends Activity implements View.OnClickListener {
                 editor.commit();
 
             } else {
-                Toast.makeText(Register.this, result, Toast.LENGTH_SHORT).show();
+                infoPopup.setVisibility(View.VISIBLE);
+                info_popup_text.setText(result);
+
+                register.setOnClickListener(null);
+
+                ObjectAnimator animation1 = ObjectAnimator.ofFloat(infoPopup,
+                        "translationY", 0 - infoPopup.getHeight(), 0);
+                animation1.setDuration(1000);
+                animation1.start();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        ObjectAnimator animation1 = ObjectAnimator.ofFloat(infoPopup,
+                                "translationY", 0 , 0 - infoPopup.getHeight());
+                        animation1.setDuration(1000);
+                        animation1.start();
+                        register.setOnClickListener(Register.this);
+                    }
+                }, 2000);
+
+
 
             }
 
@@ -401,7 +471,8 @@ public class Register extends Activity implements View.OnClickListener {
 
                 } else {
 
-                    Toast.makeText(Register.this, result, Toast.LENGTH_SHORT).show();
+
+                    
 
                 }
             }
