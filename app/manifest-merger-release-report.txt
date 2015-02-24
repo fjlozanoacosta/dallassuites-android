@@ -31,7 +31,7 @@ MERGED from io.fabric.sdk.android:fabric:1.0.1:11:5
 		ADDED from AndroidManifest.xml:7:9
 	android:theme
 		ADDED from AndroidManifest.xml:9:9
-activity#com.icogroup.dallassuites.Home
+activity#com.dallassuites.dallassuites.Home
 ADDED from AndroidManifest.xml:12:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:15:13
@@ -49,31 +49,31 @@ category#android.intent.category.LAUNCHER
 ADDED from AndroidManifest.xml:19:17
 	android:name
 		ADDED from AndroidManifest.xml:19:27
-activity#com.icogroup.dallassuites.Rooms
+activity#com.dallassuites.dallassuites.Rooms
 ADDED from AndroidManifest.xml:23:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:23:41
 	android:name
 		ADDED from AndroidManifest.xml:23:19
-activity#com.icogroup.dallassuites.Services
+activity#com.dallassuites.dallassuites.Services
 ADDED from AndroidManifest.xml:24:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:24:44
 	android:name
 		ADDED from AndroidManifest.xml:24:19
-activity#com.icogroup.dallassuites.Profile
+activity#com.dallassuites.dallassuites.Profile
 ADDED from AndroidManifest.xml:25:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:25:43
 	android:name
 		ADDED from AndroidManifest.xml:25:19
-activity#com.icogroup.dallassuites.Register
+activity#com.dallassuites.dallassuites.Register
 ADDED from AndroidManifest.xml:26:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:26:44
 	android:name
 		ADDED from AndroidManifest.xml:26:19
-activity#com.icogroup.dallassuites.Dallas_Popup
+activity#com.dallassuites.dallassuites.Dallas_Popup
 ADDED from AndroidManifest.xml:27:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:27:48
@@ -81,13 +81,13 @@ ADDED from AndroidManifest.xml:27:9
 		ADDED from AndroidManifest.xml:27:85
 	android:name
 		ADDED from AndroidManifest.xml:27:19
-activity#com.icogroup.dallassuites.Restaurant
+activity#com.dallassuites.dallassuites.Restaurant
 ADDED from AndroidManifest.xml:28:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:28:46
 	android:name
 		ADDED from AndroidManifest.xml:28:19
-activity#com.icogroup.dallassuites.RoomDetail
+activity#com.dallassuites.dallassuites.RoomDetail
 ADDED from AndroidManifest.xml:29:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:29:46
@@ -95,25 +95,25 @@ ADDED from AndroidManifest.xml:29:9
 		ADDED from AndroidManifest.xml:29:83
 	android:name
 		ADDED from AndroidManifest.xml:29:19
-activity#com.icogroup.dallassuites.Edit
+activity#com.dallassuites.dallassuites.Edit
 ADDED from AndroidManifest.xml:30:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:30:40
 	android:name
 		ADDED from AndroidManifest.xml:30:19
-activity#com.icogroup.dallassuites.Login
+activity#com.dallassuites.dallassuites.Login
 ADDED from AndroidManifest.xml:31:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:31:41
 	android:name
 		ADDED from AndroidManifest.xml:31:19
-activity#com.icogroup.dallassuites.RestaurantDetail
+activity#com.dallassuites.dallassuites.RestaurantDetail
 ADDED from AndroidManifest.xml:32:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:32:52
 	android:name
 		ADDED from AndroidManifest.xml:32:19
-activity#com.icogroup.dallassuites.DOBPopup
+activity#com.dallassuites.dallassuites.DOBPopup
 ADDED from AndroidManifest.xml:33:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:33:44
@@ -121,13 +121,13 @@ ADDED from AndroidManifest.xml:33:9
 		ADDED from AndroidManifest.xml:33:81
 	android:name
 		ADDED from AndroidManifest.xml:33:19
-activity#com.icogroup.dallassuites.RetrievePassword
+activity#com.dallassuites.dallassuites.RetrievePassword
 ADDED from AndroidManifest.xml:34:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:34:52
 	android:name
 		ADDED from AndroidManifest.xml:34:19
-activity#com.icogroup.dallassuites.NewPasswordPopup
+activity#com.dallassuites.dallassuites.NewPasswordPopup
 ADDED from AndroidManifest.xml:35:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:35:52
@@ -135,19 +135,19 @@ ADDED from AndroidManifest.xml:35:9
 		ADDED from AndroidManifest.xml:35:89
 	android:name
 		ADDED from AndroidManifest.xml:35:19
-activity#com.icogroup.dallassuites.QRCode
+activity#com.dallassuites.dallassuites.QRCode
 ADDED from AndroidManifest.xml:36:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:36:42
 	android:name
 		ADDED from AndroidManifest.xml:36:19
-activity#com.icogroup.dallassuites.Room360
+activity#com.dallassuites.dallassuites.Room360
 ADDED from AndroidManifest.xml:37:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:37:43
 	android:name
 		ADDED from AndroidManifest.xml:37:19
-activity#com.icogroup.dallassuites.Tutorial
+activity#com.dallassuites.dallassuites.Tutorial
 ADDED from AndroidManifest.xml:38:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:38:44

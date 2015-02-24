@@ -24,11 +24,11 @@ android {
     buildToolsVersion "20.0.0"
 
     defaultConfig {
-        applicationId "com.icogroup.dallassuites"
+        applicationId "com.dallassuites.dallassuites"
         minSdkVersion 16
         targetSdkVersion 20
         versionCode 2
-        versionName "1.1"
+        versionName "1.0"
     }
     buildTypes {
         release {

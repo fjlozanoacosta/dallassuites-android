@@ -109,8 +109,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/home_login_selector"
-            android:layout_below="@id/login_imagebutton_retrievepassword"
-            android:layout_marginTop="15dp"/>
+            android:layout_alignParentBottom="true"/>
 
     </RelativeLayout>
 

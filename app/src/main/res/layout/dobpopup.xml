@@ -19,7 +19,8 @@
         android:layout_alignBottom="@+id/dob_popup_background"
         android:background="@drawable/register_popup_ok_selector"
         android:text="@string/register_popup_ok"
-        android:textColor="@color/dallas_typeface_color" />
+        android:textColor="@color/dallas_typeface_color"
+        android:textSize="30sp"/>
 
 
     <LinearLayout

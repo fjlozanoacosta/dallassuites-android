@@ -145,7 +145,7 @@
               android:id="@+id/profile_timeline_noinfo_text"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:text="@string/lorem_ipsum"
+              android:text="No hay historial. Deberias visitarnos"
               android:layout_centerInParent="true"
               android:layout_marginLeft="@dimen/activity_horizontal_margin"
               android:layout_marginRight="@dimen/activity_horizontal_margin"
