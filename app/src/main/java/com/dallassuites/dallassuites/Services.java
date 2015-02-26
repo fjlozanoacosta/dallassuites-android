@@ -66,21 +66,33 @@ public class Services extends Activity implements View.OnClickListener{
 
             case R.id.services_button_roomservice:
                 startActivity(new Intent(Services.this, Dallas_Popup.class).putExtra("Categoria","Room Service"));
+
                 break;
 
             case R.id.services_button_privacyandsecurity:
                 startActivity(new Intent(Services.this, Dallas_Popup.class).putExtra("Categoria","Privacidad y Seguridad"));
+
                 break;
 
             case R.id.services_button_doublereception:
                 startActivity(new Intent(Services.this, Dallas_Popup.class).putExtra("Categoria","Doble Recepcion"));
+
                 break;
 
             case R.id.services_button_comfortandamenities:
                 startActivity(new Intent(Services.this, Dallas_Popup.class).putExtra("Categoria","Comfort y Amenidades"));
+
                 break;
 
         }
+
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.slide_left_in, R.anim.slide_in_right);
 
     }
 }

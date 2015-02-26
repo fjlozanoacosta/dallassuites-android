@@ -52,9 +52,11 @@
 
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/roomdetail_topbar"/>
+        android:src="@drawable/roomdetail_topbar"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="-3dp"/>
 
     <TextView
         android:id="@+id/roomdetail_title"

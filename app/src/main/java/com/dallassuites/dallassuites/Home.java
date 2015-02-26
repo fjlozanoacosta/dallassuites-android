@@ -105,14 +105,20 @@ public class Home extends Activity implements View.OnClickListener{
 
             case R.id.home_button_servicios:
                 startActivity(new Intent(Home.this, Services.class));
+                overridePendingTransition(R.anim.slide_right_in, R.anim.slide_in_left);
+
                 break;
 
             case R.id.home_button_suites:
                 startActivity(new Intent(Home.this, Rooms.class));
+                overridePendingTransition(R.anim.slide_right_in, R.anim.slide_in_left);
+
                 break;
 
             case R.id.home_button_registro:
                 startActivity(new Intent(Home.this, Register.class));
+                overridePendingTransition(R.anim.slide_right_in, R.anim.slide_in_left);
+
                 break;
 
             case R.id.home_login:

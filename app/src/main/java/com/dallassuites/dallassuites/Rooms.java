@@ -188,7 +188,7 @@ public class Rooms extends Activity {
                     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
                         startActivity(new Intent(Rooms.this, RoomDetail.class).putExtra("Photo360", photos360.get(rooms[position])).putExtra("Photos", photos.get(rooms[position])).putExtra("RoomName", rooms[position]));
-
+                        overridePendingTransition(R.anim.slide_right_in, R.anim.slide_in_left);
 
                     }
                 });
@@ -201,6 +201,13 @@ public class Rooms extends Activity {
 
 
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.slide_left_in, R.anim.slide_in_right);
+
     }
 
 }

@@ -229,5 +229,15 @@ public class Login extends Activity implements View.OnClickListener {
        }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.slide_left_in, R.anim.slide_in_right);
+
+    }
+
+
+
+
 
 }

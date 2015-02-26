@@ -90,6 +90,12 @@ public class Dallas_Popup extends Activity implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
-        finish();
+        finish();overridePendingTransition(R.anim.nothing, R.anim.zoom_out);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.nothing, R.anim.zoom_out);
     }
 }

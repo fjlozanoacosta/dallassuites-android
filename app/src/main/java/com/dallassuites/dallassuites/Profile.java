@@ -95,6 +95,7 @@ public class Profile extends Activity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Profile.this, NewPasswordPopup.class));
+
             }
         });
 
@@ -223,6 +224,7 @@ public class Profile extends Activity {
     public void onBackPressed() {
         super.onBackPressed();
         clearSharedPreferences();
+        overridePendingTransition(R.anim.slide_left_in, R.anim.slide_in_right);
 
     }
 
@@ -610,6 +612,8 @@ public class Profile extends Activity {
             super.onPostExecute(result);
         }
     }
+
+
 
 
 }

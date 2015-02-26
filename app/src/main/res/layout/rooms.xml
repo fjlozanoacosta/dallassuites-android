@@ -16,6 +16,7 @@
         android:textSize="@dimen/title_size"
         android:layout_centerHorizontal="true"
         android:textColor="@color/dallas_typeface_color"
+        android:layout_alignParentTop="true"
         />
 
 

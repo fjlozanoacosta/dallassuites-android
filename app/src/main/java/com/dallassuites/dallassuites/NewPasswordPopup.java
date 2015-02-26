@@ -167,4 +167,10 @@ public class NewPasswordPopup extends Activity {
         }
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.nothing, R.anim.zoom_out);
+    }
 }

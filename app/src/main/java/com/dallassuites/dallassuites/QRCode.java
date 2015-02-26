@@ -2,8 +2,10 @@ package com.dallassuites.dallassuites;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.graphics.Point;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.Display;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -37,11 +39,16 @@ public class QRCode extends Activity {
 
         qrContent = "[{\"id\" : \" " + userID + "\",\"pwd\":\"" + userPwd + "\"}]";
 
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        final float height = size.y;
+
         QRCodeEncoder qrCodeEncoder = new QRCodeEncoder(qrContent,
                 null,
                 Contents.Type.TEXT,
                 BarcodeFormat.QR_CODE.toString(),
-                1000);
+                ((int)height/2));
 
 
         try {
@@ -72,4 +79,13 @@ public class QRCode extends Activity {
         title.setTypeface(brandonreg);
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.slide_left_in, R.anim.slide_in_right);
+
+    }
+
+
 }
