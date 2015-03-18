@@ -13,7 +13,7 @@ public class PickerListener implements OnScrollListener{
 	PickerAdapter adapter, dayAdapter, yearAdapter; 
 	ArrayList<String> days;
 	
-	boolean scrolling = false, shouldSnap = false, isMonthAdapter = false;
+	boolean scrolling = false, isMonthAdapter = false;
 	int snapTo = 0;
 	
 	public PickerListener(ListView lv, PickerAdapter adapter) {
@@ -51,16 +51,32 @@ public class PickerListener implements OnScrollListener{
 		        if (scrolling)
 		        {				        	
 		        	snapTo = view.getFirstVisiblePosition();
-		        	shouldSnap = true;	  
 		        	int visibleChildCount = (lv.getLastVisiblePosition() - lv.getFirstVisiblePosition()) + 1;
-		        	
-		        	if(visibleChildCount == 4)
-		        		snapTo++;
-		        	
-		        	adapter.setMid(snapTo+1);	
-	        		lv.smoothScrollToPositionFromTop(snapTo, 0, 300);
-	        		
 
+//		        	if(visibleChildCount == 4)
+//		        		snapTo++;
+//
+//		        	adapter.setMid(snapTo+1);
+//	        		lv.smoothScrollToPositionFromTop(snapTo, 0, 60);
+
+                    //New Code - Smoother Picker
+                    float cellHeight = view.getChildAt(0).getHeight();
+                    float minDistance = cellHeight;
+
+                    for(int i = 0; i < visibleChildCount; i++)
+                    {
+                        float position = view.getChildAt(i).getY();
+                        float distanceFromMiddle = Math.abs(view.getHeight()/2 - (position + cellHeight/2));
+
+                        if(distanceFromMiddle < minDistance)
+                        {
+                            minDistance = distanceFromMiddle;
+                            snapTo = view.getFirstVisiblePosition() + i;
+                        }
+                    }
+
+                    adapter.setMid(snapTo);
+                    view.smoothScrollToPositionFromTop(snapTo - 1, 0, 60);
 		        }
 		        
 		        scrolling = false;
