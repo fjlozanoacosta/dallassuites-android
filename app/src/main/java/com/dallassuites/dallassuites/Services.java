@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.dallassuites.util.GAUtils;
+
 /**
  * Created by andres.torres on 10/24/14.
  */
@@ -95,4 +97,13 @@ public class Services extends Activity implements View.OnClickListener{
         overridePendingTransition(R.anim.slide_left_in, R.anim.slide_in_right);
 
     }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        GAUtils.sendScreen(this, "Services");
+    }
+
 }

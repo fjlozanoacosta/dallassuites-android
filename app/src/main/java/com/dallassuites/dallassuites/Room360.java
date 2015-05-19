@@ -7,6 +7,8 @@ import android.util.Log;
 import android.webkit.WebView;
 import android.widget.TextView;
 
+import com.dallassuites.util.GAUtils;
+
 /**
  * Created by andres.torres on 1/8/15.
  */
@@ -43,5 +45,12 @@ public class Room360 extends Activity {
 
     }
 
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        GAUtils.sendScreen(this, "Room360");
+    }
 
 }

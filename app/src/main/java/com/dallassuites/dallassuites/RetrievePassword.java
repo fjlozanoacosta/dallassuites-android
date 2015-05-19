@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dallassuites.util.GAUtils;
 import com.dallassuites.util.Utilities;
 
 import org.apache.http.HttpResponse;
@@ -155,6 +156,14 @@ public class RetrievePassword extends Activity implements View.OnClickListener {
         super.onBackPressed();
         overridePendingTransition(R.anim.slide_left_in, R.anim.slide_in_right);
 
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        GAUtils.sendScreen(this, "RetrievePassword");
     }
 
 }

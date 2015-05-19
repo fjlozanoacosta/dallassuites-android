@@ -9,6 +9,7 @@ import android.view.Display;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.dallassuites.util.GAUtils;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.dallassuites.qrresources.Contents;
@@ -87,5 +88,12 @@ public class QRCode extends Activity {
 
     }
 
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        GAUtils.sendScreen(this, "QRCode");
+    }
 
 }

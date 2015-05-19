@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.dallassuites.util.GAUtils;
 import com.dallassuites.util.Utilities;
 
 import org.apache.http.HttpResponse;
@@ -186,5 +187,12 @@ public class RestaurantDetail extends Activity {
         }
     }
 
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        GAUtils.sendScreen(this, "RestaurantDetail");
+    }
 
 }

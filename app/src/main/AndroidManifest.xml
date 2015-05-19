@@ -3,6 +3,7 @@
     package="com.dallassuites.dallassuites">
 
     <application
+        android:name=".InicioApp"
         android:allowBackup="true"
         android:icon="@drawable/app_icono"
         android:label="@string/app_name"
@@ -34,6 +35,7 @@
         <activity android:name=".RetrievePassword" android:screenOrientation="portrait"/>
         <activity android:name=".NewPasswordPopup" android:screenOrientation="portrait" android:theme="@android:style/Theme.Holo.Dialog" />
         <activity android:name=".QRCode" android:screenOrientation="portrait"/>
+        <activity android:name=".TwoButtonPopup" android:screenOrientation="portrait" android:theme="@android:style/Theme.Holo.Dialog"/>
         <activity android:name=".Room360" android:screenOrientation="portrait"/>
         <activity android:name=".Tutorial" android:screenOrientation="portrait"/>
         <meta-data android:name="com.crashlytics.ApiKey" android:value="066ba67f08cc916150aa7135b5b6768c160228c3"/>

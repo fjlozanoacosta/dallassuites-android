@@ -16,4 +16,6 @@ public class Keystring {
     public static String USER_PASSWORD = "user_password";
     public static String USER_KEYWORD = "user_keyword";
 
+    public static String USER_QRSCANS = "user_qrscans";
+
 }

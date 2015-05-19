@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dallassuites.util.GAUtils;
 import com.dallassuites.util.Utilities;
 
 import org.apache.http.HttpResponse;
@@ -208,6 +209,14 @@ public class Rooms extends Activity {
         super.onBackPressed();
         overridePendingTransition(R.anim.slide_left_in, R.anim.slide_in_right);
 
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        GAUtils.sendScreen(this, "Rooms");
     }
 
 }

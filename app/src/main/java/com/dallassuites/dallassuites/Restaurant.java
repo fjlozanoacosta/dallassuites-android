@@ -14,6 +14,8 @@ import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.dallassuites.util.GAUtils;
+
 /**
  * Created by andres.torres on 10/29/14.
  */
@@ -187,6 +189,14 @@ public class Restaurant extends Activity{
         super.onBackPressed();
         overridePendingTransition(R.anim.slide_left_in, R.anim.slide_in_right);
 
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        GAUtils.sendScreen(this, "Restaurant");
     }
 
 

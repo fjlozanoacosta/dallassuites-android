@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/register_popup_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/register_popup_background" />
+
+
+    <ImageButton
+        android:id="@+id/register_popup_imagebutton_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/register_popup_background"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:background="@drawable/register_button_close"
+        android:visibility="invisible" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_alignBottom="@+id/register_popup_background">
+
+        <Button
+            android:id="@+id/btn_ahorano"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ahorano_selector"
+            android:layout_weight="1"
+            android:text="AHORA NO"
+            android:textColor="@color/dallas_typeface_color"
+
+            />
+
+        <Button
+            android:id="@+id/btn_iralaweb"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/iralaweb_selector"
+            android:layout_weight="1"
+            android:text="IR A LA WEB"
+            android:textColor="@color/dallas_typeface_color"
+            />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/register_popup_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/register_popup_imagebutton_close"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/escanear_web" />
+
+    <TextView
+        android:id="@+id/register_popup_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/register_popup_img"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="AVISO"
+        android:textColor="@color/dallas_typeface_color"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/register_popup_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/register_popup_title"
+        android:layout_marginTop="6dp"
+        android:gravity="center_horizontal"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:text="@string/lorem_ipsum"
+        android:textSize="@dimen/text_size" />
+
+
+</RelativeLayout>

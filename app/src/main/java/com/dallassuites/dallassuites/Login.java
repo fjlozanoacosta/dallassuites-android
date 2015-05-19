@@ -19,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dallassuites.util.GAUtils;
 import com.dallassuites.util.Keystring;
 import com.dallassuites.util.Utilities;
 
@@ -133,6 +134,7 @@ public class Login extends Activity implements View.OnClickListener {
             String result = null;
 
             try {
+
                 DefaultHttpClient httpclient = new DefaultHttpClient();
                 final HttpParams httpParams = httpclient.getParams();
                 HttpConnectionParams.setConnectionTimeout(httpParams, 30000);
@@ -239,5 +241,11 @@ public class Login extends Activity implements View.OnClickListener {
 
 
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        GAUtils.sendScreen(this, "Login");
+    }
 
 }

@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.crashlytics.android.Crashlytics;
+import com.dallassuites.util.GAUtils;
 
 import io.fabric.sdk.android.Fabric;
 
@@ -129,4 +130,13 @@ public class Home extends Activity implements View.OnClickListener{
         }
 
     }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        GAUtils.sendScreen(this, "Home");
+    }
+
 }

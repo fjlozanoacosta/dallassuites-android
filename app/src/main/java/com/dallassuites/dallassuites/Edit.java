@@ -20,6 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.dallassuites.custompicker.Fecha;
+import com.dallassuites.util.GAUtils;
 import com.dallassuites.util.Keystring;
 import com.dallassuites.util.Utilities;
 
@@ -404,6 +405,14 @@ public class Edit extends Activity implements View.OnClickListener {
         super.onBackPressed();
         overridePendingTransition(R.anim.slide_left_in, R.anim.slide_in_right);
 
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        GAUtils.sendScreen(this, "Edit");
     }
 
 }

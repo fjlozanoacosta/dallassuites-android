@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.dallassuites.util.GAUtils;
+
 /**
  * Created by andres.torres on 2/9/15.
  */
@@ -49,5 +51,13 @@ public class Tutorial extends Activity {
         title.setTypeface(brandonregular);
 
 
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        GAUtils.sendScreen(this, "Tutorial");
     }
 }

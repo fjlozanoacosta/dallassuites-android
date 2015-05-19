@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.dallassuites.util.GAUtils;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -91,6 +92,14 @@ public class RoomDetail extends Activity {
         super.onBackPressed();
         overridePendingTransition(R.anim.slide_left_in, R.anim.slide_in_right);
 
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        GAUtils.sendScreen(this, "RoomDetail");
     }
 
 }

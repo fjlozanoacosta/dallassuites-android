@@ -23,10 +23,11 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
+import com.dallassuites.util.GAUtils;
 import com.dallassuites.util.Keystring;
 import com.dallassuites.util.Utilities;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -243,7 +244,6 @@ public class Profile extends Activity {
 
         if (intent != null) {
 
-            // result = intent.getExtras().getString("SCAN_RESULT");
             try {
                 JSONArray array = new JSONArray(intent.getExtras().getString("SCAN_RESULT"));
                 JSONObject object = array.getJSONObject(0);
@@ -269,6 +269,12 @@ public class Profile extends Activity {
                     }
                 }, 2000);
 
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putInt(Keystring.USER_QRSCANS, 0);
+                editor.apply();
+
+                Log.d("QRSCANS", prefs.getInt(Keystring.USER_QRSCANS, 0) + "");
+
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -292,6 +298,20 @@ public class Profile extends Activity {
                         animation1.start();
                     }
                 }, 2000);
+
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putInt(Keystring.USER_QRSCANS, prefs.getInt(Keystring.USER_QRSCANS, 0) + 1);
+                editor.apply();
+
+                Log.d("QRSCANS", prefs.getInt(Keystring.USER_QRSCANS, 0) + "");
+
+                if(prefs.getInt(Keystring.USER_QRSCANS, 0) == 3){
+
+                startActivity(new Intent(Profile.this, TwoButtonPopup.class));
+
+                }
+
+
 
             }
 
@@ -321,6 +341,13 @@ public class Profile extends Activity {
                     animation1.start();
                 }
             }, 2000);
+
+
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putInt(Keystring.USER_QRSCANS, prefs.getInt(Keystring.USER_QRSCANS, 0) + 1);
+            editor.apply();
+
+            Log.d("QRSCANS", prefs.getInt(Keystring.USER_QRSCANS, 0) + "");
 
 
         }
@@ -447,9 +474,6 @@ public class Profile extends Activity {
         @Override
         protected void onPostExecute(JSONArray result) {
             super.onPostExecute(result);
-
-            Log.d("History", result.toString());
-            Log.d("Result", result.length() + "");
 
             if (result.length() != 0) {
                 for (int i = 0; i < result.length(); i++) {
@@ -616,6 +640,12 @@ public class Profile extends Activity {
 
 
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        GAUtils.sendScreen(this, "Profile");
+    }
 }
 
 

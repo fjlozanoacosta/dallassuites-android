@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dallassuites.util.GAUtils;
 import com.dallassuites.util.Keystring;
 import com.dallassuites.util.Utilities;
 
@@ -173,4 +174,13 @@ public class NewPasswordPopup extends Activity {
         super.onBackPressed();
         overridePendingTransition(R.anim.nothing, R.anim.zoom_out);
     }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        GAUtils.sendScreen(this, "New Password");
+    }
+
 }
