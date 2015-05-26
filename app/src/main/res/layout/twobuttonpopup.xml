@@ -42,12 +42,12 @@
             />
 
         <Button
-            android:id="@+id/btn_iralaweb"
+            android:id="@+id/btn_sumar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/iralaweb_selector"
             android:layout_weight="1"
-            android:text="IR A LA WEB"
+            android:text="SUMAR"
             android:textColor="@color/dallas_typeface_color"
             />
 
@@ -79,10 +79,25 @@
         android:layout_below="@id/register_popup_title"
         android:layout_marginTop="6dp"
         android:gravity="center_horizontal"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:text="@string/lorem_ipsum"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:textColor="#a5a5a5"
+        android:text="Para sumar los puntos de manera manual,
+inserte el código de su ticket."
         android:textSize="@dimen/text_size" />
+
+    <EditText
+        android:id="@+id/campo_sumapuntos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/campo_sumapuntos"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/register_popup_text"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="10dp"
+        android:hint="Ej: RG4567TF"
+        android:textColor="#969696"/>
+
 
 
 </RelativeLayout>

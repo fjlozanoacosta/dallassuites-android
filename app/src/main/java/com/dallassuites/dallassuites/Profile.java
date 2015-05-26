@@ -66,6 +66,7 @@ public class Profile extends Activity {
     String result, name = "", username = "", email = "", ticket = "";
     RelativeLayout infoPopup;
     TextView textPopup;
+    public static int MANUAL_ADD_POINTS = 62625772;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,7 +138,7 @@ public class Profile extends Activity {
 
     }
 
-    private void init() {
+    private void init(){
 
         brandonmedium = Typeface.createFromAsset(getAssets(), "brandon_med.otf");
         brandonlight = Typeface.createFromAsset(getAssets(), "brandon_light.otf");
@@ -232,6 +233,8 @@ public class Profile extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+        myDrawer.closeDrawer(Gravity.START);
+
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
@@ -242,16 +245,15 @@ public class Profile extends Activity {
         rooms.clear();
         dates.clear();
 
-        if (intent != null) {
+        Log.d("TBP", "onactivityresult");
 
-            try {
-                JSONArray array = new JSONArray(intent.getExtras().getString("SCAN_RESULT"));
-                JSONObject object = array.getJSONObject(0);
-                ticket = object.getString("tid");
+        if(requestCode == MANUAL_ADD_POINTS){
+            Log.d("TBP", "manualaddppoints");
+            if(resultCode == RESULT_OK){
 
                 infoPopup.setVisibility(View.VISIBLE);
 
-                textPopup.setText("Código QR escaneado correctamente.");
+                textPopup.setText("Suma de puntos realizada correctamente.");
                 infoPopup.setBackground(getResources().getDrawable(R.drawable.confirm_popup_back));
 
                 ObjectAnimator animation1 = ObjectAnimator.ofFloat(infoPopup,
@@ -269,18 +271,9 @@ public class Profile extends Activity {
                     }
                 }, 2000);
 
-                SharedPreferences.Editor editor = prefs.edit();
-                editor.putInt(Keystring.USER_QRSCANS, 0);
-                editor.apply();
 
-                Log.d("QRSCANS", prefs.getInt(Keystring.USER_QRSCANS, 0) + "");
-
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-                infoPopup.setVisibility(View.VISIBLE);
-
-                textPopup.setText("Código QR inválido");
+            }else{
+                textPopup.setText("La suma de puntos no se pudo realizar");
                 infoPopup.setBackground(getResources().getDrawable(R.drawable.error_popup_back));
 
 
@@ -299,57 +292,116 @@ public class Profile extends Activity {
                     }
                 }, 2000);
 
+
+            }
+
+
+        }else {
+
+            if (intent != null) {
+
+                try {
+                    JSONArray array = new JSONArray(intent.getExtras().getString("SCAN_RESULT"));
+                    JSONObject object = array.getJSONObject(0);
+                    ticket = object.getString("tid");
+
+                    infoPopup.setVisibility(View.VISIBLE);
+
+                    textPopup.setText("Código QR escaneado correctamente.");
+                    infoPopup.setBackground(getResources().getDrawable(R.drawable.confirm_popup_back));
+
+                    ObjectAnimator animation1 = ObjectAnimator.ofFloat(infoPopup,
+                            "translationY", 0 - infoPopup.getHeight(), 0);
+                    animation1.setDuration(1000);
+                    animation1.start();
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            ObjectAnimator animation1 = ObjectAnimator.ofFloat(infoPopup,
+                                    "translationY", 0, 0 - infoPopup.getHeight());
+                            animation1.setDuration(1000);
+                            animation1.start();
+                        }
+                    }, 2000);
+
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putInt(Keystring.USER_QRSCANS, 0);
+                    editor.apply();
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    infoPopup.setVisibility(View.VISIBLE);
+
+                    textPopup.setText("Código QR inválido");
+                    infoPopup.setBackground(getResources().getDrawable(R.drawable.error_popup_back));
+
+
+                    ObjectAnimator animation1 = ObjectAnimator.ofFloat(infoPopup,
+                            "translationY", 0 - infoPopup.getHeight(), 0);
+                    animation1.setDuration(1000);
+                    animation1.start();
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            ObjectAnimator animation1 = ObjectAnimator.ofFloat(infoPopup,
+                                    "translationY", 0, 0 - infoPopup.getHeight());
+                            animation1.setDuration(1000);
+                            animation1.start();
+                        }
+                    }, 2000);
+
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putInt(Keystring.USER_QRSCANS, prefs.getInt(Keystring.USER_QRSCANS, 0) + 1);
+                    editor.apply();
+
+                    Log.d("QRSCANS", prefs.getInt(Keystring.USER_QRSCANS, 0) + "");
+
+                    if (prefs.getInt(Keystring.USER_QRSCANS, 0) == 3) {
+
+                        startActivityForResult(new Intent(Profile.this, TwoButtonPopup.class), MANUAL_ADD_POINTS);
+
+                    }
+
+
+                }
+
+                new AddPointsAsync().execute();
+                new getHistoryAsync().execute();
+                new getUserInfoAsync().execute();
+
+                timelineAdapter.notifyDataSetChanged();
+
+            } else {
+
+                infoPopup.setVisibility(View.VISIBLE);
+                infoPopup.setBackground(getResources().getDrawable(R.drawable.error_popup_back));
+                textPopup.setText("No se pudo leer el código QR.\nIntente de nuevo.");
+
+                ObjectAnimator animation1 = ObjectAnimator.ofFloat(infoPopup,
+                        "translationY", 0 - infoPopup.getHeight(), 0);
+                animation1.setDuration(1000);
+                animation1.start();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        ObjectAnimator animation1 = ObjectAnimator.ofFloat(infoPopup,
+                                "translationY", 0, 0 - infoPopup.getHeight());
+                        animation1.setDuration(1000);
+                        animation1.start();
+                    }
+                }, 2000);
+
+
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.putInt(Keystring.USER_QRSCANS, prefs.getInt(Keystring.USER_QRSCANS, 0) + 1);
                 editor.apply();
 
-                Log.d("QRSCANS", prefs.getInt(Keystring.USER_QRSCANS, 0) + "");
-
-                if(prefs.getInt(Keystring.USER_QRSCANS, 0) == 3){
-
-                startActivity(new Intent(Profile.this, TwoButtonPopup.class));
-
-                }
-
-
 
             }
-
-            new AddPointsAsync().execute();
-            new getHistoryAsync().execute();
-            new getUserInfoAsync().execute();
-
-            timelineAdapter.notifyDataSetChanged();
-
-        } else {
-
-            infoPopup.setVisibility(View.VISIBLE);
-            infoPopup.setBackground(getResources().getDrawable(R.drawable.error_popup_back));
-            textPopup.setText("No se pudo leer el código QR.\nIntente de nuevo.");
-
-            ObjectAnimator animation1 = ObjectAnimator.ofFloat(infoPopup,
-                    "translationY", 0 - infoPopup.getHeight(), 0);
-            animation1.setDuration(1000);
-            animation1.start();
-
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    ObjectAnimator animation1 = ObjectAnimator.ofFloat(infoPopup,
-                            "translationY", 0, 0 - infoPopup.getHeight());
-                    animation1.setDuration(1000);
-                    animation1.start();
-                }
-            }, 2000);
-
-
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putInt(Keystring.USER_QRSCANS, prefs.getInt(Keystring.USER_QRSCANS, 0) + 1);
-            editor.apply();
-
-            Log.d("QRSCANS", prefs.getInt(Keystring.USER_QRSCANS, 0) + "");
-
-
         }
 
     }
