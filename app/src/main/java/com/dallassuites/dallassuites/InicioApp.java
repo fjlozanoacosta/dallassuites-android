@@ -5,6 +5,7 @@ package com.dallassuites.dallassuites;
  */
 
 import android.app.Application;
+import android.support.multidex.MultiDex;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
@@ -39,6 +40,7 @@ public class InicioApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        MultiDex.install(getApplicationContext());
 
 
 

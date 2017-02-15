@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="core">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/app/src/main/libs/android-quick-response-code-master/libs/core.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

@@ -1,1 +1,1 @@
-include ':app', ':chromeview'
+include ':app', ':chromeview', ':core'
