@@ -25,11 +25,12 @@
     Proin laoreet arcu a magna fringilla</string>
 
     <!--Services-->
+    <string name="rates_title">PRECIOS</string>
     <string name="services_restaurant">RESTAURANTE</string>
     <string name="services_roomservice">ROOM SERVICE</string>
     <string name="services_privacyandsecurity">PRIVACIDAD Y SEGURIDAD</string>
     <string name="services_doublereception">DOBLE RECEPCIÓN</string>
-    <string name="services_comfortandamenities">COMFORT Y AMENIDADES</string>
+    <string name="services_comfortandamenities">CONFORT Y AMENIDADES</string>
     <string name="services_roomservice_copy">Para complementar su estadía, le ofrecemos una gran
 variedad de platos y una extensa carta de bebidas para
 que las disfrute tanto en nuestro bar/restaurant,
@@ -102,6 +103,7 @@ acumular puntos con diferentes parejas</string>
     <string name="keyword_popup_text">La Palabra Clave te ayudará\na recuperar tu contraseña.\nCada contraseña tendrá\nsu palabra clave.</string>
     <string name="copy_tut">Podrás crear varias contraseñas para acumular\npuntos con diferentes parejas. Cada contraseña\ntendrá asociada una palabra clave que te ayudará\na diferenciarlas facilmente.</string>
     <string name="tut_title">VARIAS CONTRASEÑAS</string>
+    <string name="rates_url">http://precios.dallassuiteshotel.com/</string>
 
 
 </resources>

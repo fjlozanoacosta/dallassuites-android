@@ -15,7 +15,7 @@ import com.dallassuites.util.GAUtils;
  */
 public class Services extends Activity implements View.OnClickListener{
 
-    Button restaurant, roomService, privacyAndSecurity, doubleReception, comfortAndAmenities;
+    Button restaurant, roomService, privacyAndSecurity, doubleReception, comfortAndAmenities, rates;
     Typeface brandonlight,brandonregular;
     TextView title;
 
@@ -34,6 +34,7 @@ public class Services extends Activity implements View.OnClickListener{
 
         title = (TextView)findViewById(R.id.services_title);
 
+        rates = (Button)findViewById(R.id.services_button_rates);
         restaurant = (Button)findViewById(R.id.services_button_restaurant);
         roomService = (Button)findViewById(R.id.services_button_roomservice);
         privacyAndSecurity = (Button)findViewById(R.id.services_button_privacyandsecurity);
@@ -42,12 +43,14 @@ public class Services extends Activity implements View.OnClickListener{
 
         title.setTypeface(brandonlight);
 
+        rates.setTypeface(brandonlight);
         restaurant.setTypeface(brandonlight);
         roomService.setTypeface(brandonlight);
         privacyAndSecurity.setTypeface(brandonlight);
         doubleReception.setTypeface(brandonlight);
         comfortAndAmenities.setTypeface(brandonlight);
 
+        rates.setOnClickListener(this);
         restaurant.setOnClickListener(this);
         roomService.setOnClickListener(this);
         privacyAndSecurity.setOnClickListener(this);
@@ -60,6 +63,11 @@ public class Services extends Activity implements View.OnClickListener{
     public void onClick(View view) {
 
         switch(view.getId()){
+
+            case R.id.services_button_rates:
+                startActivity(new Intent(Services.this, Rates.class));
+                overridePendingTransition(R.anim.slide_right_in, R.anim.slide_in_left);
+                break;
 
             case R.id.services_button_restaurant:
                 startActivity(new Intent(Services.this, Restaurant.class));
